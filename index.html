@@ -12,7 +12,7 @@
             --surface: #ea580c; 
             --surface-card: #f1f5f9; 
             --text: #0f172a; 
-            --text-muted: #64748b; 
+            --text-muted: #475569; 
             --border: #cbd5e1; 
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
@@ -20,7 +20,7 @@
         
         header.site-header { 
             background: var(--surface);
-            padding: 15px 20px; 
+            padding: 18px 20px; 
             border-bottom: 3px solid #c2410c; 
             display: flex; 
             justify-content: space-between; 
@@ -31,8 +31,8 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
         }
         .header-logo { display: flex; align-items: center; gap: 8px; }
-        .header-logo .brand-icon { font-size: 1.4rem; background: rgba(255, 255, 255, 0.2); padding: 4px 8px; border-radius: 6px; }
-        .header-logo h1 { color: #ffffff; font-size: 1.3rem; font-weight: 900; }
+        .header-logo .brand-icon { font-size: 1.6rem; background: rgba(255, 255, 255, 0.2); padding: 4px 8px; border-radius: 6px; }
+        .header-logo h1 { color: #ffffff; font-size: 1.4rem; font-weight: 900; }
         
         .menu-btn { 
             background: rgba(255, 255, 255, 0.2); 
@@ -42,45 +42,51 @@
             border-radius: 6px; 
             font-weight: 700; 
             cursor: pointer; 
-            font-size: 0.9rem; 
+            font-size: 0.95rem; 
         }
 
-        .sidebar { position: fixed; top: 0; right: 0; width: 300px; height: 100%; background: #ffffff; border-left: 2px solid var(--border); padding: 25px 20px; z-index: 20; display: flex; flex-direction: column; gap: 20px; transform: translateX(100%); transition: transform 0.3s ease-in-out; overflow-y: auto; }
+        .sidebar { position: fixed; top: 0; right: 0; width: 300px; height: 100%; background: #ffffff; border-left: 2px solid var(--border); padding: 25px 20px; z-index: 20; transform: translateX(100%); transition: transform 0.3s ease-in-out; overflow-y: auto; }
         .sidebar.active { transform: translateX(0); }
         .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); padding-bottom: 12px; }
-        .sidebar-header h2 { font-size: 1rem; color: #ea580c; font-weight: 800; }
+        .sidebar-header h2 { font-size: 1.1rem; color: #ea580c; font-weight: 800; }
         .close-btn { background: #ef4444; color: #fff; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; }
         
         .tool-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-        .tool-list h3 { font-size: 0.8rem; color: var(--text-muted); margin-top: 10px; border-right: 3px solid #ea580c; padding-right: 6px; font-weight: 700; }
-        .tool-list a { color: var(--text); text-decoration: none; padding: 10px 14px; background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; display: block; font-size: 0.85rem; }
+        .tool-list h3 { font-size: 0.85rem; color: var(--text-muted); margin-top: 10px; border-right: 3px solid #ea580c; padding-right: 6px; font-weight: 700; }
+        .tool-list a { color: var(--text); text-decoration: none; padding: 12px 14px; background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; display: block; font-size: 0.9rem; }
 
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 15; display: none; backdrop-filter: blur(2px); }
         .overlay.active { display: block; }
 
-        /* ضبط المساحة الكلية لسطح المكتب والموبايل */
-        .main-content { flex: 1; padding: 20px 15px; display: flex; flex-direction: column; gap: 25px; max-width: 1200px; margin: 0 auto; width: 100%; }
-        .section-title { font-size: 1.15rem; color: var(--text); padding-right: 8px; border-right: 4px solid #ea580c; font-weight: 800; margin-bottom: 5px; }
+        /* مساحة المحتوى الكلية لتناسب شاشات العرض الكبيرة للمقالات والأدوات */
+        .main-content { flex: 1; padding: 30px 20px; display: flex; flex-direction: column; gap: 30px; max-width: 1200px; margin: 0 auto; width: 100%; }
+        .section-title { font-size: 1.3rem; color: var(--text); padding-right: 10px; border-right: 4px solid #ea580c; font-weight: 800; margin-bottom: 5px; }
         
-        /* التصميم الافتراضي للموبايل: عمود واحد عمودي ممتد */
-        .tools-grid { display: flex; flex-direction: column; gap: 24px; width: 100%; }
+        /* أدوات الشاشة للموبايل في عمود واحد متباعد */
+        .tools-grid { display: flex; flex-direction: column; gap: 28px; width: 100%; }
         
-        /* التحول التلقائي والذكي لشبكة متجاوبة عند فتح الموقع من الكمبيوتر وسطح المكتب */
+        /* التحول الذكي لـ 3 أعمدة على الكمبيوتر وشاشات العرض الكبيرة لتملأ الشاشة بالكامل */
         @media (min-width: 768px) {
-            .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+            .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
         }
         @media (min-width: 1024px) {
-            .tools-grid { grid-template-columns: repeat(3, 1fr); gap: 28px; }
+            .tools-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; }
         }
         
-        .card { background: var(--surface-card); padding: 22px; border-radius: 12px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .card h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); }
-        .card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
+        /* تصميم الكروت بعد تكبير الطول والعرض وزيادة الحشوة الداخلية بنظافة */
+        .card { background: var(--surface-card); padding: 35px 25px; border-radius: 16px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 10px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); transition: transform 0.2s ease, border-color 0.2s ease; }
+        .card:hover { transform: translateY(-2px); border-color: #ea580c; }
+        
+        /* تكبير أسماء الأدوات بشكل ضخم وملحوظ وعريض */
+        .card h3 { font-size: 1.4rem; font-weight: 800; color: #000000; line-height: 1.3; }
+        
+        /* تكبير نصوص الوصف المكتوبة أسفل عنوان الأداة لسهولة القراءة */
+        .card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; }
 
-        .social-section { background: #f8fafc; border-top: 2px solid var(--border); padding: 30px 15px; text-align: center; margin-top: auto; width: 100%; }
-        .social-title { font-size: 0.95rem; color: var(--text); font-weight: 800; margin-bottom: 20px; }
-        .social-grid { display: flex; justify-content: center; gap: 15px; flex-direction: row; }
-        .social-icon { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; color: #ffffff; text-decoration: none; font-size: 0.85rem; font-weight: 900; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .social-section { background: #f8fafc; border-top: 2px solid var(--border); padding: 35px 15px; text-align: center; margin-top: auto; width: 100%; }
+        .social-title { font-size: 1rem; color: var(--text); font-weight: 800; margin-bottom: 20px; }
+        .social-grid { display: flex; justify-inline: center; justify-content: center; gap: 18px; flex-direction: row; }
+        .social-icon { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; color: #ffffff; text-decoration: none; font-size: 0.95rem; font-weight: 900; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
         
         .fb { background: #1877f2; }
         .tw { background: #000000; }
@@ -110,7 +116,7 @@
         <ul class="tool-list">
             <h3>أدوات الميديا والملفات</h3>
             <li><a href="/image-converter">1. تحويل صيغ الصور 🖼️</a></li>
-            <li><a href="/image-compressor">2. ضغط حجم الصور 📉</a></li>
+            <li><a href="/image-compressor">2. ضذج حجم الصور 📉</a></li>
             <li><a href="/pdf-to-images">3. محول PDF إلى صور 📄</a></li>
             <li><a href="/pdf-tools">4. أدوات PDF الشاملة 💼</a></li>
             <h3>أدوات فحص السيو والسرعة</h3>

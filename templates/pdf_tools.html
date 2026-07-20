@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أدوات PDF الشاملة أونلاين مجانًا - SmartToolsPro</title>
+    <meta name="description" content="أفضل أداة مجانية لدمج وتعديل ملفات PDF متعددة أونلاين فوريًا عبر السيرفر لتهيئة معايير السيو والقبول في أدسنس.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="http://127.0.0">
+    <style>
+        :root { --bg: #0f172a; --surface: #1e293b; --primary: #38bdf8; --text: #f8fafc; --text-muted: #94a3b8; --border: #334155; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+        body { background: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; display: flex; flex-direction: column; gap: 20px; }
+        .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
+        .back-btn { display: inline-block; align-self: flex-start; color: var(--primary); text-decoration: none; font-weight: bold; background: var(--surface); padding: 8px 15px; border-radius: 6px; border: 1px solid var(--border); transition: 0.2s; }
+        .back-btn:hover { background: var(--primary); color: #000; }
+        .tool-box { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); text-align: center; }
+        h1 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-right: 4px solid var(--primary); padding-right: 8px; text-align: right; }
+        
+        .upload-zone { border: 2px dashed var(--border); padding: 20px; border-radius: 8px; cursor: pointer; margin-bottom: 15px; background: #0f172a; transition: 0.2s; }
+        .upload-zone:hover { border-color: var(--primary); }
+        input[type="file"] { display: none; }
+        
+        .file-list { text-align: right; margin-bottom: 15px; background: #0f172a; padding: 10px; border-radius: 8px; border: 1px solid var(--border); display: none; }
+        .file-list h3 { font-size: 0.9rem; color: var(--primary); margin-bottom: 5px; }
+        .file-list ul { list-style: none; font-size: 0.85rem; color: var(--text-muted); padding-right: 10px; }
+        
+        .action-btn { background: var(--primary); color: #000; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 1rem; width: 100%; }
+        .action-btn:hover { background: #7dd3fc; }
+
+        .seo-article { background: var(--surface); padding: 25px; border-radius: 12px; border: 1px solid var(--border); text-align: justify; }
+        .seo-article h2 { color: var(--primary); font-size: 1.15rem; margin: 20px 0 10px 0; border-right: 3px solid var(--primary); padding-right: 8px; }
+        .seo-article p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; line-height: 1.6; }
+        .slider-section { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; }
+        .slider-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 15px; }
+        .slider-wrapper { overflow: hidden; width: 100%; position: relative; }
+        .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
+        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; box-sizing: border-box; }
+        .slider-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 5px; text-align: right; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">⬅️ العودة للرئيسية</a>
+        <main class="tool-box">
+            <h1>أدوات PDF الشاملة (الدمج) 💼</h1>
+            <form id="mergeForm" action="/merge-pdfs" method="POST" enctype="multipart/form-data">
+                <div class="upload-zone" onclick="document.getElementById('fileInput').click()">
+                    <p id="uploadText" style="color: var(--text-muted); font-size: 0.95rem;">اختر ملفين PDF أو أكثر لدمجهم معًا 📑</p>
+                    <input type="file" id="fileInput" name="pdf_files" accept="application/pdf" multiple onchange="showFiles(event)">
+                </div>
+                
+                <div class="file-list" id="fileListContainer">
+                    <h3>الملفات المختارة للدمج:</h3>
+                    <ul id="selectedFilesUl"></ul>
+                </div>
+                
+                <button type="submit" class="action-btn">✨ ابدأ دمج ملفات PDF الآن</button>
+            </form>
+        </main>
+
+        <section class="slider-section">
+            <h2 class="slider-title">أدوات مقترحة قد تهمك 🚀</h2>
+            <div class="slider-wrapper">
+                <div class="slider-container" id="sliderContainer">
+                    <div class="slide">
+                        <a href="/pdf-to-images" class="slider-card"><h3>محول PDF إلى صور 📄</h3><p>تفكيك ملفات PDF واستخراج الصور منها بدقة.</p></a>
+                        <a href="/image-converter" class="slider-card"><h3>تحويل صيغ الصور 🖼️</h3><p>تحويل الصور محلياً وفورياً بين الصيغ المختلفة.</p></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <article class="seo-article">
+            <h2>المقطع الأول: ما هي أدوات PDF الشاملة وفائدة دمج الملفات؟</h2>
+            <p>تمنحك أداة دمج ملفات PDF القدرة على تجميع عدة مستندات وكتب إلكترونية مبعثرة داخل ملف واحد منظم وبترتيب دقيق. تتم المعالجة بشكل آمن كلياً عبر السيرفر لحفظ جودة التنسيقات والخطوط الأصلية للمستندات.</p>
+            <h2>المقطع الثاني: أهمية أدوات معالجة المستندات في تحسين السيو وقبول أدسنس</h2>
+            <p>توظيف أدوات معالجة الملفات المتقدمة يضيف قيمة خدمية حصرية تدفع المستخدمين للتفاعل والبقاء، وهو أمر تعشقه محركات البحث (SEO). هذا التفاعل يخفض معدلات الارتداد ويلبي الشروط اللازمة للقبول الفوري في أدسنس.</p>
+        </article>
+    </div>
+
+    <script>
+        function showFiles(event) {
+            var files = event.target.files;
+            var container = document.getElementById('fileListContainer');
+            var ul = document.getElementById('selectedFilesUl');
+            ul.innerHTML = '';
+            
+            if (files.length > 0) {
+                container.style.display = 'block';
+                document.getElementById('uploadText').textContent = "تم اختيار " + files.length + " ملفات 📄";
+                for (var i = 0; i < files.length; i++) {
+                    var li = document.createElement('li');
+                    li.textContent = (i + 1) + ". " + files[i].name;
+                    ul.appendChild(li);
+                }
+            } else {
+                container.style.display = 'none';
+            }
+        }
+
+        var container = document.getElementById('sliderContainer');
+        var slidesCount = document.querySelectorAll('.slide').length;
+        var currentSlide = 0;
+        setInterval(function() {
+            currentSlide = (currentSlide + 1) % slidesCount;
+            container.style.transform = "translateX(" + (currentSlide * 100) + "%)";
+        }, 5000);
+    </script>
+</body>
+</html>

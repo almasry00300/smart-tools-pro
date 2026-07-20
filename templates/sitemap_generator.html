@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap Generator - SmartToolsPro</title>
+    <style>
+        :root { --bg: #0f172a; --surface: #1e293b; --primary: #38bdf8; --text: #f8fafc; --text-muted: #94a3b8; --border: #334155; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+        body { background: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; display: flex; flex-direction: column; gap: 20px; }
+        .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
+        .back-btn { display: inline-block; align-self: flex-start; color: var(--primary); text-decoration: none; font-weight: bold; background: var(--surface); padding: 8px 15px; border-radius: 6px; border: 1px solid var(--border); transition: 0.2s; }
+        .back-btn:hover { background: var(--primary); color: #000; }
+        .tool-box { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        h1 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-right: 4px solid var(--primary); padding-right: 8px; text-align: right; }
+        input[type="text"] { width: 100%; background: #0f172a; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 1rem; outline: none; margin-bottom: 15px; text-align: left; direction: ltr; }
+        input[type="text"]:focus { border-color: var(--primary); }
+        .action-btn { background: var(--primary); color: #000; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 1rem; width: 100%; }
+        .action-btn:hover { background: #7dd3fc; }
+        .status-msg { display: none; margin: 15px 0; color: var(--primary); font-size: 0.95rem; text-align: center; }
+        .result-box { display: none; background: #151f32; padding: 15px; border-radius: 8px; border: 1px solid var(--border); margin-top: 15px; text-align: right; }
+        .result-box h3 { font-size: 1rem; color: var(--primary); margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .sitemap-textarea { width: 100%; height: 200px; background: #0f172a; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 0.9rem; font-family: monospace; resize: vertical; outline: none; margin-bottom: 10px; text-align: left; direction: ltr; }
+        .seo-article { background: var(--surface); padding: 25px; border-radius: 12px; border: 1px solid var(--border); text-align: justify; }
+        .seo-article h2 { color: var(--primary); font-size: 1.15rem; margin: 20px 0 10px 0; border-right: 3px solid var(--primary); padding-right: 8px; }
+        .seo-article p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; line-height: 1.6; }
+        .slider-section { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; }
+        .slider-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 15px; }
+        .slider-wrapper { overflow: hidden; width: 100%; position: relative; }
+        .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
+        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; box-sizing: border-box; }
+        .slider-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 5px; text-align: right; }
+        .slider-card h3 { font-size: 0.9rem; color: var(--text); }
+        .slider-card p { font-size: 0.75rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">⬅️ العودة للرئيسية</a>
+        <main class="tool-box">
+            <h1>منشئ السايت ماب 🗺️</h1>
+            <input type="text" id="targetSiteUrl" placeholder="https://example.com">
+            <button class="action-btn" onclick="generateSitemap()">🗺️ توليد خريطة الموقع XML فوراً</button>
+            <p class="status-msg" id="statusMsg">جاري توليد خريطة الموقع وبناء روابط الـ XML، يرجى الانتظار... ⏳</p>
+            <div class="result-box" id="resultBox">
+                <h3>خريطة الموقع الجاهزة (XML Sitemap):</h3>
+                <textarea class="sitemap-textarea" id="sitemapOutput" readonly></textarea>
+            </div>
+        </main>
+        <section class="slider-section">
+            <h2 class="slider-title">أدوات مقترحة قد تهمك 🚀</h2>
+            <div class="slider-wrapper">
+                <div class="slider-container" id="sitemapSlider">
+                    <div class="slide">
+                        <a href="/broken-links" class="slider-card"><h3>فحص الروابط المعطوبة 🔗</h3><p>اكتشاف وفحص الروابط المكسورة خطأ 404.</p></a>
+                        <a href="/meta-analyzer" class="slider-card"><h3>عرض وتحليل الميتاتاج 🔍</h3><p>فحص أكواد السيو وعناوين الميتا.</p></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <article class="seo-article">
+            <h2>ما هي أداة منشئ السايت ماب؟</h2>
+            <p>تعد أداة منشئ السايت ماب (Sitemap Generator) وسيلة تقنية بالغة الأهمية لإنشاء خريطة ويب متكاملة بصيغة XML تتيح لعناكب البحث الأرشفة السريعة لجميع الصفحات والمقالات والقبول بامتياز في أدسنس.</p>
+        </article>
+    </div>
+    <script>
+        function generateSitemap() {
+            var urlInput = document.getElementById('targetSiteUrl').value.trim();
+            if(urlInput === "") { alert("يرجى إدخال رابط الموقع أولاً!"); return; }
+            
+            var statusMsg = document.getElementById('statusMsg');
+            var resultBox = document.getElementById('resultBox');
+            var output = document.getElementById('sitemapOutput');
+            
+            statusMsg.style.display = 'block';
+            resultBox.style.display = 'none';
+            output.value = '';
+            
+            fetch('/generate-sitemap', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url: urlInput })
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                statusMsg.style.display = 'none';
+                if (data.error) { alert(data.error); return; }
+                if (data.links.length === 0) { alert("لم يتم توليد روابط!"); return; }
+
+                var xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+                xml += '<urlset xmlns="http://sitemaps.org">\n';
+                
+                data.links.forEach(function(link) {
+                    xml += '  <url>\n';
+                    xml += '    <loc>' + link + '</loc>\n';
+                    xml += '    <priority>0.80</priority>\n';
+                    xml += '  </url>\n';
+                });
+                
+                xml += '</urlset>';
+                output.value = xml;
+                resultBox.style.display = 'block';
+            })
+            .catch(function(err) {
+                statusMsg.style.display = 'none';
+                alert("حدث خطأ أثناء الاتصال بالسيرفر!");
+            });
+        }
+
+        var container = document.getElementById('sitemapSlider');
+        var slidesCount = document.querySelectorAll('.slide').length;
+        var currentSlide = 0;
+        setInterval(function() {
+            currentSlide = (currentSlide + 1) % slidesCount;
+            container.style.transform = "translateX(" + (currentSlide * 100) + "%)";
+        }, 5000);
+    </script>
+</body>
+</html>

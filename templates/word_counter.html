@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 1. ملفات الأرشفة والسيو (SEO Meta Tags) مجهزة لأدسنس وجوجل -->
+    <title>أداة عداد الكلمات والحروف المتقدمة - SmartToolsPro</title>
+    <meta name="description" content="أفضل أداة مجانية لحساب عدد الكلمات، الحروف، والأسطر في النصوص بشكل فوري. أداة مثالية لكتاب المحتوى وخبراء السيو لتهيئة المقالات لمحركات البحث.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="http://127.0.0">
+    
+    <!-- أرشفة وسائل التواصل (Open Graph) -->
+    <meta property="og:title" content="أداة عداد الكلمات والحروف المتقدمة - SmartToolsPro">
+    <meta property="og:description" content="احسب الكلمات والحروف والأسطر فوريًا مجانًا مع تحليل متقدم للنصوص متوافق مع معايير السيو.">
+    <meta property="og:type" content="website">
+
+    <style>
+        :root { 
+            --bg: #0f172a; 
+            --surface: #1e293b; 
+            --primary: #38bdf8; 
+            --text: #f8fafc; 
+            --text-muted: #94a3b8; 
+            --border: #334155; 
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+        body { background: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; display: flex; flex-direction: column; gap: 20px; }
+        .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
+        
+        .back-btn { display: inline-block; align-self: flex-start; color: var(--primary); text-decoration: none; font-weight: bold; background: var(--surface); padding: 8px 15px; border-radius: 6px; border: 1px solid var(--border); transition: 0.2s; }
+        .back-btn:hover { background: var(--primary); color: #000; }
+        
+        .tool-box { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); }
+        h1 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-right: 4px solid var(--primary); padding-right: 8px; }
+        textarea { width: 100%; height: 200px; background: #0f172a; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 1rem; resize: vertical; outline: none; margin-bottom: 15px; }
+        
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .stat-card { background: #151f32; padding: 12px; border-radius: 8px; text-align: center; border: 1px solid var(--border); }
+        .stat-card span { display: block; font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+        .stat-card p { font-size: 0.8rem; color: var(--text-muted); }
+        
+        .seo-article { background: var(--surface); padding: 25px; border-radius: 12px; border: 1px solid var(--border); text-align: justify; }
+        .seo-article h2 { color: var(--primary); font-size: 1.15rem; margin: 20px 0 10px 0; }
+        .seo-article p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+        /* 2. تصميم سلايدر الأدوات المقترحة المتجاوب */
+        .slider-section { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; }
+        .slider-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 15px; }
+        .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
+        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; box-sizing: border-box; }
+        .slider-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 5px; }
+        .slider-card h3 { font-size: 0.9rem; color: var(--text); }
+        .slider-card p { font-size: 0.75rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">⬅️ العودة للرئيسية</a>
+        
+        <main class="tool-box">
+            <h1>عداد الكلمات والحروف المتقدم 📝</h1>
+            <textarea id="textInput" placeholder="اكتب أو الصق نصك هنا..."></textarea>
+            <div class="stats">
+                <div class="stat-card"><span id="wordCount">0</span><p>الكلمات</p></div>
+                <div class="stat-card"><span id="charCount">0</span><p>الحروف</p></div>
+                <div class="stat-card"><span id="lineCount">0</span><p>الأسطر</p></div>
+            </div>
+        </main>
+
+        <article class="seo-article">
+            <h2>أهمية حساب الكلمات للسيو وجوجل أدسنس</h2>
+            <p>تساعدك هذه الأداة على فحص المقالات بدقة والالتزام بالطول المثالي المتوافق مع معايير السيو لتصدر نتائج البحث وضمان القبول في أدسنس بمحتوى عالي القيمة.</p>
+        </article>
+
+        <!-- 3. هيكل السلايدر التلقائي للأدوات المقترحة (يضم باقة من الـ 20 أداة) -->
+        <section class="slider-section">
+            <h2 class="slider-title">أدوات مقترحة قد تهمك 🚀</h2>
+            <div style="overflow: hidden; width: 100%;">
+                <div class="slider-container" id="sliderContainer">
+                    <!-- المجموعة الأولى -->
+                    <div class="slide">
+                        <a href="#" class="slider-card"><h3>عداد الحروف الدقيق 🔢</h3><p>حساب الحروف مع الفراغات وبدونها.</p></a>
+                        <a href="#" class="card slider-card"><h3>إزالة الأسطر المكررة ✨</h3><p>تنظيف القوائم والبيانات من التكرار فورا.</p></a>
+                    </div>
+                    <!-- المجموعة الثانية -->
+                    <div class="slide">
+                        <a href="#" class="slider-card"><h3>مخطط التريندات والسيو 📈</h3><p>تحليل الكلمات المفتاحية والكثافة النصية.</p></a>
+                        <a href="#" class="slider-card"><h3>حساب العمر بالتفصيل 📅</h3><p>حساب العمر بدقة تامة بالسنوات والأيام.</p></a>
+                    </div>
+                    <!-- 3المجموعة الثالثة -->
+                    <div class="slide">
+                        <a href="#" class="slider-card"><h3>منشئ كود الـ QR 📱</h3><p>حول أي رابط أو نص لكود كيو أر مخصص.</p></a>
+                        <a href="#" class="slider-card"><h3>منشئ كلمات المرور 🔑</h3><p>توليد كلمات سر معقدة وقوية جداً.</p></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // سكريبت تشغيل الأداة الحسابية فوريًا
+        const textInput = document.getElementById('textInput');
+        textInput.addEventListener('input', () => {
+            const text = textInput.value;
+            document.getElementById('charCount').textContent = text.length;
+            document.getElementById('wordCount').textContent = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+            document.getElementById('lineCount').textContent = text === '' ? 0 : text.split('\n').length;
+        });
+
+        // سكريبت تدوير السلايدر تلقائيًا كل 5 ثوانٍ (5000 مللي ثانية)
+        const container = document.getElementById('sliderContainer');
+        const slidesCount = document.querySelectorAll('.slide').length;
+        let currentSlide = 0;
+
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slidesCount;
+            container.style.transform = `translateX(${currentSlide * 100}%)`;
+        }, 5000);
+    </script>
+</body>
+</html>

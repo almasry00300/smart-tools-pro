@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أداة استخراج الألوان من الصور مجانًا - SmartToolsPro</title>
+    <meta name="description" content="أفضل أداة مجانية لاستخراج أكواد الألوان HEX و RGB من الصور أونلاين فوراً باللمس لتهيئة معايير التصميم والسيو والقبول في أدسنس.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="http://127.0.0">
+    <style>
+        :root { --bg: #0f172a; --surface: #1e293b; --primary: #38bdf8; --text: #f8fafc; --text-muted: #94a3b8; --border: #334155; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+        body { background: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; display: flex; flex-direction: column; gap: 20px; }
+        .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
+        .back-btn { display: inline-block; align-self: flex-start; color: var(--primary); text-decoration: none; font-weight: bold; background: var(--surface); padding: 8px 15px; border-radius: 6px; border: 1px solid var(--border); transition: 0.2s; }
+        .back-btn:hover { background: var(--primary); color: #000; }
+        .tool-box { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); text-align: center; }
+        h1 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-right: 4px solid var(--primary); padding-right: 8px; text-align: right; }
+        
+        .upload-zone { border: 2px dashed var(--border); padding: 20px; border-radius: 8px; cursor: pointer; margin-bottom: 15px; background: #0f172a; transition: 0.2s; }
+        .upload-zone:hover { border-color: var(--primary); }
+        input[type="file"] { display: none; }
+        
+        .image-preview-container { display: none; margin: 15px 0; position: relative; }
+        #canvasPreview { max-width: 100%; max-height: 400px; border-radius: 8px; cursor: crosshair; background: #000; border: 1px solid var(--border); }
+        
+        .color-info { display: none; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 15px; }
+        .color-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .color-box-preview { width: 40px; height: 40px; border-radius: 6px; border: 1px solid #fff; }
+        .color-text { font-weight: bold; font-family: monospace; font-size: 1.1rem; color: var(--primary); cursor: pointer; }
+
+        .seo-article { background: var(--surface); padding: 25px; border-radius: 12px; border: 1px solid var(--border); text-align: justify; }
+        .seo-article h2 { color: var(--primary); font-size: 1.15rem; margin: 20px 0 10px 0; border-right: 3px solid var(--primary); padding-right: 8px; }
+        .seo-article p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; line-height: 1.6; }
+        .slider-section { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; }
+        .slider-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 15px; }
+        .slider-wrapper { overflow: hidden; width: 100%; position: relative; }
+        .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
+        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; box-sizing: border-box; }
+        .slider-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 5px; text-align: right; }
+        .slider-card h3 { font-size: 0.9rem; color: var(--text); }
+        .slider-card p { font-size: 0.75rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">⬅️ العودة للرئيسية</a>
+        <main class="tool-box">
+            <h1>استخراج الألوان من الصور 🎨</h1>
+            <div class="upload-zone" onclick="document.getElementById('fileInput').click()">
+                <p id="uploadText" style="color: var(--text-muted); font-size: 0.95rem;">اضغط هنا لاختيار صورة من جهازك 📷</p>
+                <input type="file" id="fileInput" accept="image/*" onchange="loadImage(event)">
+            </div>
+            
+            <div class="image-preview-container" id="previewContainer">
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">اضغط أو المس أي مكان داخل الصورة لسحب اللون فوريًا 👇</p>
+                <canvas id="canvasPreview"></canvas>
+            </div>
+
+            <div class="color-info" id="colorInfo">
+                <div class="color-card">
+                    <div class="color-box-preview" id="colorHexBox"></div>
+                    <span class="color-text" id="colorHexText" onclick="copyText(this)">#000000</span>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">كود HEX (اضغط للنسخ)</p>
+                </div>
+                <div class="color-card">
+                    <div class="color-box-preview" id="colorRgbBox"></div>
+                    <span class="color-text" id="colorRgbText" onclick="copyText(this)">rgb(0,0,0)</span>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">كود RGB (اضغط للنسخ)</p>
+                </div>
+            </div>
+        </main>
+
+        <section class="slider-section">
+            <h2 class="slider-title">أدوات مقترحة قد تهمك 🚀</h2>
+            <div class="slider-wrapper">
+                <div class="slider-container" id="sliderContainer">
+                    <div class="slide">
+                        <a href="/word-counter" class="slider-card"><h3>عداد الكلمات المتقدم 📝</h3><p>احسب الكلمات بدقة فورتها.</p></a>
+                        <a href="/char-counter" class="slider-card"><h3>عداد الحروف الدقيق 🔢</h3><p>حساب الحروف بدقة مع الفراغات.</p></a>
+                    </div>
+                    <div class="slide">
+                        <a href="/qr-generator" class="slider-card"><h3>منشئ كود الـ QR 📱</h3><p>حول أي رابط أو نص لكود كيو أر مخصص.</p></a>
+                        <a href="/password-generator" class="slider-card"><h3>منشئ كلمات المرور 🔑</h3><p>توليد كلمات سر معقدة وقوية جداً.</p></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <article class="seo-article">
+            <h2>المقطع الأول: ما هي أداة استخراج الألوان من الصور وكيف تعمل؟</h2>
+            <p>تتيح أداة استخراج الألوان للمصممين ومطوري الويب الحصول على أكواد الألوان الدقيقة HEX و RGB من أي صورة محلياً باللمس. يتم تنفيذ المعالجة داخل المتصفح بالكامل لحماية خصوصية ملفاتك.</p>
+            <h2>المقطع الثاني: أهمية أدوات التصميم التفاعلية في تحسين السيو وجوجل أدسنس</h2>
+            <p>دمج الأدوات الرسومية التفاعلية يطيل بقاء الزائر ويخفض معدل الارتداد (Bounce Rate) بشكل ملحوظ، مما يعزز فهارس موقعك ومطابقتها لمعايير القبول في مراجعة أدسنس للمواقع الخدمية المتميزة.</p>
+        </article>
+    </div>
+
+    <script>
+        var canvas = document.getElementById('canvasPreview');
+        var ctx = canvas.getContext('2d');
+
+        function loadImage(event) {
+            var file = event.target.files[0];
+            if (!file) return;
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var img = new Image();
+                img.onload = function() {
+                    var maxW = 500;
+                    var scale = maxW / img.width;
+                    canvas.width = img.width > maxW ? maxW : img.width;
+                    canvas.height = img.width > maxW ? img.height * scale : img.height;
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    document.getElementById('previewContainer').style.display = 'block';
+                    document.getElementById('uploadText').textContent = "تم تحميل الصورة بنجاح! 🖼️";
+                }
+                img.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+
+        canvas.addEventListener('click', function(e) {
+            var rect = canvas.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+            var pixel = ctx.getImageData(x, y, 1, 1).data;
+            
+            var hex = "#" + ("000000" + ((pixel[0] << 16) | (pixel[1] << 8) | pixel[2]).toString(16)).slice(-6);
+            var rgb = "rgb(" + pixel[0] + "," + pixel[1] + "," + pixel[2] + ")";
+
+            document.getElementById('colorHexBox').style.backgroundColor = hex;
+            document.getElementById('colorHexText').textContent = hex;
+            document.getElementById('colorRgbBox').style.backgroundColor = rgb;
+            document.getElementById('colorRgbText').textContent = rgb;
+            document.getElementById('colorInfo').style.display = 'grid';
+        });
+
+        function copyText(el) {
+            navigator.clipboard.writeText(el.textContent).then(function() {
+                alert("تم نسخ كود اللون بنجاح! 🎨");
+            });
+        }
+
+        var container = document.getElementById('sliderContainer');
+        var slidesCount = document.querySelectorAll('.slide').length;
+        var currentSlide = 0;
+        setInterval(function() {
+            currentSlide = (currentSlide + 1) % slidesCount;
+            container.style.transform = "translateX(" + (currentSlide * 100) + "%)";
+        }, 5000);
+    </script>
+</body>
+</html>

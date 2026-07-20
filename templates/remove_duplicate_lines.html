@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ملفات الأرشفة والسيو (SEO Meta Tags) مجهزة لأدسنس وجوجل -->
+    <title>أداة إزالة الأسطر المكررة أونلاين مجانًا - SmartToolsPro</title>
+    <meta name="description" content="أفضل أداة مجانية لتنظيف النصوص والقوائم من التكرار والأسطر الفارغة بشكل فوري. أداة مثالية لترتيب البيانات وتهيئة الروابط والكلمات المفتاحية للسيو.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="http://127.0.0">
+    
+    <style>
+        :root { 
+            --bg: #0f172a; 
+            --surface: #1e293b; 
+            --primary: #38bdf8; 
+            --text: #f8fafc; 
+            --text-muted: #94a3b8; 
+            --border: #334155; 
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+        body { background: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; display: flex; flex-direction: column; gap: 20px; }
+        .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
+        
+        .back-btn { display: inline-block; align-self: flex-start; color: var(--primary); text-decoration: none; font-weight: bold; background: var(--surface); padding: 8px 15px; border-radius: 6px; border: 1px solid var(--border); transition: 0.2s; }
+        .back-btn:hover { background: var(--primary); color: #000; }
+        
+        .tool-box { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        h1 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-right: 4px solid var(--primary); padding-right: 8px; }
+        textarea { width: 100%; height: 200px; background: #0f172a; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 1rem; resize: vertical; outline: none; margin-bottom: 15px; transition: 0.2s; }
+        textarea:focus { border-color: var(--primary); }
+        
+        /* خيارات التصفية وأزرار التحكم */
+        .controls { display: flex; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; align-items: center; }
+        .checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-muted); cursor: pointer; }
+        .checkbox-label input { width: 16px; height: 16px; cursor: pointer; }
+        .action-btn { background: var(--primary); color: #000; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 0.95rem; }
+        .action-btn:hover { background: #7dd3fc; }
+
+        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 15px; }
+        .stat-card { background: #151f32; padding: 12px; border-radius: 8px; text-align: center; border: 1px solid var(--border); }
+        .stat-card span { display: block; font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+        .stat-card p { font-size: 0.8rem; color: var(--text-muted); }
+        
+        .seo-article { background: var(--surface); padding: 25px; border-radius: 12px; border: 1px solid var(--border); text-align: justify; }
+        .seo-article h2 { color: var(--primary); font-size: 1.15rem; margin: 20px 0 10px 0; border-right: 3px solid var(--primary); padding-right: 8px; }
+        .seo-article p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; line-height: 1.6; }
+
+        .slider-section { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; }
+        .slider-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 15px; }
+        .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
+        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; box-sizing: border-box; }
+        .slider-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 5px; }
+        .slider-card h3 { font-size: 0.9rem; color: var(--text); }
+        .slider-card p { font-size: 0.75rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">⬅️ العودة للرئيسية</a>
+        
+        <!-- منطقة الأداة -->
+        <main class="tool-box">
+            <h1>إزالة الأسطر المكررة ✨</h1>
+            <textarea id="textInput" placeholder="أدخل أو الصق قائمتك النصية هنا للبدء بالتنظيف الحصري..."></textarea>
+            
+            <div class="controls">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="removeEmpty" checked>
+                    <span>حذف الأسطر الفارغة تلقائيًا</span>
+                </label>
+                <button class="action-btn" onclick="cleanText()">تنظيف القائمة فوريًا ✨</button>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card"><span id="beforeCount">0</span><p>الأسطر قبل التصفية</p></div>
+                <div class="stat-card"><span id="afterCount">0</span><p>الأسطر بعد التنظيف</p></div>
+            </div>
+        </main>
+
+        <!-- السلايدر المقترح بالمنتصف بين الأداة والمقال -->
+        <section class="slider-section">
+            <h2 class="slider-title">أدوات مقترحة قد تهمك 🚀</h2>
+            <div style="overflow: hidden; width: 100%;">
+                <div class="slider-container" id="sliderContainer">
+                    <div class="slide">
+                        <a href="/word-counter" class="slider-card"><h3>عداد الكلمات المتقدم 📝</h3><p>احسب عدد الكلمات والأسطر في نصوصك بدقة متناهية.</p></a>
+                        <a href="/char-counter" class="slider-card"><h3>عداد الحروف الدقيق 🔢</h3><p>حساب الحروف الكلية بدقة مع الفراغات أو بدونها.</p></a>
+                    </div>
+                    <div class="slide">
+                        <a href="#" class="slider-card"><h3>مخطط التريندات والسيو 📈</h3><p>تحليل الكلمات المفتاحية والكثافة النصية للتدوين.</p></a>
+                        <a href="#" class="slider-card"><h3>حساب العمر بالتفصيل 📅</h3><p>حساب العمر بدقة تامة بالسنوات والشهور والأيام.</p></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- مقال الشرح الكامل والمقسم بمقطعين متوافق مع السيو وأدسنس -->
+        <article class="seo-article">
+            <h2>المقطع الأول: ما هي أداة إزالة الأسطر المكررة وكيف تعمل؟</h2>
+            <p>تعتبر أداة إزالة الأسطر المكررة خياراً استراتيجياً متقدماً لكل مهندسي البيانات والمبرمجين وخبراء تحسين محركات البحث (SEO). عند معالجة قوائم البيانات الضخمة أو ملفات الكلمات المفتاحية، يتسلل التكرار العشوائي ليفسد دقة التقارير. تقوم أداتنا الذكية بفحص كل سطر في النص بشكل منفصل ومطابقته فورياً، لتمنحك قائمة صافية ونظيفة تماماً وخالية من الشوائب وبسرعة معالجة فائقة دون تحميل أي خوادم خارجية.</p>
+
+            <h2>المقطع الثاني: فائدة تنظيف القوائم في تحسين معايير السيو (SEO)</h2>
+            <p>في عالم السيو، يتطلب إنشاء ملفات خرائط المواقع (Sitemaps) أو إعداد قوائم الروابط الخلفية (Backlinks) والكلمات الدلالية تنظيماً صارماً؛ حيث يؤدي التكرار إلى هدر ميزانية الزحف الخاصة بروبوتات جوجل (Crawl Budget). باستخدام خيار حذف الأسطر الفارغة المدمج، يمكنك تقليص أحجام الملفات النصية وتنظيم فهارس موقعك لتسريع صيانتها، وهو أمر ترحب به شروط القبول الصارمة في مراجعة حسابات جوجل أدسنس.</p>
+        </article>
+    </div>
+
+    <script>
+        // سكريبت تنظيف الأسطر المكررة فوريًا
+        function cleanText() {
+            const textarea = document.getElementById('textInput');
+            const removeEmpty = document.getElementById('removeEmpty').checked;
+            const text = textarea.value;
+            
+            if (text.trim() === '') return;
+            
+            const lines = text.split('\n');
+            document.getElementById('beforeCount').textContent = lines.length;
+            
+            // استخدام Set لمنع التكرار نهائيًا
+            let uniqueLines = [];
+            let seen = new Set();
+            
+            for (let line of lines) {
+                let trimmed = line.trim();
+                if (removeEmpty && trimmed === '') {
+                    continue; // تجاهل الأسطر الفارغة
+                }
+                if (!seen.has(line)) {
+                    seen.add(line);
+                    uniqueLines.push(line);
+                }
+            }
+            
+            textarea.value = uniqueLines.join('\n');
+            document.getElementById('afterCount').textContent = uniqueLines.length;
+        }
+
+        // سكريبت تدوير السلايدر تلقائيًا كل 5 ثوانٍ
+        const container = document.getElementById('sliderContainer');
+        const slidesCount = document.querySelectorAll('.slide').length;
+        let currentSlide = 0;
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slidesCount;
+            container.style.transform = `translateX(${currentSlide * 100}%)`;
+        }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أداة ضغط حجم الصور أونلاين مجانًا - SmartToolsPro</title>
+    <meta name="description" content="أفضل أداة مجانية لضغط حجم الصور وتقليل مساحتها أونلاين فوريًا ومحليًا لتهيئة معايير السيو والقبول في أدسنس.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="http://127.0.0">
+    <style>
+        :root { --bg: #0f172a; --surface: #1e293b; --primary: #38bdf8; --text: #f8fafc; --text-muted: #94a3b8; --border: #334155; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+        body { background: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; display: flex; flex-direction: column; gap: 20px; }
+        .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
+        .back-btn { display: inline-block; align-self: flex-start; color: var(--primary); text-decoration: none; font-weight: bold; background: var(--surface); padding: 8px 15px; border-radius: 6px; border: 1px solid var(--border); transition: 0.2s; }
+        .back-btn:hover { background: var(--primary); color: #000; }
+        .tool-box { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); text-align: center; }
+        h1 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-right: 4px solid var(--primary); padding-right: 8px; text-align: right; }
+        
+        .upload-zone { border: 2px dashed var(--border); padding: 20px; border-radius: 8px; cursor: pointer; margin-bottom: 15px; background: #0f172a; transition: 0.2s; }
+        .upload-zone:hover { border-color: var(--primary); }
+        input[type="file"] { display: none; }
+        
+        .controls { display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; text-align: right; }
+        .range-container { display: flex; align-items: center; gap: 15px; width: 100%; }
+        .range-container input[type="range"] { flex: 1; cursor: pointer; }
+        .range-val { font-weight: bold; color: var(--primary); min-width: 35px; text-align: center; }
+        
+        .info-box { display: none; background: #0f172a; padding: 12px; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 15px; font-size: 0.9rem; text-align: right; color: var(--text-muted); }
+        .info-box span { color: var(--primary); font-weight: bold; }
+
+        .action-btn { background: var(--primary); color: #000; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 1rem; width: 100%; display: none; }
+        .action-btn:hover { background: #7dd3fc; }
+        
+        .seo-article { background: var(--surface); padding: 25px; border-radius: 12px; border: 1px solid var(--border); text-align: justify; }
+        .seo-article h2 { color: var(--primary); font-size: 1.15rem; margin: 20px 0 10px 0; border-right: 3px solid var(--primary); padding-right: 8px; }
+        .seo-article p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; line-height: 1.6; }
+        .slider-section { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; }
+        .slider-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 15px; }
+        .slider-wrapper { overflow: hidden; width: 100%; position: relative; }
+        .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
+        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; box-sizing: border-box; }
+        .slider-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 5px; text-align: right; }
+        .slider-card h3 { font-size: 0.9rem; color: var(--text); }
+        .slider-card p { font-size: 0.75rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">⬅️ العودة للرئيسية</a>
+        <main class="tool-box">
+            <h1>ضغط حجم الصور 📉</h1>
+            <div class="upload-zone" onclick="document.getElementById('fileInput').click()">
+                <p id="uploadText" style="color: var(--text-muted); font-size: 0.95rem;">اضغط هنا لاختيار صورة من جهازك 📷</p>
+                <input type="file" id="fileInput" accept="image/*" onchange="handleImage(event)">
+            </div>
+            
+            <div class="controls">
+                <label style="color: var(--text-muted); font-size: 0.9rem;">جودة الضغط (النسبة المئوية للجودة):</label>
+                <div class="range-container">
+                    <input type="range" id="qualityRange" min="10" max="100" value="70" oninput="updateQualityVal(this.value)">
+                    <span class="range-val" id="qualityVal">70%</span>
+                </div>
+            </div>
+
+            <div class="info-box" id="sizeInfo">
+                <p>الحجم الأصلي: <span id="originalSize">0 KB</span></p>
+            </div>
+            
+            <button class="action-btn" id="compressBtn" onclick="compressImage()">✨ ضغط وتحميل الصورة الآن</button>
+        </main>
+
+        <section class="slider-section">
+            <h2 class="slider-title">أدوات مقترحة قد تهمك 🚀</h2>
+            <div class="slider-wrapper">
+                <div class="slider-container" id="sliderContainer">
+                    <div class="slide">
+                        <a href="/word-counter" class="slider-card"><h3>عداد الكلمات المتقدم 📝</h3><p>احسب الكلمات بدقة فورتها.</p></a>
+                        <a href="/char-counter" class="slider-card"><h3>عداد الحروف الدقيق 🔢</h3><p>حساب الحروف بدقة مع الفراغات.</p></a>
+                    </div>
+                    <div class="slide">
+                        <a href="/image-converter" class="slider-card"><h3>تحويل صيغ الصور 🖼️</h3><p>تحويل الصور محلياً وفورياً بين الصيغ المختلفة.</p></a>
+                        <a href="/color-extractor" class="slider-card"><h3>استخراج الألوان 🎨</h3><p>استخراج أكواد HEX من الصور باللمس فورا.</p></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <article class="seo-article">
+            <h2>المقطع الأول: ما هي أداة ضغط حجم الصور وكيف تعمل؟</h2>
+            <p>تمكنك أداة ضغط حجم الصور المتطورة من تقليل المساحة التخزينية لملفاتك الرسومية محليًا وفوريًا بالكامل دون الحاجة لرفعها إلى خوادم خارجية. تعمل الأداة على خفض البايتات الزائدة وضبط جودة العرض لتقليل الحجم بأعلى كفاءة بصرية ممكنة.</p>
+            <h2>المقطع الثاني: دور ضغط الصور في تسريع المواقع الإلكترونية والسيو</h2>
+            <p>تعتبر سرعة تحميل الصفحات من أهم عوامل الترتيب في محركات البحث (SEO). الصور ذات الأحجام الكبيرة تبطئ الموقع وتزيد معدل الارتداد، لذا فإن ضغطها يمنح موقعك سرعة فائقة تضمن تلبية شروط تجربة المستخدم والقبول الفوري في أدسنس.</p>
+        </article>
+    </div>
+
+    <script>
+        var loadedImage = null;
+        var originalFileType = "image/jpeg";
+
+        function updateQualityVal(val) {
+            document.getElementById('qualityVal').textContent = val + "%";
+        }
+
+        function handleImage(event) {
+            var file = event.target.files[0];
+            if (!file) return;
+            
+            originalFileType = file.type;
+            document.getElementById('originalSize').textContent = (file.size / 1024).toFixed(2) + " KB";
+            document.getElementById('sizeInfo').style.display = 'block';
+            
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                loadedImage = new Image();
+                loadedImage.onload = function() {
+                    document.getElementById('uploadText').textContent = "تم تحميل الصورة: " + file.name + " 🖼️";
+                    document.getElementById('compressBtn').style.display = 'block';
+                }
+                loadedImage.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+
+        function compressImage() {
+            if (!loadedImage) return;
+            var quality = parseInt(document.getElementById('qualityRange').value) / 100;
+            
+            var canvas = document.createElement('canvas');
+            canvas.width = loadedImage.width;
+            canvas.height = loadedImage.height;
+            var ctx = canvas.getContext('2d');
+            
+            if(originalFileType === "image/jpeg" || originalFileType === "image/jpg") {
+                ctx.fillStyle = "#ffffff";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+            ctx.drawImage(loadedImage, 0, 0);
+            
+            var link = document.createElement('a');
+            link.href = canvas.toDataURL(originalFileType, quality);
+            link.download = 'smarttools-compressed.' + (originalFileType.split('/')[1] === 'jpeg' ? 'jpg' : originalFileType.split('/')[1]);
+            link.click();
+        }
+
+        var container = document.getElementById('sliderContainer');
+        var slidesCount = document.querySelectorAll('.slide').length;
+        var currentSlide = 0;
+        setInterval(function() {
+            currentSlide = (currentSlide + 1) % slidesCount;
+            container.style.transform = "translateX(" + (currentSlide * 100) + "%)";
+        }, 5000);
+    </script>
+</body>
+</html>

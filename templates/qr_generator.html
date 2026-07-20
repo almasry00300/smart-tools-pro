@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منشئ كود الـ QR أونلاين مجانًا - SmartToolsPro</title>
+    <style>
+        :root { --bg: #0f172a; --surface: #1e293b; --primary: #38bdf8; --text: #f8fafc; --text-muted: #94a3b8; --border: #334155; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+        body { background: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; display: flex; flex-direction: column; gap: 20px; }
+        .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
+        .back-btn { display: inline-block; align-self: flex-start; color: var(--primary); text-decoration: none; font-weight: bold; background: var(--surface); padding: 8px 15px; border-radius: 6px; border: 1px solid var(--border); transition: 0.2s; }
+        .back-btn:hover { background: var(--primary); color: #000; }
+        .tool-box { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); text-align: center; }
+        h1 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-right: 4px solid var(--primary); padding-right: 8px; text-align: right; }
+        input[type="text"] { width: 100%; background: #0f172a; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 1rem; outline: none; margin-bottom: 15px; text-align: right; }
+        input[type="text"]:focus { border-color: var(--primary); }
+        
+        .buttons-group { display: flex; gap: 10px; margin-bottom: 15px; }
+        .action-btn { background: var(--primary); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 0.95rem; flex: 1; }
+        .action-btn:hover { background: #7dd3fc; }
+        .download-btn { background: #10b981; color: #fff; display: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 0.95rem; flex: 1; text-decoration: none; text-align: center; }
+        .download-btn:hover { background: #059669; }
+
+        /* هنا التصليح الجذري لمنع التشويه والبكسلة */
+        .qr-output { margin: 15px 0; display: inline-block; background: white; padding: 15px; border-radius: 8px; display: none; }
+        .qr-output img { display: block; margin: 0 auto; width: 230px !important; height: 230px !important; image-rendering: pixelated; }
+        
+        .seo-article { background: var(--surface); padding: 25px; border-radius: 12px; border: 1px solid var(--border); text-align: justify; }
+        .seo-article h2 { color: var(--primary); font-size: 1.15rem; margin: 20px 0 10px 0; border-right: 3px solid var(--primary); padding-right: 8px; }
+        .seo-article p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; line-height: 1.6; }
+        
+        .slider-section { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; }
+        .slider-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 15px; }
+        .slider-wrapper { overflow: hidden; width: 100%; position: relative; }
+        .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
+        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; box-sizing: border-box; }
+        .slider-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 5px; text-align: right; }
+        .slider-card h3 { font-size: 0.9rem; color: var(--text); }
+        .slider-card p { font-size: 0.75rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">⬅️ العودة للرئيسية</a>
+        <main class="tool-box">
+            <h1>منشئ كود الـ QR 📱</h1>
+            <input type="text" id="qrText" placeholder="أدخل الرابط أو النص هنا للإنشاء...">
+            
+            <div class="buttons-group">
+                <button class="action-btn" onclick="generateQR()">✨ إنشاء كود الـ QR الآن</button>
+                <a id="downloadBtn" class="download-btn">📥 تحميل كصورة</a>
+            </div>
+            
+            <div id="qrcode" class="qr-output"></div>
+        </main>
+        
+        <section class="slider-section">
+            <h2 class="slider-title">أدوات مقترحة قد تهمك 🚀</h2>
+            <div class="slider-wrapper">
+                <div class="slider-container" id="sliderContainer">
+                    <div class="slide">
+                        <a href="/word-counter" class="slider-card"><h3>عداد الكلمات المتقدم 📝</h3><p>احسب الكلمات بدقة فورتها.</p></a>
+                        <a href="/char-counter" class="slider-card"><h3>عداد الحروف الدقيق 🔢</h3><p>حساب الحروف بدقة مع الفراغات.</p></a>
+                    </div>
+                    <div class="slide">
+                        <a href="/remove-duplicate-lines" class="slider-card"><h3>إزالة الأسطر المكررة ✨</h3><p>تنظيف القوائم من التكرار فورا.</p></a>
+                        <a href="/seo-analyzer" class="slider-card"><h3>مخطط التريندات والسيو 📈</h3><p>تحليل الكلمات المفتاحية والكثافة النصية.</p></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <article class="seo-article">
+            <h2>المقطع الأول: ما هي أداة منشئ كود الـ QR وكيف تعمل؟</h2>
+            <p>تعد أداة منشئ كود الـ QR خياراً ذكياً ومجانياً لتحويل الروابط الطويلة والنصوص المعقدة إلى رموز استجابة سريعة قابلة للمسح والمشاركة الفورية بلمسة واحدة وبأعلى درجات الخصوصية المحلية.</p>
+            <h2>المقطع الثاني: فوائد أدوات الميديا والرموز لتقليل الارتداد وقبول أدسنس</h2>
+            <p>تعتبر الأدوات الخدمية التفاعلية التي تمنح المستخدم قيمة حقيقية وقدرة على توليد وتحميل الملفات من أهم ركائز تقليل معدل الارتداد وتصدر نتائج محركات البحث لتهيئة فهارس موقعك بامتياز للقبول في جوجل أدسنس.</p>
+        </article>
+    </div>
+
+    <script>
+        function generateQR() {
+            const text = document.getElementById('qrText').value.trim();
+            const container = document.getElementById('qrcode');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            if (text === "") {
+                alert("الرجاء إدخال نص أو رابط أولاً!");
+                return;
+            }
+            
+            // سحب الصورة الحقيقية المصنوعة من qrcode بايثون مباشرة بالملي
+            const qrUrl = `/generate-qr?text=${encodeURIComponent(text)}&t=${new Date().getTime()}`;
+            
+            container.innerHTML = `<img src="${qrUrl}" alt="QR Code">`;
+            container.style.display = "inline-block";
+            
+            downloadBtn.href = qrUrl;
+            downloadBtn.download = 'qrcode-smarttoolspro.png';
+            downloadBtn.style.display = "block";
+        }
+
+        // تشغيل ودوران السلايدر التلقائي بين المجموعتين
+        const container = document.getElementById('sliderContainer');
+        const slidesCount = document.querySelectorAll('.slide').length;
+        let currentSlide = 0;
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slidesCount;
+            container.style.transform = `translateX(${currentSlide * 100}%)`;
+        }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Generator & Checker - SmartToolsPro</title>
+    <style>
+        :root { --bg: #0f172a; --surface: #1e293b; --primary: #38bdf8; --text: #f8fafc; --text-muted: #94a3b8; --border: #334155; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+        body { background: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; display: flex; flex-direction: column; gap: 20px; }
+        .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
+        .back-btn { display: inline-block; align-self: flex-start; color: var(--primary); text-decoration: none; font-weight: bold; background: var(--surface); padding: 8px 15px; border-radius: 6px; border: 1px solid var(--border); transition: 0.2s; }
+        .back-btn:hover { background: var(--primary); color: #000; }
+        .tool-box { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        h1 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-right: 4px solid var(--primary); padding-right: 8px; text-align: right; }
+        
+        .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 15px; text-align: right; }
+        .form-group label { font-size: 0.9rem; color: var(--text-muted); }
+        textarea, select { width: 100%; background: #0f172a; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 1rem; outline: none; }
+        textarea { height: 100px; resize: vertical; }
+        select:focus, textarea:focus { border-color: var(--primary); }
+        
+        .action-btn { background: var(--primary); color: #000; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 1rem; width: 100%; margin-top: 10px; }
+        .action-btn:hover { background: #7dd3fc; }
+        
+        .result-box { display: none; background: #151f32; padding: 15px; border-radius: 8px; border: 1px solid var(--border); margin-top: 15px; text-align: right; }
+        .result-box h3 { font-size: 1rem; color: var(--primary); margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .hash-output { width: 100%; background: #0f172a; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 0.9rem; font-family: monospace; word-break: break-all; outline: none; margin-bottom: 10px; text-align: left; direction: ltr; }
+        
+        .seo-article { background: var(--surface); padding: 25px; border-radius: 12px; border: 1px solid var(--border); text-align: justify; }
+        .seo-article h2 { color: var(--primary); font-size: 1.15rem; margin: 20px 0 10px 0; border-right: 3px solid var(--primary); padding-right: 8px; }
+        .seo-article p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; line-height: 1.6; }
+        .slider-section { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; }
+        .slider-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 15px; }
+        .slider-wrapper { overflow: hidden; width: 100%; position: relative; }
+        .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
+        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; box-sizing: border-box; }
+        .slider-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 5px; text-align: right; }
+        .slider-card h3 { font-size: 0.9rem; color: var(--text); }
+        .slider-card p { font-size: 0.75rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">⬅️ العودة للرئيسية</a>
+        <main class="tool-box">
+            <h1>توليد وفحص الهاش 🔒</h1>
+            
+            <div class="form-group">
+                <label>النص المراد تشفيره وتوليد الهاش له:</label>
+                <textarea id="hashInputText" placeholder="اكتب أو الصق النص هنا..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>خوارزمية التشفير (Algorithm):</label>
+                <select id="hashAlgo">
+                    <option value="md5">MD5</option>
+                    <option value="sha256">SHA-256</option>
+                    <option value="sha1">SHA-1</option>
+                </select>
+            </div>
+            
+            <button class="action-btn" onclick="generateHash()">🔒 توليد بصمة الهاش الرقمية</button>
+            
+            <div class="result-box" id="resultBox">
+                <h3>قيمة الهاش المستخرجة:</h3>
+                <div class="hash-output" id="hashOutputText"></div>
+                <button class="action-btn" style="background: #10b981; color: #fff;" onclick="copyHashTxt()">📋 نسخ بصمة الهاش</button>
+            </div>
+        </main>
+        
+        <section class="slider-section">
+            <h2 class="slider-title">أدوات مقترحة قد تهمك 🚀</h2>
+            <div class="slider-wrapper">
+                <div class="slider-container" id="hashSlider">
+                    <div class="slide">
+                        <a href="/robots-generator" class="slider-card"><h3>منشئ الـ Robots 🤖</h3><p>توليد ملفات التوجيه البرمجية لعناكب البحث.</p></a>
+                        <a href="/sitemap-generator" class="slider-card"><h3>منشئ السايت ماب 🗺️</h3><p>توليد خرائط المواقع XML القياسية.</p></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <article class="seo-article">
+            <h2>ما هي أداة توليد وفحص الهاش الرقمي؟</h2>
+            <p>تعد أداة توليد وفحص الهاش وسيلة حيوية لتحويل النصوص والبيانات إلى بصمات رقمية مشفرة وثابتة الطول غير قابلة للتزوير أو العكس. تُستخدم هذه التقنيات للتحقق من سلامة الملفات وحماية النصوص البرمجية لرفع مستويات الأمان والسيو.</p>
+        </article>
+    </div>
+    <script>
+        function generateHash() {
+            var inputText = document.getElementById('hashInputText').value.trim();
+            var algo = document.getElementById('hashAlgo').value;
+            var resultBox = document.getElementById('resultBox');
+            var output = document.getElementById('hashOutputText');
+            
+            if(inputText === "") { alert("يرجى إدخال النص أولاً!"); return; }
+            
+            fetch('/calculate-hash', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: inputText, algo: algo })
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                if (data.hash) {
+                    output.textContent = data.hash;
+                    resultBox.style.display = 'block';
+                }
+            })
+            .catch(function(err) {
+                alert("حدث خطأ أثناء الاتصال بالسيرفر!");
+            });
+        }
+
+        function copyHashTxt() {
+            var output = document.getElementById('hashOutputText');
+            navigator.clipboard.writeText(output.textContent).then(function() {
+                alert("تم نسخ بصمة الهاش الرقمية بنجاح! 🔒");
+            });
+        }
+
+        var container = document.getElementById('hashSlider');
+        var slidesCount = document.querySelectorAll('.slide').length;
+        var currentSlide = 0;
+        setInterval(function() {
+            currentSlide = (currentSlide + 1) % slidesCount;
+            container.style.transform = "translateX(" + (currentSlide * 100) + "%)";
+        }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم المتقدمة وإدارة الأرباح - SmartToolsPro</title>
+    <style>
+        :root { --bg: #0f172a; --surface: #1e293b; --surface-card: #0f172a; --primary: #ea580c; --text: #f8fafc; --text-muted: #94a3b8; --border: #334155; --accent: #10b981; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+        body { background: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; }
+        .admin-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 25px; }
+        h1 { color: var(--primary); font-size: 1.5rem; border-right: 4px solid var(--primary); padding-right: 8px; }
+        .panel-box { background: var(--surface); padding: 25px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .panel-title { font-size: 1.1rem; font-weight: 800; color: #ffffff; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        
+        /* تصميم شاشة عرض الأرباح والإحصائيات النيون الاحترافية */
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 10px; }
+        .stat-card { background: #151f32; padding: 20px; border-radius: 10px; border: 1px solid var(--border); text-align: center; }
+        .stat-val { font-size: 1.6rem; font-weight: 900; font-family: monospace; margin-top: 5px; }
+        .earn { color: var(--accent); } .views { color: #38bdf8; } .clicks { color: #f59e0b; }
+        .stat-lbl { font-size: 0.8rem; color: var(--text-muted); font-weight: bold; }
+        
+        label { display: block; font-size: 0.9rem; font-weight: bold; margin-bottom: 6px; color: var(--text); margin-top: 12px; }
+        input[type="text"], input[type="password"], select, textarea { width: 100%; background: #0f172a; color: #ffffff; border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 0.95rem; outline: none; transition: 0.2s; }
+        input:focus, textarea:focus { border-color: var(--primary); }
+        textarea { height: 100px; font-family: monospace; font-size: 0.85rem; resize: vertical; direction: ltr; text-align: left; }
+        
+        .color-pickers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .color-group { text-align: center; }
+        .color-group input[type="color"] { width: 100%; height: 45px; background: none; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; }
+        
+        .btn-save { background: linear-gradient(135deg, var(--primary), #c2410c); color: #ffffff; border: none; padding: 14px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 1rem; width: 100%; margin-top: 20px; transition: 0.2s; }
+        .btn-save:hover { filter: brightness(1.1); }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <header>
+            <h1>لوحة الإدارة الشاملة وأدسنس ⚙️</h1>
+        </header>
+
+        <!-- قسم شاشة الأرباح وتحليل الموقع أونلاين -->
+        <section class="panel-box">
+            <div class="panel-title">📊 شاشة الأرباح وتحليلات الزوار الحية (AdSense Stats)</div>
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-lbl">أرباح اليوم المقدرة</div><div class="stat-val earn">$12.45</div></div>
+                <div class="stat-card"><div class="stat-lbl">إجمالي أرباح الشهر</div><div class="stat-val earn">$340.80</div></div>
+                <div class="stat-card"><div class="stat-lbl">مشاهدات الصفحة (Page Views)</div><div class="stat-val views">45,120</div></div>
+                <div class="stat-card"><div class="stat-lbl">نسبة النقر للظهور (Click CTR)</div><div class="stat-val clicks">3.2%</div></div>
+            </div>
+        </section>
+
+        <form action="/admin" method="POST" class="panel-box">
+            <div class="panel-title">🔒 تسجيل الدخول والأمان</div>
+            <label>كلمة مرور لوحة التحكم لتأكيد الحفظ:</label>
+            <input type="password" name="password" placeholder="اكتب كلمة المرور الحالية (admin123)" required>
+            <div class="panel-title" style="margin-top:25px;">💰 إدارة شفرات إعلانات Google AdSense</div>
+            
+            <label>الكود الرئيسي لأدسينس (شفرة التحقق والـ Auto Ads):</label>
+            <textarea name="adsense_main" placeholder="<!-- الصق هنا كود <script async src='.../adsbygoogle.js'></script> الرئيسي للتحقق والقبول التلقائي -->"></textarea>
+            
+            <label>شفرة مواضع الإعلانات داخل العمود (بين الأدوات والمقالات):</label>
+            <textarea name="adsense_column" placeholder="<!-- الصق هنا شفرة الإعلانات الصورية أو البينية <ins class='adsbygoogle'></ins> المخصصة للتوزيع العمودي -->"></textarea>
+
+            <div class="panel-title" style="margin-top:25px;">🎨 التخصيص والتحكم في ألوان هوية الموقع</div>
+            <div class="color-pickers">
+                <div class="color-group">
+                    <label>رأس الصفحة</label>
+                    <input type="color" name="header_color" value="{{ config.header_color }}">
+                </div>
+                <div class="color-group">
+                    <label>مستطيل الكروت</label>
+                    <input type="color" name="card_color" value="{{ config.card_color }}">
+                </div>
+                <div class="color-group">
+                    <label>خلفية الموقع</label>
+                    <input type="color" name="bg_color" value="{{ config.bg_color }}">
+                </div>
+            </div>
+
+            <div class="panel-title" style="margin-top:25px;">🌐 روابط حسابات التواصل الاجتماعي (الفوتر)</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div>
+                    <label>رابط فيسبوك:</label>
+                    <input type="text" name="fb_url" value="{{ config.fb_url }}" placeholder="https://facebook.com">
+                </div>
+                <div>
+                    <label>رابط تويتر (X):</label>
+                    <input type="text" name="tw_url" value="{{ config.tw_url }}" placeholder="https://x.com">
+                </div>
+                <div>
+                    <label>رابط يوتيوب:</label>
+                    <input type="text" name="yt_url" value="{{ config.yt_url }}" placeholder="https://youtube.com">
+                </div>
+                <div>
+                    <label>رابط تيك توك:</label>
+                    <input type="text" name="tt_url" value="{{ config.tt_url }}" placeholder="https://tiktok.com">
+                </div>
+                <div>
+                    <label>رابط انستجرام:</label>
+                    <input type="text" name="ig_url" value="{{ config.ig_url }}" placeholder="https://instagram.com">
+                </div>
+                <div>
+                    <label>رابط تليجرام:</label>
+                    <input type="text" name="tg_url" value="{{ config.tg_url }}" placeholder="https://t.me">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-save">💾 حفظ وتطبيق كافة الإعدادات والشفرات أونلاين</button>
+        </form>
+    </div>
+</body>
+</html>

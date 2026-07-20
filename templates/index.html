@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حقيبة الأدوات الذكية - SmartToolsPro</title>
+    <meta name="description" content="أفضل منصة رقمية مجانية تحتوي على حقيبة أدوات تفاعلية لتهيئة المواقع لمحركات البحث والقبول في أدسنس.">
+    <meta name="robots" content="index, follow">
+    <style>
+        :root { --bg: #ffffff; --surface: #ea580c; --surface-card: #f1f5f9; --text: #0f172a; --text-muted: #475569; --border: #cbd5e1; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+        body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+        header.site-header { background: var(--surface); padding: 20px; border-bottom: 3px solid #c2410c; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+        .header-logo { display: flex; align-items: center; gap: 8px; }
+        .header-logo .brand-icon { font-size: 1.6rem; background: rgba(255, 255, 255, 0.2); padding: 4px 8px; border-radius: 6px; }
+        .header-logo h1 { color: #ffffff; font-size: 1.4rem; font-weight: 900; }
+        .menu-btn { background: rgba(255, 255, 255, 0.2); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.4); padding: 12px 20px; border-radius: 6px; font-weight: 700; font-size: 0.95rem; cursor: pointer; }
+        .sidebar { position: fixed; top: 0; right: 0; width: 300px; height: 100%; background: #ffffff; border-left: 2px solid var(--border); padding: 25px 20px; z-index: 20; transform: translateX(100%); transition: transform 0.3s ease-in-out; overflow-y: auto; }
+        .sidebar.active { transform: translateX(0); }
+        .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); padding-bottom: 12px; }
+        .sidebar-header h2 { font-size: 1.1rem; color: #ea580c; font-weight: 800; }
+        .close-btn { background: #ef4444; color: #fff; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .tool-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .tool-list h3 { font-size: 0.85rem; color: var(--text-muted); margin-top: 10px; border-right: 3px solid #ea580c; padding-right: 6px; font-weight: 700; }
+        .tool-list a { color: var(--text); text-decoration: none; padding: 12px 14px; background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; display: block; font-size: 0.9rem; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 15; display: none; backdrop-filter: blur(2px); }
+        .overlay.active { display: block; }
+        .main-content { flex: 1; padding: 35px 20px; display: flex; flex-direction: column; gap: 35px; max-width: 900px; margin: 0 auto; width: 100%; }
+        .section-title { font-size: 1.4rem; color: var(--text); padding-right: 10px; border-right: 4px solid #ea580c; font-weight: 800; margin-bottom: 5px; }
+        .tools-grid { display: flex; flex-direction: column; gap: 35px; width: 100%; }
+        .card-box { background: var(--surface-card); padding: 55px 30px; border-radius: 16px; border: 2px solid var(--border); display: flex; flex-direction: column; gap: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); width: 100%; }
+        .card-link { text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 10px; }
+        .card-link h3 { font-size: 1.7rem; font-weight: 900; color: #000000; line-height: 1.3; }
+        .card-link h3:hover { color: #ea580c; }
+        .card-link p { font-size: 1.15rem; color: #475569; line-height: 1.5; font-weight: bold; }
+        .seo-text { border-top: 1px dashed var(--border); padding-top: 18px; text-align: justify; }
+        .seo-text h4 { font-size: 1.15rem; color: #ea580c; margin-bottom: 8px; font-weight: 800; }
+        .seo-text p { font-size: 1rem; color: #334155; line-height: 1.6; }
+        .social-section { background: #f8fafc; border-top: 2px solid var(--border); padding: 35px 15px; text-align: center; margin-top: auto; width: 100%; }
+        .social-title { font-size: 1rem; color: var(--text); font-weight: 800; margin-bottom: 20px; }
+        .social-grid { display: flex; justify-content: center; gap: 18px; flex-direction: row; }
+        .social-icon { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; color: #ffffff; text-decoration: none; font-size: 0.95rem; font-weight: 900; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .fb { background: #1877f2; } .tw { background: #000000; } .yt { background: #ff0000; } .tt { background: #000000; } .ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); } .tz { background: #0088cc; }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+    <header class="site-header">
+        <button class="menu-btn" onclick="openMenu()">☰ الأدوات</button>
+        <div class="header-logo">
+            <div class="brand-icon">🛠️</div>
+            <h1>SmartToolsPro</h1>
+        </div>
+    </header>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>قائمة الـ 20 أداة كاملة</h2>
+            <button class="close-btn" onclick="closeMenu()">×</button>
+        </div>
+        <ul class="tool-list">
+            <h3>أدوات الميديا والملفات</h3>
+            <li><a href="/image-converter">1. تحويل صيغ الصور 🖼️</a></li>
+            <li><a href="/image-compressor">2. ضغط حجم الصور 📉</a></li>
+            <li><a href="/pdf-to-images">3. محول PDF إلى صور 📄</a></li>
+            <li><a href="/pdf-tools">4. أدوات PDF الشاملة 💼</a></li>
+            <h3>أدوات فحص السيو والسرعة</h3>
+            <li><a href="/meta-analyzer">5. عرض الميتاتاج 🔍</a></li>
+            <li><a href="/broken-links">6. الروابط المعطوبة 🔗</a></li>
+            <li><a href="/sitemap-generator">7. منشئ السايت ماب 🗺️</a></li>
+            <li><a href="/robots-generator">8. منشئ الـ Robots 🤖</a></li>
+            <li><a href="/hash-generator">9. توليد فحص الهاش 🔒</a></li>
+            <li><a href="/site-speed">10. سرعة الموقع ⚡</a></li>
+        </ul>
+    </aside>
+    <main class="main-content">
+        <h2 class="section-title">الأدوات الحصرية والأساسية بالرئيسية</h2>
+        <div class="tools-grid">
+            <div class="card-box">
+                <a href="/word-counter" class="card-link">
+                    <h3>عداد الكلمات المتقدم 📝</h3>
+                    <p>احسب المقالات والكلمات بدقة فائقة مع معايير السيو الحية.</p>
+                </a>
+                <div class="seo-text">
+                    <h4>أهمية طول وعمق المحتوى الرقمي في الأرشفة والسيو</h4>
+                    <p>تعتمد خوارزميات البحث على عمق جودة المحتوى لتحديد الترتيب. يساعد حساب الكلمات في تفادي مشكلة المحتوى الهزيل لتجنب عقوبات خوارزميات البحث، ويضمن الحفاظ على كثافة الكلمات المفتاحية بشكل مربح للقبول السريع في جوجل أدسينس.</p>
+                </div>
+            </div>
+            <div class="card-box">
+                <a href="/char-counter" class="card-link">
+                    <h3>عداد الحروف الدقيق 🔢</h3>
+                    <p>تحليل مساحات الحروف والفراغات المناسبة لمنصات التواصل.</p>
+                </a>
+                <div class="seo-text">
+                    <h4>شروط العناوين والأوصاف الممثلة لنتائج جوجل القياسية</h4>
+                    <p>الالتزام بالحد الأقصى للحروف في العناوين والأوصاف ركيزة أساسية لظهور موقعك سليمًا ومحترفاً في نتائج البحث، مما يمنع قطع عناوين مقالاتك في الواجهة ويرفع نسبة النقر والظهور CTR بشكل ملحوظ.</p>
+                </div>
+            </div>
+            <div class="card-box">
+                <a href="/remove-duplicate-lines" class="card-link">
+                    <h3>إزالة الأسطر المكررة ✨</h3>
+                    <p>تنظيف النصوص والبيانات الضخمة والقوائم بضغطة زر واحدة.</p>
+                </a>
+                <div class="seo-text">
+                    <h4>تنظيف البيانات الضخمة لسرعة استجابة محرك السيرفر</h4>
+                    <p>تكرار البيانات الضخمة داخل الأكواد يزيد من استهلاك ميزانية الزحف الخاصة بعناكب جوجل. يساعد التطهير الفوري في تنظيم الملفات وسرعة تحميل الخادم أونلاين بكفاءة عالية وبدون تعليق.</p>
+                </div>
+            </div>
+            <div class="card-box">
+                <a href="/seo-analyzer" class="card-link">
+                    <h3>مخطط التريندات والسيو 📈</h3>
+                    <p>تحليل الكلمات المفتاحية واكتشاف تريندات جوجل لتصدر الفهارس.</p>
+                </a>
+                <div class="seo-text">
+                    <h4>تحليل الكلمات واستهداف نية الباحث الدقيقة للموقع الإلكتروني</h4>
+                    <p>استهداف نية الباحث عبر تحليل الكلمات الدلالية واكتشاف التريندات هو السر لتصدر الصفحات الأولى، وبناء استراتيجية محتوى قوية تجتاز مراجعة القبول الإعلاني الصارمة بأدسينس لتوليد الأرباح.</p>
+                </div>
+            </div>
+            <div class="card-box">
+                <a href="/age-calculator" class="card-link">
+                    <h3>حساب العمر بالتفصيل 📅</h3>
+                    <p>احسب عمرك الزمني بالملي بالسنوات، الشهور، والأيام بالتفصيل.</p>
+                </a>
+                <div class="seo-text">
+                    <h4>تجربة المستخدم وزيادة زمن بقاء الزائر بالصفحة الرئيسية</h4>
+                    <p>توفر الأدوات التفاعلية تجربة مستخدم ممتعة تدفع الزائر لقضاء وقت أطول داخل الصفحة. زيادة زمن بقاء الزائر (Dwell Time) يرفع من قوة وترتيب الدومين كلياً في خوارزميات جوجل التقنية.</p>
+                </div>
+            </div>
+            <div class="card-box">
+                <a href="/qr-generator" class="card-link">
+                    <h3>منشئ كود الـ QR 📱</h3>
+                    <p>تحويل الروابط لكود كيو أر فخم ومباشر للهواتف.</p>
+                </a>
+                <div class="seo-text">
+                    <h4>سيو الهواتف وربط الواقع بالمنصات الرقمية والمواقع</h4>
+                    <p>تسريع الوصول للمحتوى عبر الهواتف هو أحد أهم عوامل الترتيب الحالية. يتيح توليد أكواد الـ QR دمج الأنشطة الواقعية بالارتباطات الرقمية فوراً لتسهيل الزيارات الحقيقية المباشرة للمنصة.</p>
+                </div>
+            </div>
+
+            <div class="card-box">
+                <a href="/password-generator" class="card-link">
+                    <h3>منشئ كلمات المرور 🔑</h3>
+                    <p>توليد كلمات سر عشوائية معقدة ومحمية من الاختراقات.</p>
+                </a>
+                <div class="seo-text">
+                    <h4>الأمان التقني وأثره المباشر على مصداقية المنصة الرقمية</h4>
+                    <p>حماية بيانات المستخدمين يعزز من مصداقية وثقة منصتك (Trust Score) لدى محركات البحث. تولي الخوارزميات اهتماماً بالغاً بالمواقع الآمنة والمشفرة تماماً لحماية بنية الويب التحتية من السرقة.</p>
+                </div>
+            </div>
+
+            <div class="card-box">
+                <a href="/domain-checker" class="card-link">
+                    <h3>فحص أمان النطاقات 🛡️</h3>
+                    <p>تحليل شهادات الحماية وفحص سلامة روابط الدومين أونلاين.</p>
+                </a>
+                <div class="seo-text">
+                    <h4>أهمية بروتوكول HTTPS كعامل ترتيب صارم في جوجل للقبول</h4>
+                    <p>يعتبر بروتوكول HTTPS وشهادات الـ SSL شرطاً إجبارياً صارماً تفرضه جوجل لاعتماد أمان النطاق. فحص سلامة الروابط دورياً يحميك تماماً من الحظر ويضمن أرشفة صفحاتك بنجاح تام.</p>
+                </div>
+            </div>
+
+            <div class="card-box">
+                <a href="/text-to-speech" class="card-link">
+                    <h3>تحويل النص إلى كلام 🗣️</h3>
+                    <p>تحويل مقالاتك لملفات MP3 صوتية حقيقية عبر جوجل وتحميلها.</p>
+                </a>
+                <div class="seo-text">
+                    <h4>سهولة الوصول وتقليل معدل الارتداد بالصوت المسموع للزائر</h4>
+                    <p>تحويل النصوص ومقالاتك إلى ملفات صوتية مسموعة يخدم معايير إتاحة الوصول لجميع الزوار، مما يرفع التفاعل ويساهم في تقليل معدل الارتداد (Bounce Rate) لتعزيز الأرشفة وثبات الترتيب.</p>
+                </div>
+            </div>
+
+            <div class="card-box">
+                <a href="/color-extractor" class="card-link">
+                    <h3>استخراج الألوان 🎨</h3>
+                    <p>سحب أكواد HEX من الصور فوراً عبر اللمس السلس.</p>
+                </a>
+                <div class="seo-text">
+                    <h4>السيو البصري وتأثير الهوية وتناسق الألوان على الـ UX الشامل</h4>
+                    <p>يتكامل السيو البصري مع معايير التصميم الحديثة لضمان راحة عين الزائر أثناء التصفح. استخراج وتناسق أكواد الألوان يساهم في بناء هوية بصرية قوية ترفع من معدلات التحويل وتجذب المعلنين.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="social-section">
+        <div class="social-title">تابعنا على منصات التواصل الاجتماعي 🌐</div>
+        <div class="social-grid">
+            <a href="#" class="social-icon fb">FB</a>
+            <a href="#" class="social-icon tw">X</a>
+            <a href="#" class="social-icon yt">YT</a>
+            <a href="#" class="social-icon tt">TT</a>
+            <a href="#" class="social-icon ig">IG</a>
+            <a href="#" class="social-icon tz">TG</a>
+        </div>
+    </footer>
+
+    <script>
+        function openMenu() {
+            document.getElementById('sidebar').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        }
+        function closeMenu() {
+            document.getElementById('sidebar').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

@@ -294,5 +294,14 @@ def terms_page():
 def disclaimer_page():
     return render_template('disclaimer.html')
 
+
+@app.route('/robots.txt')
+def robots_txt():
+    return """User-agent: *
+Allow: /
+
+Sitemap: https://smart-tools-pro.vercel.app/sitemap.xml
+""", 200, {'Content-Type': 'text/plain'}
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

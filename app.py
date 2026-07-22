@@ -273,5 +273,26 @@ def check_speed_action():
         return jsonify({'load_time': load_time, 'status': status, 'size': size})
     except Exception as e: return jsonify({'error': 'Fail'}), 500
 
+
+@app.route('/about')
+def about_page():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact_page():
+    return render_template('contact.html')
+
+@app.route('/privacy')
+def privacy_page():
+    return render_template('privacy.html')
+
+@app.route('/terms')
+def terms_page():
+    return render_template('terms.html')
+
+@app.route('/disclaimer')
+def disclaimer_page():
+    return render_template('disclaimer.html')
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

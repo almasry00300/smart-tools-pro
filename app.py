@@ -303,5 +303,55 @@ Allow: /
 Sitemap: https://smart-tools-pro.vercel.app/sitemap.xml
 """, 200, {'Content-Type': 'text/plain'}
 
+@app.route('/robots.txt')
+def robots_txt():
+    return """User-agent: *
+Allow: /
+
+Sitemap: https://smart-tools-pro.vercel.app/sitemap.xml
+""", 200, {'Content-Type': 'text/plain'}
+
+
+@app.route('/sitemap.xml')
+def sitemap_xml():
+    urls = [
+        'https://smart-tools-pro.vercel.app/',
+        'https://smart-tools-pro.vercel.app/about',
+        'https://smart-tools-pro.vercel.app/contact',
+        'https://smart-tools-pro.vercel.app/privacy',
+        'https://smart-tools-pro.vercel.app/terms',
+        'https://smart-tools-pro.vercel.app/disclaimer',
+        'https://smart-tools-pro.vercel.app/word-counter',
+        'https://smart-tools-pro.vercel.app/char-counter',
+        'https://smart-tools-pro.vercel.app/age-calculator',
+        'https://smart-tools-pro.vercel.app/color-extractor',
+        'https://smart-tools-pro.vercel.app/domain-checker',
+        'https://smart-tools-pro.vercel.app/hash-generator',
+        'https://smart-tools-pro.vercel.app/image-compressor',
+        'https://smart-tools-pro.vercel.app/image-converter',
+        'https://smart-tools-pro.vercel.app/meta-analyzer',
+        'https://smart-tools-pro.vercel.app/password-generator',
+        'https://smart-tools-pro.vercel.app/pdf-to-images',
+        'https://smart-tools-pro.vercel.app/pdf-tools',
+        'https://smart-tools-pro.vercel.app/qr-generator',
+        'https://smart-tools-pro.vercel.app/remove-duplicate-lines',
+        'https://smart-tools-pro.vercel.app/robots-generator',
+        'https://smart-tools-pro.vercel.app/seo-analyzer',
+        'https://smart-tools-pro.vercel.app/site-speed',
+        'https://smart-tools-pro.vercel.app/sitemap-generator',
+        'https://smart-tools-pro.vercel.app/text-to-speech'
+    ]
+
+    xml = '<?xml version="1.0" encoding="UTF-8"?>'
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+
+    for url in urls:
+        xml += f'<url><loc>{url}</loc></url>'
+
+    xml += '</urlset>'
+
+    return xml, 200, {'Content-Type': 'application/xml; charset=utf-8'}
+
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

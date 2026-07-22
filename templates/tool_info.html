@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ tool.title }} - SmartToolsPro</title>
+    <meta name="description" content="{{ tool.description }}">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.9;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        .box {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.06);
+        }
+        h1 {
+            color: #ea580c;
+            margin-top: 0;
+        }
+        h2 {
+            color: #334155;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 8px;
+        }
+        .button {
+            display: inline-block;
+            background: #ea580c;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .faq {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 25px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="box">
+        <h1>{{ tool.title }}</h1>
+        <p>{{ tool.description }}</p>
+        <a class="button" href="{{ tool.url }}">استخدم الأداة الآن</a>
+    </div>
+
+    <div class="box">
+        <h2>ما هي هذه الأداة؟</h2>
+        <p>{{ tool.what_is }}</p>
+    </div>
+
+    <div class="box">
+        <h2>كيفية استخدام الأداة</h2>
+        <p>{{ tool.how_to }}</p>
+    </div>
+
+    <div class="box">
+        <h2>أهم مميزات الأداة</h2>
+        <p>{{ tool.features }}</p>
+    </div>
+
+    <div class="box">
+        <h2>لماذا تستخدم SmartToolsPro؟</h2>
+        <p>{{ tool.benefits }}</p>
+    </div>
+
+    <div class="box">
+        <h2>أسئلة شائعة</h2>
+
+        {% for faq in tool.faqs %}
+        <div class="faq">
+            <strong>{{ faq.question }}</strong>
+            <p>{{ faq.answer }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="box">
+        <h2>ابدأ الآن</h2>
+        <p>
+            يمكنك استخدام {{ tool.title }} مباشرة من SmartToolsPro
+            بدون خطوات معقدة، والعودة إلى الأداة في أي وقت.
+        </p>
+        <a class="button" href="{{ tool.url }}">فتح الأداة</a>
+    </div>
+
+</div>
+
+<footer>
+    <a href="/">العودة إلى SmartToolsPro</a>
+</footer>
+
+</body>
+</html>

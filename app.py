@@ -304,6 +304,11 @@ Sitemap: https://smart-tools-pro.vercel.app/sitemap.xml
 """, 200, {'Content-Type': 'text/plain'}
 
 
+@app.route('/google11655a0f321b5df3.html')
+def google_verification():
+    return "google-site-verification: google11655a0f321b5df3.html"
+
+
 @app.route('/sitemap.xml')
 def sitemap_xml():
     urls = [

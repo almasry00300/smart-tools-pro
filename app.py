@@ -303,14 +303,6 @@ Allow: /
 Sitemap: https://smart-tools-pro.vercel.app/sitemap.xml
 """, 200, {'Content-Type': 'text/plain'}
 
-@app.route('/robots.txt')
-def robots_txt():
-    return """User-agent: *
-Allow: /
-
-Sitemap: https://smart-tools-pro.vercel.app/sitemap.xml
-""", 200, {'Content-Type': 'text/plain'}
-
 
 @app.route('/sitemap.xml')
 def sitemap_xml():

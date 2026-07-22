@@ -42,6 +42,116 @@
         .social-grid { display: flex; justify-content: center; gap: 18px; flex-direction: row; }
         .social-icon { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; color: #ffffff; text-decoration: none; font-size: 0.95rem; font-weight: 900; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
         .fb { background: #1877f2; } .tw { background: #000000; } .yt { background: #ff0000; } .tt { background: #000000; } .ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); } .tz { background: #0088cc; }
+    
+        .site-search {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 5px;
+            position: relative;
+        }
+
+        .site-search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #ffffff;
+            border: 2px solid #cbd5e1;
+            border-radius: 14px;
+            padding: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: 0.2s ease;
+        }
+
+        .site-search-box:focus-within {
+            border-color: #ea580c;
+            box-shadow: 0 4px 16px rgba(234,88,12,0.15);
+        }
+
+        .site-search-icon {
+            font-size: 1.4rem;
+            padding: 0 10px;
+        }
+
+        #toolSearch {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 14px 8px;
+            font-size: 1rem;
+            color: #0f172a;
+            direction: rtl;
+        }
+
+        #toolSearch::placeholder {
+            color: #64748b;
+        }
+
+        .search-results {
+            display: none;
+            margin-top: 10px;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .search-result {
+            display: block;
+            padding: 15px 18px;
+            color: #0f172a;
+            text-decoration: none;
+            border-bottom: 1px solid #e2e8f0;
+            transition: background 0.2s ease;
+        }
+
+        .search-result:last-child {
+            border-bottom: none;
+        }
+
+        .search-result:hover {
+            background: #fff7ed;
+        }
+
+        .search-result-title {
+            display: block;
+            font-size: 1rem;
+            font-weight: 800;
+            color: #ea580c;
+            margin-bottom: 4px;
+        }
+
+        .search-result-description {
+            display: block;
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        .no-results {
+            padding: 18px;
+            text-align: center;
+            color: #64748b;
+            font-weight: 700;
+        }
+
+        @media (max-width: 600px) {
+            .site-search {
+                margin-bottom: 0;
+            }
+
+            #toolSearch {
+                font-size: 0.95rem;
+            }
+
+            .search-result {
+                padding: 13px 15px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -53,6 +163,21 @@
             <h1>SmartToolsPro</h1>
         </div>
     </header>
+
+    <section class="site-search" aria-label="البحث في أدوات SmartToolsPro">
+        <div class="site-search-box">
+            <span class="site-search-icon">🔎</span>
+            <input
+                type="search"
+                id="toolSearch"
+                placeholder="ابحث عن أداة... مثل ضغط الصور أو حساب العمر"
+                autocomplete="off"
+                aria-label="البحث عن أداة"
+            >
+        </div>
+        <div id="searchResults" class="search-results"></div>
+    </section>
+
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <h2>قائمة الـ 20 أداة كاملة</h2>
@@ -218,5 +343,149 @@
             document.getElementById('overlay').classList.remove('active');
         }
     </script>
+
+    <script>
+        const tools = [
+            {
+                name: "عداد الكلمات",
+                url: "/word-counter",
+                description: "حساب عدد الكلمات والنصوص بسرعة."
+            },
+            {
+                name: "عداد الأحرف",
+                url: "/char-counter",
+                description: "حساب عدد الأحرف والكلمات والأسطر."
+            },
+            {
+                name: "إزالة الأسطر المكررة",
+                url: "/remove-duplicate-lines",
+                description: "تنظيف النصوص وإزالة الأسطر المتكررة."
+            },
+            {
+                name: "محلل SEO",
+                url: "/seo-analyzer",
+                description: "تحليل وتحسين صفحات المواقع لمحركات البحث."
+            },
+            {
+                name: "حاسبة العمر",
+                url: "/age-calculator",
+                description: "حساب العمر بدقة من تاريخ الميلاد."
+            },
+            {
+                name: "منشئ QR",
+                url: "/qr-generator",
+                description: "إنشاء أكواد QR للروابط والنصوص."
+            },
+            {
+                name: "منشئ كلمات المرور",
+                url: "/password-generator",
+                description: "توليد كلمات مرور قوية وعشوائية."
+            },
+            {
+                name: "فحص أمان النطاقات",
+                url: "/domain-checker",
+                description: "فحص أمان الدومين وشهادة HTTPS."
+            },
+            {
+                name: "تحويل النص إلى كلام",
+                url: "/text-to-speech",
+                description: "تحويل النصوص إلى صوت قابل للتنزيل."
+            },
+            {
+                name: "استخراج الألوان",
+                url: "/color-extractor",
+                description: "استخراج أكواد الألوان من الصور."
+            },
+            {
+                name: "تحويل صيغ الصور",
+                url: "/image-converter",
+                description: "تحويل الصور بين الصيغ المختلفة."
+            },
+            {
+                name: "ضغط حجم الصور",
+                url: "/image-compressor",
+                description: "تقليل حجم الصور وتحسين سرعة الموقع."
+            },
+            {
+                name: "تحويل PDF إلى صور",
+                url: "/pdf-to-images",
+                description: "استخراج الصور من ملفات PDF."
+            },
+            {
+                name: "أدوات PDF الشاملة",
+                url: "/pdf-tools",
+                description: "أدوات متنوعة للتعامل مع ملفات PDF."
+            },
+            {
+                name: "عرض الميتاتاج",
+                url: "/meta-analyzer",
+                description: "فحص وتحليل بيانات Meta للمواقع."
+            },
+            {
+                name: "فحص الروابط المعطوبة",
+                url: "/broken-links",
+                description: "فحص الروابط واكتشاف الروابط المعطوبة."
+            },
+            {
+                name: "منشئ Sitemap",
+                url: "/sitemap-generator",
+                description: "إنشاء خريطة Sitemap للموقع."
+            },
+            {
+                name: "منشئ Robots",
+                url: "/robots-generator",
+                description: "إنشاء ملف Robots.txt لمحركات البحث."
+            },
+            {
+                name: "مولد الهاش",
+                url: "/hash-generator",
+                description: "توليد MD5 وSHA1 وSHA256 للنصوص."
+            },
+            {
+                name: "فحص سرعة الموقع",
+                url: "/site-speed",
+                description: "قياس سرعة استجابة الموقع وحجم الصفحة."
+            }
+        ];
+
+        const searchInput = document.getElementById("toolSearch");
+        const searchResults = document.getElementById("searchResults");
+
+        searchInput.addEventListener("input", function() {
+            const query = this.value.trim().toLowerCase();
+
+            if (!query) {
+                searchResults.style.display = "none";
+                searchResults.innerHTML = "";
+                return;
+            }
+
+            const results = tools.filter(tool =>
+                tool.name.toLowerCase().includes(query) ||
+                tool.description.toLowerCase().includes(query)
+            );
+
+            if (results.length === 0) {
+                searchResults.innerHTML =
+                    '<div class="no-results">😔 لم يتم العثور على أداة مطابقة لبحثك</div>';
+            } else {
+                searchResults.innerHTML = results.map(tool => `
+                    <a href="${tool.url}" class="search-result">
+                        <span class="search-result-title">${tool.name}</span>
+                        <span class="search-result-description">${tool.description}</span>
+                    </a>
+                `).join("");
+            }
+
+            searchResults.style.display = "block";
+        });
+
+        document.addEventListener("click", function(event) {
+            if (!event.target.closest(".site-search")) {
+                searchResults.style.display = "none";
+            }
+        });
+    </script>
+
 </body>
 </html>

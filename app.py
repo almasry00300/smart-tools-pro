@@ -25,13 +25,13 @@ def save_site_config(settings):
         "Prefer": "resolution=merge-duplicate"
     }
     try:
-        requests.post(f"{SUPABASE_URL}/rest/v1/site_settings", json=settings, headers=headers, timeout=5)
+        requests.post(f"{SUPABASE_URL}/rest/v1/site_content", json=settings, headers=headers, timeout=5)
     except: pass
 
 def get_site_config():
     headers = { "apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}" }
     try:
-        res = requests.get(f"{SUPABASE_URL}/rest/v1/site_settings?select=*", headers=headers, timeout=5).json()
+        res = requests.get(f"{SUPABASE_URL}/rest/v1/site_content?select=*", headers=headers, timeout=5).json()
         if res: return res
     except: pass
     return {

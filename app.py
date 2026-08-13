@@ -11,6 +11,7 @@ from urllib.parse import urljoin, urlparse
 import hashlib
 import time
 import os
+from jinja2 import TemplateNotFound
 
 app = Flask(__name__)
 
@@ -244,28 +245,10 @@ def convert_pdf_to_images():
 @app.route('/pdf-tools')
 def pdf_tools_page(): return render_template('pdf_tools.html')
 
-@app.route('/merge-pdfs', methods=['POST'])
-def merge_pdfs():
-    files = request.files.getlist('pdf_files')
-    if not files or len(files) < 2: return "Need 2 files", 400
-    try:
-        writer = PdfWriter()
-        for file in files:
-            reader = PdfReader(file)
-            for page in reader.pages: writer.add_page(page)
-        output = io.BytesIO()
-        writer.write(output)
-        output.seek(0)
-        return send_file(output, mimetype='application/pdf', as_attachment=True, download_name='smarttools-merged.pdf')
-    except Exception as e: return str(e), 500
-
-@app.route('/meta-analyzer')
-def meta_analyzer(): return render_template('meta_analyzer.html')
-
 TOOL_GUIDES = {
     "word-counter": {
         "title": "عداد الكلمات",
-        "description": "أداة مجانية لعد الكلمات والحروف والأسطر في النصوص بسرعة وسهولة.",
+        "description": "أداة مجانية لعد الكلمات والحروف والأسطر في النصوص بسرعة وسهلة.",
         "what_is": "عداد الكلمات هو أداة تساعدك على معرفة عدد الكلمات والحروف والأسطر الموجودة في أي نص. وهي مفيدة ل.[...],",
         "how_to": "اكتب أو الصق النص داخل أداة عداد الكلمات، وستظهر لك الإحصائيات الخاصة بالنص بشكل مباشر.",
         "features": "حساب عدد الكلمات، حساب عدد الحروف، معرفة عدد الأسطر، والعمل مباشرة من المتصفح بدون الحاجة إلى ت[...],",
@@ -279,10 +262,13 @@ TOOL_GUIDES = {
 
 @app.route('/tool/<tool_slug>')
 def tool_guide(tool_slug):
-    # If there is a dedicated template for the tool (templates/{tool_slug}.html), render it.
-    tpl_path = os.path.join('templates', f'{tool_slug}.html')
-    if os.path.exists(tpl_path):
-        return render_template(f"{tool_slug}.html")
+    # Try dedicated template names using hyphen and underscore variants
+    candidates = [f"{tool_slug}.html", f"{tool_slug.replace('-', '_')}.html"]
+    for tpl in candidates:
+        try:
+            return render_template(tpl)
+        except TemplateNotFound:
+            continue
 
     tool = TOOL_GUIDES.get(tool_slug)
 

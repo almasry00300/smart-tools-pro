@@ -1,16 +1,9 @@
-from flask import Blueprint, render_template_string, request, redirect, session
-import os
+import traceback
+from flask import Blueprint, render_template_string, request, redirect, session, current_app
 
 admin_bp = Blueprint('admin', __name__)
 
-# تعيين مفتاح أمان الجلسات فور تشغيل السيرفر وقبل أي طلب
-@admin_bp.record_once
-def on_load(state):
-    app = state.app
-    if not app.secret_key:
-        app.secret_key = 'smarttools_super_secret_key_2026'
-
-# الواجهة مدمجة بالكامل لمنع أي خطأ في الملفات (TemplateNotFound)
+# كود الواجهة مدمج بالكامل لمنع أي خطأ ملفات
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -49,20 +42,20 @@ HTML_TEMPLATE = """
 
     <form action="/admin/save-settings" method="POST" class="card p-4 shadow-sm">
         <div class="form-check form-switch mb-3">
-            <input class="form-check-input" type="checkbox" name="ads_enabled" {% if settings.get('ads_enabled') %}checked{% endif %}>
+            <input class="form-check-input" type="checkbox" name="ads_enabled">
             <label class="form-check-label fw-bold">تفعيل الإعلانات</label>
         </div>
         <div class="mb-3">
             <label class="form-label fw-bold">شفرة إعلان الهيدر (Header Ad)</label>
-            <textarea name="header_ad" class="form-control" rows="3">{{ settings.get('header_ad', '') }}</textarea>
+            <textarea name="header_ad" class="form-control" rows="3"></textarea>
         </div>
         <div class="mb-3">
             <label class="form-label fw-bold">محتوى ملف Ads.txt</label>
-            <textarea name="ads_txt" class="form-control" rows="3">{{ settings.get('ads_txt', '') }}</textarea>
+            <textarea name="ads_txt" class="form-control" rows="3"></textarea>
         </div>
         <div class="mb-3">
             <label class="form-label fw-bold">كود Header المخصص (Google Analytics / Meta)</label>
-            <textarea name="custom_header_code" class="form-control" rows="3">{{ settings.get('custom_header_code', '') }}</textarea>
+            <textarea name="custom_header_code" class="form-control" rows="3"></textarea>
         </div>
         <button type="submit" class="btn btn-success btn-lg">حفظ التغييرات</button>
     </form>
@@ -73,35 +66,55 @@ HTML_TEMPLATE = """
 </html>
 """
 
+def ensure_secret_key():
+    if not getattr(current_app, 'secret_key', None):
+        current_app.secret_key = 'smarttools_secret_key_123456'
+
 @admin_bp.route('/login', methods=['GET', 'POST'])
 def login():
-    error = None
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-        
-        if username == 'admin' and password == 'admin123':
-            session['admin_logged_in'] = True
-            return redirect('/admin')
-        else:
-            error = "اسم المستخدم أو كلمة السر غير صحيحة"
+    try:
+        ensure_secret_key()
+        error = None
+        if request.method == 'POST':
+            username = request.form.get('username')
+            password = request.form.get('password')
             
-    return render_template_string(HTML_TEMPLATE, view='login', error=error)
+            if username == 'admin' and password == 'admin123':
+                session['admin_logged_in'] = True
+                return redirect('/admin')
+            else:
+                error = "اسم المستخدم أو كلمة السر غير صحيحة"
+                
+        return render_template_string(HTML_TEMPLATE, view='login', error=error)
+    except Exception as e:
+        return f"<div style='padding:20px;'><h3>حدث خطأ أثناء تحميل الصفحة:</h3><pre>{traceback.format_exc()}</pre></div>", 200
 
 @admin_bp.route('/')
 def dashboard():
-    if not session.get('admin_logged_in'):
-        return redirect('/admin/login')
-    
-    return render_template_string(HTML_TEMPLATE, view='dashboard', settings={})
+    try:
+        ensure_secret_key()
+        if not session.get('admin_logged_in'):
+            return redirect('/admin/login')
+        
+        return render_template_string(HTML_TEMPLATE, view='dashboard')
+    except Exception as e:
+        return f"<div style='padding:20px;'><h3>حدث خطأ أثناء تحميل الصفحة:</h3><pre>{traceback.format_exc()}</pre></div>", 200
 
 @admin_bp.route('/save-settings', methods=['POST'])
 def save_settings():
-    if not session.get('admin_logged_in'):
-        return redirect('/admin/login')
-    return redirect('/admin')
+    try:
+        ensure_secret_key()
+        if not session.get('admin_logged_in'):
+            return redirect('/admin/login')
+        return redirect('/admin')
+    except Exception as e:
+        return f"<div style='padding:20px;'><h3>حدث خطأ أثناء الحفظ:</h3><pre>{traceback.format_exc()}</pre></div>", 200
 
 @admin_bp.route('/logout')
 def logout():
-    session.pop('admin_logged_in', None)
-    return redirect('/admin/login')
+    try:
+        ensure_secret_key()
+        session.pop('admin_logged_in', None)
+        return redirect('/admin/login')
+    except Exception as e:
+        return f"<div style='padding:20px;'><h3>حدث خطأ:</h3><pre>{traceback.format_exc()}</pre></div>", 200

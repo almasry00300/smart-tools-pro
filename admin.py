@@ -1,25 +1,24 @@
-from flask import Blueprint, render_template, request, redirect, session, url_for
+from flask import Blueprint, render_template, request, redirect, session, current_app
 import os
-import pymongo
 
-# إنشاء البلوبرينت للوحة التحكم
 admin_bp = Blueprint('admin', __name__)
 
-# رابط الاتصال بقاعدة البيانات (يجلب كلمة السر من Vercel أو يستخدم الرابط المباشر)
-MONGO_URI = os.environ.get('MONGO_URI', 'Mongodb+srv://almasry0030:ضع_كلمة_السر_هنا@cluster0.tomwzzi.mongodb.net/?appName=Cluster0')
+# مفتاح أمان الجلسات لتفادي خطأ 500
+@admin_bp.before_app_request
+def setup_secret_key():
+    if not current_app.secret_key:
+        current_app.secret_key = 'smarttools_secret_key_super_safe'
 
+db = None
 try:
-    client = pymongo.MongoClient(MONGO_URI)
-    db = client.smarttools
-except Exception as e:
+    import pymongo
+    MONGO_URI = os.environ.get('MONGO_URI', '')
+    if MONGO_URI:
+        client = pymongo.MongoClient(MONGO_URI)
+        db = client.smarttools
+except Exception:
     db = None
-    print("خطأ في الاتصال بقاعدة البيانات:", e)
 
-# ===============================================
-# 🔐 مسارات لوحة التحكم (Admin Panel Routes)
-# ===============================================
-
-# 1. صفحة تسجيل الدخول للوحة
 @admin_bp.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
@@ -27,7 +26,6 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         
-        # يمكنك تغيير اسم المستخدم وكلمة السر هنا
         if username == 'admin' and password == 'admin123':
             session['admin_logged_in'] = True
             return redirect('/admin')
@@ -36,19 +34,20 @@ def login():
             
     return render_template('admin.html', view='login', error=error)
 
-# 2. الصفحة الرئيسية للوحة التحكم
 @admin_bp.route('/')
 def dashboard():
     if not session.get('admin_logged_in'):
         return redirect('/admin/login')
     
-    settings = db.settings.find_one({"_id": "config"}) if db is not None else {}
-    tools = list(db.tools.find()) if db is not None else []
-    posts = list(db.posts.find()) if db is not None else []
-    
-    return render_template('admin.html', view='dashboard', settings=settings, tools=tools, posts=posts)
+    settings = {}
+    if db is not None:
+        try:
+            settings = db.settings.find_one({"_id": "config"}) or {}
+        except Exception:
+            settings = {}
+            
+    return render_template('admin.html', view='dashboard', settings=settings)
 
-# 3. حفظ إعدادات الموقع والإعلانات و ads.txt
 @admin_bp.route('/save-settings', methods=['POST'])
 def save_settings():
     if not session.get('admin_logged_in'):
@@ -56,43 +55,20 @@ def save_settings():
     
     config_data = {
         "_id": "config",
-        "site_name": request.form.get('site_name'),
         "ads_enabled": True if request.form.get('ads_enabled') else False,
         "header_ad": request.form.get('header_ad'),
-        "footer_ad": request.form.get('footer_ad'),
-        "in_tool_ad": request.form.get('in_tool_ad'),
         "ads_txt": request.form.get('ads_txt'),
-        "custom_header_code": request.form.get('custom_header_code'),
-        "custom_footer_code": request.form.get('custom_footer_code')
+        "custom_header_code": request.form.get('custom_header_code')
     }
     
     if db is not None:
-        db.settings.replace_one({"_id": "config"}, config_data, upsert=True)
+        try:
+            db.settings.replace_one({"_id": "config"}, config_data, upsert=True)
+        except Exception:
+            pass
         
     return redirect('/admin')
 
-# 4. حفظ وتعديل مقالات المدونة (CMS)
-@admin_bp.route('/save-post', methods=['POST'])
-def save_post():
-    if not session.get('admin_logged_in'):
-        return redirect('/admin/login')
-    
-    title = request.form.get('title')
-    slug = request.form.get('slug') or title.lower().replace(' ', '-')
-    content = request.form.get('content')
-    
-    post_data = {
-        "title": title,
-        "slug": slug,
-        "content": content
-    }
-    
-    if db is not None:
-        db.posts.insert_one(post_data)
-        
-    return redirect('/admin')
-
-# 5. تسجيل الخروج
 @admin_bp.route('/logout')
 def logout():
     session.pop('admin_logged_in', None)

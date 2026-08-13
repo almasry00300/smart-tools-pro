@@ -611,8 +611,14 @@ def sitemap_xml():
 
     return xml, 200, {'Content-Type': 'application/xml; charset=utf-8'}
 
-# --- ربط لوحة التحكم ---
-from admin import admin_bp
-app.register_blueprint(admin_bp, url_prefix='/admin')
+# --- ربط لوحة التحكم بشكل آمن ---
+try:
+    from admin import admin_bp
+    app.register_blueprint(admin_bp, url_prefix='/admin')
+except Exception as e:
+    @app.route('/admin')
+    def admin_error():
+        import traceback
+        return f"<div style='padding:20px; color:red;'><h2>حدث خطأ في تحميل اللوحة:</h2><pre>{traceback.format_exc()}</pre></div>", 200
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

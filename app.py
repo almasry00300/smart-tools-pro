@@ -611,6 +611,8 @@ def sitemap_xml():
 
     return xml, 200, {'Content-Type': 'application/xml; charset=utf-8'}
 
-
+# --- ربط لوحة التحكم ---
+from admin import admin_bp
+app.register_blueprint(admin_bp, url_prefix='/admin')
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

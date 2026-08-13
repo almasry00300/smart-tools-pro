@@ -217,4 +217,212 @@ def color_checker(): return render_template('color_extractor.html')
 @app.route('/image-converter')
 def image_converter(): return render_template('image_converter.html')
 
-{
+@app.route('/image-compressor')
+def image_compressor(): return render_template('image_compressor.html')
+
+@app.route('/pdf-to-images')
+def pdf_to_images(): return render_template('pdf_to_images.html')
+
+@app.route('/convert-pdf', methods=['POST'])
+def convert_pdf_to_images():
+    if 'pdf_file' not in request.files: return jsonify({'error': 'No file'}), 400
+    file = request.files['pdf_file']
+    if file.filename == '': return jsonify({'error': 'No file'}), 400
+    try:
+        reader = PdfReader(file)
+        images_data = []
+        for page_num, page in enumerate(reader.pages, start=1):
+            for count, image_file_object in enumerate(page.images, start=1):
+                img_io = io.BytesIO(image_file_object.data)
+                img_base64 = base64.b64encode(img_io.getvalue()).decode('utf-8')
+                images_data.append({
+                    'page': page_num, 'name': f"page_{page_num}_img_{count}.png", 'base64': f"data:image/png;base64,{img_base64}"
+                })
+        return jsonify({'images': images_data})
+    except Exception as e: return jsonify({'error': str(e)}), 500
+
+@app.route('/pdf-tools')
+def pdf_tools_page(): return render_template('pdf_tools.html')
+
+@app.route('/merge-pdfs', methods=['POST'])
+def merge_pdfs():
+    files = request.files.getlist('pdf_files')
+    if not files or len(files) < 2: return "Need 2 files", 400
+    try:
+        writer = PdfWriter()
+        for file in files:
+            reader = PdfReader(file)
+            for page in reader.pages: writer.add_page(page)
+        output = io.BytesIO()
+        writer.write(output)
+        output.seek(0)
+        return send_file(output, mimetype='application/pdf', as_attachment=True, download_name='smarttools-merged.pdf')
+    except Exception as e: return str(e), 500
+
+@app.route('/meta-analyzer')
+def meta_analyzer(): return render_template('meta_analyzer.html')
+
+TOOL_GUIDES = {
+    "word-counter": {
+        "title": "عداد الكلمات",
+        "description": "أداة مجانية لعد الكلمات والحروف والأسطر في النصوص بسرعة وسهولة.",
+        "what_is": "عداد الكلمات هو أداة تساعدك على معرفة عدد الكلمات والحروف والأسطر الموجودة في أي نص. وهي مفيدة ل.[...],",
+        "how_to": "اكتب أو الصق النص داخل أداة عداد الكلمات، وستظهر لك الإحصائيات الخاصة بالنص بشكل مباشر.",
+        "features": "حساب عدد الكلمات، حساب عدد الحروف، معرفة عدد الأسطر، والعمل مباشرة من المتصفح بدون الحاجة إلى ت[...],",
+        "benefits": "تساعدك الأداة على التحكم في طول المقالات والمنشورات والنصوص، كما توفر طريقة سريعة لمعرفة حجم ا�[...],",
+        "faqs": [
+            {"question": "هل الأداة مجانية؟", "answer": "نعم، يمكنك استخدام الأداة مجانًا من خلال موقع SmartToolsPro."},
+            {"question": "هل أحتاج إلى تثبيت برنامج؟", "answer": "لا، تعمل الأداة مباشرة من المتصفح."}
+        ]
+    }
+}
+
+@app.route('/tool/<tool_slug>')
+def tool_guide(tool_slug):
+    # If there is a dedicated template for the tool (templates/{tool_slug}.html), render it.
+    tpl_path = os.path.join('templates', f'{tool_slug}.html')
+    if os.path.exists(tpl_path):
+        return render_template(f"{tool_slug}.html")
+
+    tool = TOOL_GUIDES.get(tool_slug)
+
+    if not tool:
+        return "الأداة غير موجودة", 404
+
+    tool["url"] = "/" + tool_slug
+
+    return render_template(
+        "tool_info.html",
+        tool=tool
+    )
+
+@app.route('/robots-generator')
+def robots_generator_page(): return render_template('robots_generator.html')
+
+@app.route('/fetch-meta', methods=['POST'])
+def fetch_meta_tags():
+    url = request.json.get('url', '').strip()
+    if not url: return jsonify({'error': 'No URL'}), 400
+    if not url.startswith(('http://', 'https://')): url = 'https://' + url
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, timeout=7) as response: html = response.read()
+        soup = BeautifulSoup(html, 'html.parser')
+        meta_data = {
+            'title': soup.title.string.strip() if soup.title else 'N/A',
+            'description': 'N/A', 'keywords': 'N/A', 'og_title': 'N/A', 'og_desc': 'N/A'
+        }
+        for tag in soup.find_all('meta'):
+            name = tag.get('name', '').lower()
+            prop = tag.get('property', '').lower()
+            content = (tag.get('content') or '').strip()
+            if name == 'description': meta_data['description'] = content
+            elif name == 'keywords': meta_data['keywords'] = content
+            elif prop == 'og:title': meta_data['og_title'] = content
+            elif prop == 'og:description': meta_data['og_desc'] = content
+        return jsonify(meta_data)
+    except Exception as e: return jsonify({'error': 'Error'}), 500
+
+@app.route('/broken-links')
+def broken_links_page(): return render_template('broken_links.html')
+
+@app.route('/check-links', methods=['POST'])
+def check_page_links():
+    url = request.json.get('url', '').strip()
+    if not url: return jsonify({'error': 'No URL'}), 400
+    if not url.startswith(('http://', 'https://')): url = 'https://' + url
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0'}
+        response = requests.get(url, headers=headers, timeout=7)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        links_to_check = []
+        for a_tag in soup.find_all('a', href=True):
+            href = a_tag.get('href')
+            full_url = urljoin(url, href)
+            if urlparse(full_url).scheme in ('http', 'https'): links_to_check.append(full_url)
+        unique_links = list(set(links_to_check))[:10]
+        results = []
+        for link in unique_links:
+            try:
+                res = requests.head(link, headers=headers, timeout=3, allow_redirects=True)
+                status = res.status_code
+            except: status = "Fail"
+            results.append({'url': link, 'status': status})
+        return jsonify({'links': results})
+    except Exception as e: return jsonify({'error': 'Error'}), 500
+
+@app.route('/sitemap-generator')
+def sitemap_generator_page(): return render_template('sitemap_generator.html')
+
+@app.route('/generate-sitemap', methods=['POST'])
+def generate_sitemap_action():
+    url = request.json.get('url', '').strip()
+    if not url: return jsonify({'error': 'No URL'}), 400
+    if not url.startswith(('http://', 'https://')): url = 'https://' + url
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0'}
+        response = requests.get(url, headers=headers, timeout=7)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        links = []
+        for a_tag in soup.find_all('a', href=True):
+            href = a_tag.get('href')
+            full_url = urljoin(url, href)
+            if urlparse(full_url).netloc == urlparse(url).netloc: links.append(full_url)
+        unique_links = list(set(links))[:20]
+        return jsonify({'links': unique_links})
+    except Exception as e: return jsonify({'error': 'Error'}), 500
+
+@app.route('/robots.txt')
+def robots_txt():
+    return """User-agent: *
+Allow: /
+
+Sitemap: https://smart-tools-pro.vercel.app/sitemap.xml
+""", 200, {'Content-Type': 'text/plain'}
+
+@app.route('/google11655a0f321b5df3.html')
+def google_verification():
+    return "google-site-verification: google11655a0f321b5df3.html"
+
+@app.route('/sitemap.xml')
+def sitemap_xml():
+    urls = [
+        'https://smart-tools-pro.vercel.app/',
+        'https://smart-tools-pro.vercel.app/about',
+        'https://smart-tools-pro.vercel.app/contact',
+        'https://smart-tools-pro.vercel.app/privacy',
+        'https://smart-tools-pro.vercel.app/terms',
+        'https://smart-tools-pro.vercel.app/disclaimer',
+        'https://smart-tools-pro.vercel.app/word-counter',
+        'https://smart-tools-pro.vercel.app/char-counter',
+        'https://smart-tools-pro.vercel.app/age-calculator',
+        'https://smart-tools-pro.vercel.app/color-extractor',
+        'https://smart-tools-pro.vercel.app/domain-checker',
+        'https://smart-tools-pro.vercel.app/hash-generator',
+        'https://smart-tools-pro.vercel.app/image-compressor',
+        'https://smart-tools-pro.vercel.app/image-converter',
+        'https://smart-tools-pro.vercel.app/meta-analyzer',
+        'https://smart-tools-pro.vercel.app/password-generator',
+        'https://smart-tools-pro.vercel.app/pdf-to-images',
+        'https://smart-tools-pro.vercel.app/pdf-tools',
+        'https://smart-tools-pro.vercel.app/qr-generator',
+        'https://smart-tools-pro.vercel.app/remove-duplicate-lines',
+        'https://smart-tools-pro.vercel.app/robots-generator',
+        'https://smart-tools-pro.vercel.app/seo-analyzer',
+        'https://smart-tools-pro.vercel.app/site-speed',
+        'https://smart-tools-pro.vercel.app/sitemap-generator',
+        'https://smart-tools-pro.vercel.app/text-to-speech'
+    ]
+
+    xml = '<?xml version="1.0" encoding="UTF-8"?>'
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+
+    for url in urls:
+        xml += f'<url><loc>{url}</loc></url>'
+
+    xml += '</urlset>'
+
+    return xml, 200, {'Content-Type': 'application/xml; charset=utf-8'}
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5000)

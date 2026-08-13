@@ -10,6 +10,7 @@ import requests
 from urllib.parse import urljoin, urlparse
 import hashlib
 import time
+import os
 
 app = Flask(__name__)
 
@@ -116,12 +117,12 @@ LOGIN_HTML = """
 <body class="bg-light p-4">
 <div class="container mt-5" style="max-width: 400px;">
     <div class="card p-4 shadow-sm">
-        <h4 class="text-center mb-3">تسجيل الدخول لل��حة التحكم</h4>
+        <h4 class="text-center mb-3">تسجيل الدخول للوحة التحكم</h4>
         {% if error %}<div class="alert alert-danger p-2">{{ error }}</div>{% endif %}
         <form method="POST" action="/admin/login">
             <div class="mb-3">
-                <label class="form-label">اسم المستخدم</label>
-                <input type="text" name="username" class="form-control" required>
+                <label class="form-label">اسم المستخدم (اختياري)</label>
+                <input type="text" name="username" class="form-control" >
             </div>
             <div class="mb-3">
                 <label class="form-label">كلمة السر</label>
@@ -173,10 +174,10 @@ def admin_panel():
 def admin_login():
     error = None
     if request.method == 'POST':
-        username = request.form.get('username')
         password = request.form.get('password')
-        # --- ملاحظة أمنية: استبدل هذا بنظام مصادقة آمن أو متغيرات بيئة في الإنتاج ---
-        if username == 'admin' and password == 'admin123':
+        # allow password-only login for compatibility; prefer env var for real password
+        ADMIN_PASS = os.environ.get('ADMIN_PASSWORD', 'admin123')
+        if password and password == ADMIN_PASS:
             resp = make_response(redirect('/admin'))
             resp.set_cookie('admin_auth', 'logged_in', httponly=True, samesite='Lax')
             return resp

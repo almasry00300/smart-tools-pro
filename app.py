@@ -610,124 +610,59 @@ def sitemap_xml():
     xml += '</urlset>'
 
     return xml, 200, {'Content-Type': 'application/xml; charset=utf-8'}
-# --- إعدادات لوحة التحكم والإعلانات ---
-site_settings = {
-    "ads_enabled": True,
-    "header_ad": "",
-    "ads_txt": "",
-    "custom_header_code": ""
-}
-
-ADMIN_HTML = """
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة التحكم الشاملة</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-</head>
-<body class="bg-light p-4">
-<div class="container my-4" style="max-width: 800px;">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>لوحة إعدادات الموقع والإعلانات</h2>
-        <a href="/admin/logout" class="btn btn-outline-danger">تسجيل خروج</a>
-    </div>
-
-    {% if saved %}
-    <div class="alert alert-success">تم حفظ التغييرات بنجاح!</div>
-    {% endif %}
-
-    <form method="POST" action="/admin" class="card p-4 shadow-sm">
-        <div class="form-check form-switch mb-3">
-            <input class="form-check-input" type="checkbox" name="ads_enabled" {% if settings.ads_enabled %}checked{% endif %}>
-            <label class="form-check-label fw-bold">تفعيل الإعلانات في الموقع</label>
-        </div>
-        <div class="mb-3">
-            <label class="form-label fw-bold">شفرة إعلان الهيدر (Header Ad)</label>
-            <textarea name="header_ad" class="form-control" rows="3">{{ settings.header_ad }}</textarea>
-        </div>
-        <div class="mb-3">
-            <label class="form-label fw-bold">محتوى ملف Ads.txt</label>
-            <textarea name="ads_txt" class="form-control" rows="3">{{ settings.ads_txt }}</textarea>
-        </div>
-        <div class="mb-3">
-            <label class="form-label fw-bold">كود Header المخصص (Google Analytics / Meta)</label>
-            <textarea name="custom_header_code" class="form-control" rows="3">{{ settings.custom_header_code }}</textarea>
-        </div>
-        <button type="submit" class="btn btn-success btn-lg w-100">حفظ كافة التغييرات</button>
-    </form>
-</div>
-</body>
-</html>
-"""
-
-LOGIN_HTML = """
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>تسجيل الدخول</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-</head>
-<body class="bg-light p-4">
-<div class="container mt-5" style="max-width: 400px;">
-    <div class="card p-4 shadow-sm">
-        <h4 class="text-center mb-3">تسجيل الدخول للوحة التحكم</h4>
-        {% if error %}<div class="alert alert-danger p-2">{{ error }}</div>{% endif %}
-        <form method="POST" action="/admin/login">
-            <div class="mb-3">
-                <label class="form-label">اسم المستخدم</label>
-                <input type="text" name="username" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">كلمة السر</label>
-                <input type="password" name="password" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">دخول</button>
-        </form>
-    </div>
-</div>
-</body>
-</html>
-"""
-
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_panel():
     if request.cookies.get('admin_auth') != 'logged_in':
         return redirect('/admin/login')
     
-    saved = False
+    msg = ""
     if request.method == 'POST':
-        site_settings['ads_enabled'] = True if request.form.get('ads_enabled') == 'on' else False
-        site_settings['header_ad'] = request.form.get('header_ad', '')
-        site_settings['ads_txt'] = request.form.get('ads_txt', '')
-        site_settings['custom_header_code'] = request.form.get('custom_header_code', '')
-        saved = True
+        msg = "تم الحفظ بنجاح!"
 
-    return render_template_string(ADMIN_HTML, settings=site_settings, saved=saved)
+    return f"""
+    <html dir='rtl'>
+    <head><title>لوحة التحكم</title><link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css' rel='stylesheet'></head>
+    <body class='p-4 bg-light'>
+        <h2>لوحة الإعدادات</h2>
+        <p style='color:green;'>{msg}</p>
+        <form method='POST'>
+            <button class='btn btn-success'>حفظ التغييرات</button>
+        </form>
+        <br><a href='/admin/logout'>تسجيل خروج</a>
+    </body>
+    </html>
+    """
 
 @app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login():
-    error = None
+    error = ""
     if request.method == 'POST':
         if request.form.get('username') == 'admin' and request.form.get('password') == 'admin123':
             resp = make_response(redirect('/admin'))
             resp.set_cookie('admin_auth', 'logged_in')
             return resp
         else:
-            error = "بيانات الدخول غير صحيحة"
-    return render_template_string(LOGIN_HTML, error=error)
+            error = "خطأ في البيانات"
+            
+    return f"""
+    <html dir='rtl'>
+    <head><title>دخول</title><link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css' rel='stylesheet'></head>
+    <body class='p-4 bg-light' style='max-width:400px; margin:auto; margin-top:50px;'>
+        <h3>تسجيل الدخول</h3>
+        <p style='color:red;'>{error}</p>
+        <form method='POST'>
+            <input type='text' name='username' placeholder='اسم المستخدم' class='form-control mb-2' required>
+            <input type='password' name='password' placeholder='كلمة السر' class='form-control mb-2' required>
+            <button class='btn btn-primary w-100'>دخول</button>
+        </form>
+    </body>
+    </html>
+    """
 
 @app.route('/admin/logout')
 def admin_logout():
     resp = make_response(redirect('/admin/login'))
     resp.set_cookie('admin_auth', '', expires=0)
     return resp
-
-@app.route('/ads.txt')
-def ads_txt():
-    return site_settings['ads_txt'], 200, {'Content-Type': 'text/plain'}
-
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

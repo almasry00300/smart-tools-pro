@@ -4,22 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ post.title }}</title>
-    <link rel="stylesheet" href="https://jsdelivr.net">
     <style>
-        body { background-color: #ffffff; font-family: system-ui, -apple-system, sans-serif; color: #1e293b; line-height: 1.8; }
-        .article-content { font-size: 1.1rem; text-align: justify; white-space: pre-line; color: #334155; }
-        .btn-back { border-radius: 6px; font-weight: 600; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+        body { background-color: #ffffff; color: #1e293b; padding: 25px 20px; line-height: 1.8; }
+        .container { max-width: 650px; margin: 0 auto; width: 100%; }
+        .nav-back { margin-bottom: 25px; }
+        .btn-back { text-decoration: none; color: #64748b; background: #f1f5f9; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; display: inline-block; }
+        h1 { font-size: 1.6rem; font-weight: 800; color: #0f172a; line-height: 1.5; margin-bottom: 15px; }
+        .article-content { font-size: 1.05rem; text-align: justify; white-space: pre-line; color: #334155; }
     </style>
 </head>
 <body>
-    <div class="container py-4" style="max-width: 650px;">
-        <nav class="mb-4">
-            <a href="/blog" class="btn btn-sm btn-light btn-back text-secondary">← العودة للمدونة</a>
-        </nav>
+    <div class="container">
+        <div class="nav-back">
+            <a href="/blog-speed" class="btn-back">← العودة للمدونة</a>
+        </div>
         
         <article>
-            <h1 class="fw-bold text-dark lh-base mb-3 fs-2">{{ post.title }}</h1>
-            <hr class="my-4">
+            <h1>{{ post.title }}</h1>
+            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
             <div class="article-content">
                 {{ post.content }}
             </div>

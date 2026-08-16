@@ -4,34 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مدونة المقالات الحصرية</title>
-    <link rel="stylesheet" href="https://jsdelivr.net">
     <style>
-        body { background-color: #f4f6f9; font-family: system-ui, -apple-system, sans-serif; color: #333; }
-        .blog-card { background: #fff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: transform 0.2s; }
-        .blog-card:hover { transform: translateY(-3px); }
-        .btn-read { background-color: #ea580c; color: #fff; border-radius: 6px; font-weight: bold; padding: 8px 20px; text-decoration: none; display: inline-block; }
-        .btn-read:hover { background-color: #c2410c; color: #fff; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+        body { background-color: #f4f6f9; color: #0f172a; padding: 20px; min-height: 100vh; }
+        .container { max-width: 600px; margin: 0 auto; width: 100%; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .header h1 { font-size: 1.5rem; font-weight: 800; color: #1e293b; }
+        .btn-home { text-decoration: none; color: #475569; background: #e2e8f0; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; }
+        .blog-card { background: #ffffff; border-radius: 12px; padding: 20px; margin-bottom: 15px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .blog-card h2 { font-size: 1.2rem; font-weight: 700; color: #0f172a; margin-bottom: 10px; line-height: 1.4; }
+        .blog-card p { font-size: 0.9rem; color: #475569; line-height: 1.6; margin-bottom: 15px; }
+        .btn-read { background-color: #ea580c; color: #ffffff; border-radius: 6px; font-weight: bold; padding: 10px 20px; text-decoration: none; display: inline-block; font-size: 0.9rem; text-align: center; }
+        .btn-read:hover { background-color: #c2410c; }
+        .text-center { text-align: center; padding: 40px 0; color: #64748b; }
     </style>
 </head>
 <body>
-    <div class="container py-4" style="max-width: 600px;">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="fw-bold fs-3 text-dark m-0">📚 مدونة المقالات</h1>
-            <a href="/" class="btn btn-sm btn-outline-secondary">الرئيسية</a>
+    <div class="container">
+        <div class="header">
+            <h1>📚 مدونة المقالات</h1>
+            <a href="/" class="btn-home">الرئيسية</a>
         </div>
-        <hr class="mb-4">
+        <hr style="border: 0; border-top: 1px solid #cbd5e1; margin-bottom: 20px;">
         
         {% if posts %}
             {% for post in posts %}
-            <div class="blog-card mb-3">
-                <h2 class="fw-bold fs-4 text-dark mb-2">{{ post.title }}</h2>
-                <!-- عرض أول 120 حرف فقط كـ وصف قصير للمقال -->
-                <p class="text-muted small mb-3">{{ post.content[:120] }}...</p>
-                <a href="/blog/post-speed/{{ post.id }}" class="btn-read small">إقرأ المزيد ←</a>
+            <div class="blog-card">
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content[:140] }}...</p>
+                <a href="/blog/post-speed/{{ post.id }}" class="btn-read">إقرأ المزيد ←</a>
             </div>
             {% endfor %}
         {% else %}
-            <div class="text-center py-5 text-muted">لا توجد مقالات منشورة حالياً.</div>
+            <div class="text-center">لا توجد مقالات منشورة حالياً.</div>
         {% endif %}
     </div>
 </body>

@@ -713,3 +713,10 @@ def fast_privacy_page():
     </body>
     </html>
     """
+
+# --- دالة ربط قالب السياسة المقسم الجديد لأدسنس ---
+@app.route('/privacy-policy')
+def official_privacy_page():
+    data = get_fast_blog_data()
+    privacy_content = data.get("pages", {}).get("privacy", "جاري تحديث المحتوى...")
+    return render_template('privacy.html', content=privacy_content)

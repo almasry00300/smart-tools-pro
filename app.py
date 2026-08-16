@@ -614,3 +614,14 @@ def sitemap_xml():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
+
+# --- مسار المدونة الديناميكي لعرض المقالات الطويلة لأدسنس ---
+@app.route('/blog')
+def blog_section():
+    import json
+    try:
+        with open('site_content.json', 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except:
+        data = {"blog_posts": []}
+    return render_template('blog.html', posts=data.get("blog_posts", []))

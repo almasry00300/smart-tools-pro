@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>مدونة المقالات الحصرية</title>
+    <link rel="stylesheet" href="https://jsdelivr.net">
+    <style>body { background-color: #f8f9fa; font-family: 'Segoe UI', sans-serif; }</style>
+</head>
+<body>
+    <div class="container py-5" style="max-width: 900px;">
+        <h1 class="fw-bold text-primary mb-4">📚 قسم التدوين والمقالات (أدسنس)</h1>
+        <a href="/" class="btn btn-secondary mb-4">العودة للرئيسية</a>
+        <hr>
+        {% for post in posts %}
+        <div class="card mb-4 shadow-sm border-0 rounded-3 p-4 bg-white">
+            <h2 class="fw-bold text-dark h4">{{ post.title }}</h2>
+            <p class="text-secondary mt-3" style="line-height: 1.8; white-space: pre-line;">{{ post.content }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

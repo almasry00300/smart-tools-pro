@@ -6,15 +6,15 @@
     <title>مدونة المقالات الحصرية</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-        body { background-color: #f4f6f9; color: #0f172a; padding: 20px; min-height: 100vh; }
+        body { background-color: #0b1329; color: #f8fafc; padding: 20px; min-height: 100vh; }
         .container { max-width: 600px; margin: 0 auto; width: 100%; }
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .header h1 { font-size: 1.5rem; font-weight: 800; color: #1e293b; }
-        .btn-home { text-decoration: none; color: #475569; background: #e2e8f0; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; }
-        .blog-card { background: #ffffff; border-radius: 12px; padding: 20px; margin-bottom: 15px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
-        .blog-card h2 { font-size: 1.2rem; font-weight: 700; color: #0f172a; margin-bottom: 10px; line-height: 1.4; }
-        .blog-card p { font-size: 0.9rem; color: #475569; line-height: 1.6; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-        .btn-read { background-color: #ea580c; color: #ffffff; border-radius: 6px; font-weight: bold; padding: 10px 20px; text-decoration: none; display: inline-block; font-size: 0.9rem; text-align: center; }
+        .header h1 { font-size: 1.6rem; font-weight: 800; color: #ffffff; }
+        .btn-home { text-decoration: none; color: #94a3b8; background: #1e293b; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; }
+        .blog-card { background: #111827; border-radius: 12px; padding: 20px; margin-bottom: 15px; border: 1px solid #1f2937; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .blog-card h2 { font-size: 1.3rem; font-weight: 700; color: #ffffff; margin-bottom: 10px; line-height: 1.4; }
+        .blog-card p { font-size: 0.95rem; color: #94a3b8; line-height: 1.6; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .btn-read { background-color: #ea580c; color: #ffffff; border-radius: 6px; font-weight: bold; padding: 10px 20px; text-decoration: none; display: inline-block; font-size: 0.9rem; text-align: center; width: 100%; }
         .btn-read:hover { background-color: #c2410c; }
         .text-center { text-align: center; padding: 40px 0; color: #64748b; }
     </style>
@@ -25,15 +25,14 @@
             <h1>📚 مدونة المقالات</h1>
             <a href="/" class="btn-home">الرئيسية</a>
         </div>
-        <hr style="border: 0; border-top: 1px solid #cbd5e1; margin-bottom: 20px;">
+        <hr style="border: 0; border-top: 1px solid #1f2937; margin-bottom: 20px;">
         
         {% if posts %}
             {% for post in posts %}
             <div class="blog-card">
                 <h2>{{ post.title }}</h2>
-                <!-- جعل المتصفح يقص النص فوريا بالـ CSS لسرعة خارقة وبدون مجهود معالج -->
-                <p>{{ post.content }}</p>
-                <a href="/blog/post-speed/{{ post.id }}" class="btn-read">إقرأ المزيد ←</a>
+                <p>{{ post.content | striptags }}</p>
+                <a href="/blog/post-speed/{{ post.id }}" class="btn-read">📖 اقرأ شرح الأداة وطريقة استخدامها</a>
             </div>
             {% endfor %}
         {% else %}

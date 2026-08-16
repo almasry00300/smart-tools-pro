@@ -8,7 +8,7 @@
   ],
   "routes": [
     {
-      "src": "/admin",
+      "src": "/blog",
       "dest": "app.py"
     },
     {

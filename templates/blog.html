@@ -13,7 +13,7 @@
         .btn-home { text-decoration: none; color: #475569; background: #e2e8f0; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; }
         .blog-card { background: #ffffff; border-radius: 12px; padding: 20px; margin-bottom: 15px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         .blog-card h2 { font-size: 1.2rem; font-weight: 700; color: #0f172a; margin-bottom: 10px; line-height: 1.4; }
-        .blog-card p { font-size: 0.9rem; color: #475569; line-height: 1.6; margin-bottom: 15px; }
+        .blog-card p { font-size: 0.9rem; color: #475569; line-height: 1.6; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         .btn-read { background-color: #ea580c; color: #ffffff; border-radius: 6px; font-weight: bold; padding: 10px 20px; text-decoration: none; display: inline-block; font-size: 0.9rem; text-align: center; }
         .btn-read:hover { background-color: #c2410c; }
         .text-center { text-align: center; padding: 40px 0; color: #64748b; }
@@ -31,7 +31,8 @@
             {% for post in posts %}
             <div class="blog-card">
                 <h2>{{ post.title }}</h2>
-                <p>{{ post.content[:140] }}...</p>
+                <!-- جعل المتصفح يقص النص فوريا بالـ CSS لسرعة خارقة وبدون مجهود معالج -->
+                <p>{{ post.content }}</p>
                 <a href="/blog/post-speed/{{ post.id }}" class="btn-read">إقرأ المزيد ←</a>
             </div>
             {% endfor %}

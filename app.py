@@ -625,3 +625,23 @@ def blog_section():
     except:
         data = {"blog_posts": []}
     return render_template('blog.html', posts=data.get("blog_posts", []))
+
+# --- مسار ديناميكي لعرض المقال الكامل بناءً على الـ ID الخاص به لأدسنس ---
+@app.route('/blog/post/<post_id>')
+def view_full_post(post_id):
+    import json
+    import os
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    json_path = os.path.join(current_dir, 'site_content.json')
+    try:
+        with open(json_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except:
+        data = {"blog_posts": []}
+    
+    # البحث عن المقال المطلوب بالـ ID الخاص به لتمريره للصفحة
+    post = next((p for p in data.get("blog_posts", []) if p.get("id") == str(post_id)), None)
+    if not post:
+        return "المقال غير موجود أو تم حذفه", 404
+        
+    return render_template('post.html', post=post)

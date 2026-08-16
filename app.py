@@ -645,3 +645,34 @@ def view_full_post(post_id):
         return "المقال غير موجود أو تم حذفه", 404
         
     return render_template('post.html', post=post)
+
+# --- نظام قراءة المقالات السريع والخفيف جداً لأدسنس ---
+_cached_blog_data = None
+
+def get_fast_blog_data():
+    global _cached_blog_data
+    if _cached_blog_data is not None:
+        return _cached_blog_data
+    import json
+    import os
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    json_path = os.path.join(current_dir, 'site_content.json')
+    try:
+        with open(json_path, 'r', encoding='utf-8') as f:
+            _cached_blog_data = json.load(f)
+            return _cached_blog_data
+    except:
+        return {"blog_posts": []}
+
+@app.route('/blog-speed')
+def fast_blog_index():
+    data = get_fast_blog_data()
+    return render_template('blog.html', posts=data.get("blog_posts", []))
+
+@app.route('/blog/post-speed/<post_id>')
+def fast_view_post(post_id):
+    data = get_fast_blog_data()
+    post = next((p for p in data.get("blog_posts", []) if p.get("id") == str(post_id)), None)
+    if not post:
+        return "المقال غير موجود", 404
+    return render_template('post.html', post=post)

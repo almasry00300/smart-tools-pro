@@ -27,7 +27,7 @@
                 <h2 class="fw-bold fs-4 text-dark mb-2">{{ post.title }}</h2>
                 <!-- عرض أول 120 حرف فقط كـ وصف قصير للمقال -->
                 <p class="text-muted small mb-3">{{ post.content[:120] }}...</p>
-                <a href="/blog/post/{{ post.id }}" class="btn-read small">إقرأ المزيد ←</a>
+                <a href="/blog/post-speed/{{ post.id }}" class="btn-read small">إقرأ المزيد ←</a>
             </div>
             {% endfor %}
         {% else %}

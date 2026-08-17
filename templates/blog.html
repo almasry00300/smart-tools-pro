@@ -3,36 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مدونة المقالات الحصرية</title>
+    <title>مدونة المقالات - SmartToolsPro</title>
+    <meta name="description" content="مدونة منصة SmartToolsPro لأحدث المقالات وشروحات الأدوات الرقمية.">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2246897924204842" crossorigin="anonymous"></script>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-        body { background-color: #0b1329; color: #f8fafc; padding: 20px; min-height: 100vh; }
-        .container { max-width: 600px; margin: 0 auto; width: 100%; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .header h1 { font-size: 1.6rem; font-weight: 800; color: #ffffff; }
-        .btn-home { text-decoration: none; color: #94a3b8; background: #1e293b; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; }
-        .blog-card { background: #111827; border-radius: 12px; padding: 20px; margin-bottom: 15px; border: 1px solid #1f2937; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .blog-card h2 { font-size: 1.3rem; font-weight: 700; color: #ffffff; margin-bottom: 10px; line-height: 1.4; }
-        .blog-card p { font-size: 0.95rem; color: #94a3b8; line-height: 1.6; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-        .btn-read { background-color: #ea580c; color: #ffffff; border-radius: 6px; font-weight: bold; padding: 10px 20px; text-decoration: none; display: inline-block; font-size: 0.9rem; text-align: center; width: 100%; }
-        .btn-read:hover { background-color: #c2410c; }
-        .text-center { text-align: center; padding: 40px 0; color: #64748b; }
+        body { font-family: Tahoma, sans-serif; padding: 12px; line-height: 1.9; background: #fdfdfd; color: #222; margin: 0; }
+        .container { max-width: 850px; margin: 20px auto; width: 100%; box-sizing: border-box; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; background: #fff; padding: 20px 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .header h1 { font-size: 22px; color: #111; font-weight: bold; margin: 0; }
+        .btn-home { text-decoration: none; color: #0d6efd; background: #f1f3f5; padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: bold; transition: all 0.3s; }
+        .btn-home:hover { background: #0d6efd; color: #fff; }
+        .blog-card { background: #fff; border-radius: 10px; padding: 25px; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        .blog-card h2 { font-size: 18px; font-weight: 700; color: #111; margin-bottom: 12px; line-height: 1.5; }
+        .blog-card p { font-size: 15px; color: #555; line-height: 1.7; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .ad-space { background: #f8f9fa; border: 2px dashed #ddd; border-radius: 10px; padding: 20px; text-align: center; margin-bottom: 40px; }
+        .btn-read { background-color: #0d6efd; color: #ffffff; border-radius: 6px; font-weight: bold; padding: 10px 20px; text-decoration: none; display: inline-block; font-size: 14px; text-align: center; width: 100%; box-sizing: border-box; transition: background 0.3s; }
+        .btn-read:hover { background-color: #0b5ed7; }
+        .text-center { text-align: center; padding: 40px; color: #666; background: #fff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>📚 مدونة المقالات</h1>
-            <a href="/" class="btn-home">الرئيسية</a>
+            <a href="/" class="btn-home">← الرئيسية</a>
         </div>
-        <hr style="border: 0; border-top: 1px solid #1f2937; margin-bottom: 20px;">
-        
         {% if posts %}
             {% for post in posts %}
             <div class="blog-card">
                 <h2>{{ post.title }}</h2>
                 <p>{{ post.content | striptags }}</p>
                 <a href="/blog/post-speed/{{ post.id }}" class="btn-read">📖 اقرأ شرح الأداة وطريقة استخدامها</a>
+            </div>
+            <div class="ad-space">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-2246897924204842"
+                     data-ad-slot="xxxxxxxxx"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
             {% endfor %}
         {% else %}

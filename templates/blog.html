@@ -34,7 +34,7 @@
             {% for post in posts %}
             <div class="blog-card">
                 <h2>{{ post.title }}</h2>
-                <p>{{ post.content | striptags }}</p>
+                <div>{{ post.content | safe }}</div>
                 <a href="/blog/post-speed/{{ post.id }}" class="btn-read">📖 اقرأ شرح الأداة وطريقة استخدامها</a>
             </div>
             <div class="ad-space">

@@ -8,54 +8,63 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="http://127.0.0">
     <style>
-        :root { --bg: #0f172a; --surface: #1e293b; --primary: #38bdf8; --text: #f8fafc; --text-muted: #94a3b8; --border: #334155; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
-        body { background: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; display: flex; flex-direction: column; gap: 20px; }
-        .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
-        .back-btn { display: inline-block; align-self: flex-start; color: var(--primary); text-decoration: none; font-weight: bold; background: var(--surface); padding: 8px 15px; border-radius: 6px; border: 1px solid var(--border); transition: 0.2s; }
-        .back-btn:hover { background: var(--primary); color: #000; }
-        .tool-box { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); text-align: center; }
-        h1 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-right: 4px solid var(--primary); padding-right: 8px; text-align: right; }
-        
-        .upload-zone { border: 2px dashed var(--border); padding: 20px; border-radius: 8px; cursor: pointer; margin-bottom: 15px; background: #0f172a; transition: 0.2s; }
-        .upload-zone:hover { border-color: var(--primary); }
-        input[type="file"] { display: none; }
-        
-        .status-msg { display: none; margin-bottom: 15px; color: var(--primary); font-size: 0.95rem; }
-        .images-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 20px; }
-        .image-card { background: #0f172a; padding: 10px; border-radius: 8px; border: 1px solid var(--border); text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center; }
-        .image-card img { max-width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--border); background: white; }
-        .download-page-btn { background: var(--primary); color: #000; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.95rem; width: 100%; text-decoration: none; text-align: center; display: block; }
-        .download-page-btn:hover { background: #7dd3fc; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, sans-serif; }
+        body { background-color: #fdfdfd; color: #222; padding: 15px; line-height: 1.9; display: flex; flex-direction: column; gap: 20px; }
+        .container { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
 
-        .seo-article { background: var(--surface); padding: 25px; border-radius: 12px; border: 1px solid var(--border); text-align: justify; }
-        .seo-article h2 { color: var(--primary); font-size: 1.15rem; margin: 20px 0 10px 0; border-right: 3px solid var(--primary); padding-right: 8px; }
-        .seo-article p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; line-height: 1.6; }
-        .slider-section { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; }
-        .slider-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 15px; }
+        .back-btn { display: inline-block; align-self: flex-start; color: #0d6efd; text-decoration: none; font-weight: bold; background: #f1f3f5; padding: 8px 15px; border-radius: 6px; border: 1px solid #e9ecef; transition: 0.3s; font-size: 14px; }
+        .back-btn:hover { background: #0d6efd; color: #fff; }
+
+        .tool-box { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
+        h1 { color: #111; margin-bottom: 15px; font-size: 22px; font-weight: bold; border-right: 4px solid #0d6efd; padding-right: 10px; text-align: right; }
+        
+        .upload-zone { border: 2px dashed #ced4da; padding: 25px; border-radius: 8px; cursor: pointer; margin-bottom: 15px; background: #f8f9fa; transition: all 0.3s; }
+        .upload-zone:hover { border-color: #0d6efd; background: #f1f3f5; }
+        input[type="file"] { display: none; }
+
+        .status-msg { display: none; margin-bottom: 15px; color: #0d6efd; font-size: 15px; font-weight: bold; }
+        .images-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 20px; }
+        .image-card { background: #f8f9fa; padding: 12px; border-radius: 8px; border: 1px solid #e9ecef; text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+        .image-card img { max-width: 100%; height: auto; border-radius: 6px; border: 1px solid #ced4da; background: white; }
+        
+        .download-page-btn { background: #0d6efd; color: #fff; border: none; padding: 10px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; width: 100%; text-decoration: none; text-align: center; display: block; transition: background 0.3s; }
+        .download-page-btn:hover { background: #0b5ed7; }
+
+        .seo-article { background: #fff; padding: 30px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: justify; }
+        .seo-article h2 { color: #0d6efd; font-size: 18px; margin: 25px 0 12px 0; border-right: 4px solid #0d6efd; padding-right: 10px; font-weight: bold; }
+        .seo-article h2:first-of-type { margin-top: 0; }
+        .seo-article p, .seo-article li { color: #444; font-size: 15px; margin-bottom: 12px; line-height: 1.9; }
+        .seo-article ul { padding-right: 20px; }
+
+        .slider-section { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; position: relative; }
+        .slider-title { font-size: 18px; color: #111; margin-bottom: 15px; font-weight: bold; border-right: 4px solid #0d6efd; padding-right: 10px; text-align: right; }
         .slider-wrapper { overflow: hidden; width: 100%; position: relative; }
         .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
-        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; box-sizing: border-box; }
-        .slider-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 5px; text-align: right; }
-        .slider-card h3 { font-size: 0.9rem; color: var(--text); }
-        .slider-card p { font-size: 0.75rem; color: var(--text-muted); }
+        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; box-sizing: border-box; }
+        .slider-card { background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; text-decoration: none; color: #333; display: flex; flex-direction: column; gap: 5px; text-align: right; transition: all 0.3s; }
+        .slider-card:hover { border-color: #0d6efd; box-shadow: 0 2px 8px rgba(13,110,253,0.1); }
+        .slider-card h3 { font-size: 15px; color: #0d6efd; font-weight: bold; }
+        .slider-card p { font-size: 13px; color: #6c757d; }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2246897924204842" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
         <a href="/" class="back-btn">⬅️ العودة للرئيسية</a>
+
+        <!-- منطقة الأداة -->
         <main class="tool-box">
             <h1>محول PDF إلى صور 📄</h1>
             <div class="upload-zone" onclick="document.getElementById('fileInput').click()">
-                <p id="uploadText" style="color: var(--text-muted); font-size: 0.95rem;">اضغط هنا لاختيار ملف PDF من جهازك 📑</p>
+                <p id="uploadText" style="color: #6c757d; font-size: 15px; font-weight: bold;">اضغط هنا لاختيار ملف PDF من جهازك 📑</p>
                 <input type="file" id="fileInput" accept="application/pdf" onchange="uploadPDF(event)">
             </div>
-            
+
             <p class="status-msg" id="statusMsg">جاري تفكيك صفحات الملف عبر السيرفر الحقيقي... ⏳</p>
             <div class="images-container" id="imagesContainer"></div>
         </main>
 
+        <!-- السلايدر المقترح بالمنتصف -->
         <section class="slider-section">
             <h2 class="slider-title">أدوات مقترحة قد تهمك 🚀</h2>
             <div class="slider-wrapper">
@@ -64,15 +73,32 @@
                         <a href="/image-converter" class="slider-card"><h3>تحويل صيغ الصور 🖼️</h3><p>تحويل الصور محلياً وفورياً بين الصيغ المختلفة.</p></a>
                         <a href="/image-compressor" class="slider-card"><h3>ضغط حجم الصور 📉</h3><p>تقليل مساحة الصور بدقة مع التحكم في الجودة.</p></a>
                     </div>
+                    <div class="slide">
+                        <a href="/word-counter" class="slider-card"><h3>عداد الكلمات المتقدم 📝</h3><p>احسب الكلمات بدقة فورتها.</p></a>
+                        <a href="/char-counter" class="slider-card"><h3>عداد الحروف الدقيق 🔢</h3><p>حساب الحروف بدقة مع الفراغات.</p></a>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- مقال الشرح الموسع والمفصل للغاية لتلبية معايير أدسنس -->
         <article class="seo-article">
-            <h2>المقطع الأول: ما هي أداة محول PDF إلى صور والهدف منها؟</h2>
-            <p>تمنحك أداة محول PDF إلى صور القدرة الفائقة على استخراج الصفحات الفردية من وثائق المستندات وتحويلها إلى صور مستقلة بصيغة PNG عالية الجودة عبر السيرفر الحقيقي لضمان سلامة الملفات.</p>
+            <h2>المقطع الأول: ما هي أداة محول PDF إلى صور وكيف تخدم مستخدمي الإنترنت؟</h2>
+            <p>تمنحك أداة محول PDF إلى صور القدرة الفائقة على استخراج الصفحات الفردية من وثائق المستندات وتحويلها إلى صور مستقلة بصيغة عالية الجودة لتتمكن من مشاركتها أو تعديلها بسهولة دون الحاجة لتثبيت برامج مكتفية بذاتها.</p>
+
             <h2>المقطع الثاني: دور الأدوات الخدمية المتقدمة في السيو وجوجل أدسنس</h2>
-            <p>تساهم الأدوات التفاعلية المعقدة مثل معالجة الـ PDF في إثراء المحتوى الخدمي الحصري لموقعك، مما يخفض معدل الارتداد ويزيد ثقة الخوارزميات وعائدات أدسنس بامتياز.</p>
+            <p>تساهم الأدوات التفاعلية المعقدة مثل معالجة وتحويل المستندات في إثراء المحتوى الخدمي الحصري لموقعك، مما يخفض معدل الارتداد ويزيد ثقة الخوارزميات بموقعك لضمان تحقيق عائدات أدسنس المستدامة.</p>
+
+            <h2>المقطع الثالث: كيف تستخدم أداة تحويل ملفات PDF خطوة بخطوة؟</h2>
+            <p>اختر ملف المستند من جهازك، وسيقوم النظام بمعالجته وتفكيك صفحاته في ثوانٍ معدودة لعرضها لك مع زر تحميل مباشر لكل صفحة على حدة بأقصى سهولة ويسر.</p>
+
+            <h2>مميزات أداة تحويل PDF إلى صور من SmartToolsPro</h2>
+            <ul>
+                <li><strong>استخراج دقيق:</strong> تحويل كل صفحة في ملف الـ PDF إلى صورة منفصلة وواضحة.</li>
+                <li><strong>سهولة التحميل:</strong> أزرار تحميل مستقلة لكل صورة ناتجة عن عملية التحويل.</li>
+                <li><strong>تجربة مستخدم متميزة:</strong> واجهة مرنة وسريعة تضمن لك إنجاز المهام في أسرع وقت.</li>
+                <li><strong>مجانية بالكامل:</strong> أداة متكاملة ومتاحة لجميع الزوار بلا حدود.</li>
+            </ul>
         </article>
     </div>
 
@@ -84,14 +110,13 @@
             document.getElementById('uploadText').textContent = "تم اختيار الملف: " + file.name + " 📄";
             var statusMsg = document.getElementById('statusMsg');
             var container = document.getElementById('imagesContainer');
-            
+
             statusMsg.style.display = 'block';
             container.innerHTML = '';
 
             var formData = new FormData();
             formData.append('pdf_file', file);
 
-            // إرسال الملف إلى دالة بايثون الحقيقية بالخلفية
             fetch('/convert-pdf', {
                 method: 'POST',
                 body: formData
@@ -103,7 +128,7 @@
                     alert("خطأ بالسيرفر: " + data.error);
                     return;
                 }
-                
+
                 if (data.images.length === 0) {
                     alert("لم يتم العثور على صور مدمجة داخل هذا الملف!");
                     return;
@@ -141,12 +166,5 @@
             container.style.transform = "translateX(" + (currentSlide * 100) + "%)";
         }, 5000);
     </script>
-
-<div style="margin:20px 0;padding:15px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;text-align:center;">
-    <a href="/tool/pdf-to-images" style="display:inline-block;padding:12px 24px;background:#ea580c;color:white;text-decoration:none;border-radius:8px;font-weight:bold;">
-        📖 اقرأ شرح الأداة وطريقة استخدامها
-    </a>
-</div>
-
 </body>
 </html>

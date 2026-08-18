@@ -8,51 +8,57 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="http://127.0.0">
     <style>
-        :root { 
-            --bg: #0f172a; 
-            --surface: #1e293b; 
-            --primary: #38bdf8; 
-            --text: #f8fafc; 
-            --text-muted: #94a3b8; 
-            --border: #334155; 
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
-        body { background: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; display: flex; flex-direction: column; gap: 20px; }
-        .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
-        .back-btn { display: inline-block; align-self: flex-start; color: var(--primary); text-decoration: none; font-weight: bold; background: var(--surface); padding: 8px 15px; border-radius: 6px; border: 1px solid var(--border); transition: 0.2s; }
-        .back-btn:hover { background: var(--primary); color: #000; }
-        .tool-box { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
-        h1 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-right: 4px solid var(--primary); padding-right: 8px; }
-        textarea { width: 100%; height: 200px; background: #0f172a; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 1rem; resize: vertical; outline: none; margin-bottom: 15px; transition: 0.2s; }
-        textarea:focus { border-color: var(--primary); }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, sans-serif; }
+        body { background-color: #fdfdfd; color: #222; padding: 15px; line-height: 1.9; display: flex; flex-direction: column; gap: 20px; }
+        .container { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
+
+        .back-btn { display: inline-block; align-self: flex-start; color: #0d6efd; text-decoration: none; font-weight: bold; background: #f1f3f5; padding: 8px 15px; border-radius: 6px; border: 1px solid #e9ecef; transition: 0.3s; font-size: 14px; }
+        .back-btn:hover { background: #0d6efd; color: #fff; }
+
+        .tool-box { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { color: #111; margin-bottom: 15px; font-size: 22px; font-weight: bold; border-right: 4px solid #0d6efd; padding-right: 10px; text-align: center; }
+        
+        textarea { width: 100%; height: 200px; background: #fff; color: #333; border: 1px solid #ced4da; border-radius: 8px; padding: 15px; font-size: 15px; resize: vertical; outline: none; margin-bottom: 15px; transition: border-color 0.3s; }
+        textarea:focus { border-color: #0d6efd; box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15); }
+
         .keyword-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 15px; }
-        .keyword-item { background: #151f32; padding: 10px 15px; border-radius: 8px; border: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 0.9rem; }
-        .keyword-name { color: var(--text); font-weight: bold; }
-        .keyword-count { color: var(--primary); }
-        .seo-article { background: var(--surface); padding: 25px; border-radius: 12px; border: 1px solid var(--border); text-align: justify; }
-        .seo-article h2 { color: var(--primary); font-size: 1.15rem; margin: 20px 0 10px 0; border-right: 3px solid var(--primary); padding-right: 8px; }
-        .seo-article p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; line-height: 1.6; }
-        .slider-section { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; }
-        .slider-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 15px; }
+        .keyword-item { background: #f8f9fa; padding: 12px 15px; border-radius: 8px; border: 1px solid #e9ecef; display: flex; justify-content: space-between; font-size: 14px; }
+        .keyword-name { color: #333; font-weight: bold; }
+        .keyword-count { color: #0d6efd; font-weight: bold; }
+
+        .seo-article { background: #fff; padding: 30px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: justify; }
+        .seo-article h2 { color: #0d6efd; font-size: 18px; margin: 25px 0 12px 0; border-right: 4px solid #0d6efd; padding-right: 10px; font-weight: bold; }
+        .seo-article h2:first-of-type { margin-top: 0; }
+        .seo-article p, .seo-article li { color: #444; font-size: 15px; margin-bottom: 12px; line-height: 1.9; }
+        .seo-article ul { padding-right: 20px; }
+
+        .slider-section { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; position: relative; }
+        .slider-title { font-size: 18px; color: #111; margin-bottom: 15px; font-weight: bold; border-right: 4px solid #0d6efd; padding-right: 10px; }
         .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
-        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; box-sizing: border-box; }
-        .slider-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 5px; }
-        .slider-card h3 { font-size: 0.9rem; color: var(--text); }
-        .slider-card p { font-size: 0.75rem; color: var(--text-muted); }
+        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; box-sizing: border-box; }
+        .slider-card { background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; text-decoration: none; color: #333; display: flex; flex-direction: column; gap: 5px; transition: all 0.3s; }
+        .slider-card:hover { border-color: #0d6efd; box-shadow: 0 2px 8px rgba(13,110,253,0.1); }
+        .slider-card h3 { font-size: 15px; color: #0d6efd; font-weight: bold; }
+        .slider-card p { font-size: 13px; color: #6c757d; }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2246897924204842" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
         <a href="/" class="back-btn">⬅️ العودة للرئيسية</a>
+
+        <!-- منطقة الأداة -->
         <main class="tool-box">
             <h1>مخطط التريندات والسيو 📈</h1>
             <textarea id="textInput" placeholder="اكتب أو الصق مقالك هنا لتحليله واكتشاف الكثافة النصية للكلمات فوريًا..."></textarea>
-            <h3 style="font-size: 1rem; color: var(--primary); margin-top: 10px;">الكلمات الأكثر تكراراً واستخداماً:</h3>
+            
+            <h3 style="font-size: 15px; color: #333; margin-top: 15px; font-weight: bold;">الكلمات الأكثر تكراراً واستخداماً:</h3>
             <ul class="keyword-list" id="keywordList">
-                <li class="keyword-item" style="color: var(--text-muted); justify-content: center;">ابدأ الكتابة للتحليل الحصري...</li>
+                <li class="keyword-item" style="color: #6c757d; justify-content: center;">ابدأ الكتابة للتحليل الحصري...</li>
             </ul>
         </main>
+
+        <!-- السلايدر المقترح بالمنتصف -->
         <section class="slider-section">
             <h2 class="slider-title">أدوات مقترحة قد تهمك 🚀</h2>
             <div style="overflow: hidden; width: 100%;">
@@ -63,52 +69,72 @@
                     </div>
                     <div class="slide">
                         <a href="/remove-duplicate-lines" class="slider-card"><h3>إزالة الأسطر المكررة ✨</h3><p>تنظيف القوائم والبيانات من التكرار فورا.</p></a>
-                        <a href="#" class="slider-card"><h3>حساب العمر بالتفصيل 📅</h3><p>حساب العمر بدقة تامة بالسنوات والشهور.</p></a>
+                        <a href="/age-calculator" class="slider-card"><h3>حساب العمر بالتفصيل 📅</h3><p>حساب العمر بدقة تامة بالسنوات والشهور.</p></a>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- مقال الشرح الموسع والمفصل للغاية لتلبية معايير أدسنس -->
         <article class="seo-article">
-            <h2>المقطع الأول: ما هو مخطط التريندات والسيو وكيف يطور مقالاتك؟</h2>
-            <p>تعتبر أداة مخطط التريندات والسيو المتقدمة بمثابة عين فاحصة لكل مدون ومختص في تهيئة المواقع لمحركات البحث. تمنحك الأداة تحليلاً فورياً ومباشراً للكلمات الطاغية على النص، مما يحميك من الحشو العشوائي ويساعدك على توزيع الكلمات المفتاحية بذكاء تام.</p>
-            <h2>المقطع الثاني: الكثافة النصية المثالية للقبول في جوجل أدسنس</h2>
-            <p>تشترط محركات البحث وجود كثافة نصية متوازنة للكلمة المفتاحية (تتراوح عادة بين 1% إلى 2.5% من إجمالي حجم المقال). إذا زادت النسبة عن ذلك، قد يصنف خوارجم جوجل المحتوى كـ "سبام" أو حشو غير طبيعي، مما يؤدي لرفض الموقع في أدسنس بسبب قلة القيمة.</p>
+            <h2>المقطع الأول: الأهمية البالغة لمخطط التريندات والسيو في تطوير المقالات</h2>
+            <p>تعتبر أداة مخطط التريندات والسيو المتقدمة بمثابة عين فاحصة لكل مدون ومختص في تهيئة المواقع لمحركات البحث (SEO). تمنحك الأداة تحليلاً فورياً ومباشراً للكلمات الطاغية على النص، مما يحميك من الحشو العشوائي ويساعدك على توزيع الكلمات المفتاحية بذكاء تام يتماشى مع خوارزميات البحث الحديثة لضمان تصدر النتائج الأولى.</p>
+
+            <h2>المقطع الثاني: الكثافة النصية المثالية ودورها في القبول في جوجل أدسنس</h2>
+            <p>تشترط محركات البحث وجود كثافة نصية متوازنة للكلمة المفتاحية المستهدفة (تتراوح عادة بين 1% إلى 2.5% من إجمالي حجم المقال). إذا زادت النسبة عن الحد الطبيعي، قد تصنف خوارزميات جوجل المحتوى كحشو غير مرغوب فيه (Keyword Stuffing)، مما يضر بترتيب الموقع ويؤدي لرفضه في أدسنس بسبب قلة جودة المحتوى. توفر هذه الأداة المؤشرات الرقمية الفورية لتفادي هذه الأخطاء.</p>
+
+            <h2>المقطع الثالث: كيف تحسن هذه الأداة تجربة القارئ والزائر الرقمي؟</h2>
+            <p>التركيز على الكلمات المفتاحية الأساسية والثانوية بطريقة طبيعية يسهل على القارئ فهم الفكرة العامة للموضوع بسرعة. من خلال تحليل الأنماط اللفظية، يمكنك صياغة فقرات متوازنة ومرتبة تعزز تفاعل الزوار وتخفض معدل الارتداد بشكل ملحوظ.</p>
+
+            <h2>مميزات محلل السيو والتريندات من SmartToolsPro</h2>
+            <ul>
+                <li><strong>استخراج الكلمات المفتاحية:</strong> رصد دقيق للكلمات الأكثر تكراراً في النص المدخل لحظياً.</li>
+                <li><strong>تصفية الحروف والزوائد:</strong> استبعاد الأدوات والكلمات الشائعة للتركيز على الجوهر.</li>
+                <li><strong>الأمان والسرعة:</strong> معالجة فورية للمحتوى محلياً داخل متصفحك دون إرسال البيانات للخارج.</li>
+                <li><strong>مجانية بالكامل:</strong> أداة متكاملة ومتاحة لجميع صناع المحتوى بلا حدود.</li>
+            </ul>
         </article>
     </div>
+
     <script>
         const textInput = document.getElementById('textInput');
         const keywordList = document.getElementById('keywordList');
+
         textInput.addEventListener('input', () => {
             const text = textInput.value.trim();
             if (text === '') {
-                keywordList.innerHTML = '<li class="keyword-item" style="color: var(--text-muted); justify-content: center;">ابدأ الكتابة للتحليل الحصري...</li>';
+                keywordList.innerHTML = '<li class="keyword-item" style="color: #6c757d; justify-content: center;">ابدأ الكتابة للتحليل الحصري...</li>';
                 return;
             }
+
             const words = text.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?"'0-9]/g, "").split(/\s+/);
-            const stopWords = ['من', 'إلى', 'في', 'على', 'عن', 'هو', 'هي', 'هذا', 'هذه', 'ان', 'أن', 'و', 'او', 'أو', 'مع', 'كل', 'تم', 'تمت'];
+            const stopWords = ['من', 'إلى', 'في', 'على', 'عن', 'هو', 'هي', 'هذا', 'هذه', 'ان', 'أن', 'و', 'او', 'أو', 'مع', 'كل', 'تم', 'تمت', 'لا', 'ما', 'فيها', 'لها', 'به', 'بها'];
             const filteredWords = words.filter(w => w.length > 1 && !stopWords.includes(w));
+
             const freqMap = {};
             filteredWords.forEach(w => { freqMap[w] = (freqMap[w] || 0) + 1; });
-            const sortedKeywords = Object.keys(freqMap).map(key => { return { name: key, count: freqMap[key] }; }).sort((a, b) => b.count - a.count).slice(0, 5);
+
+            const sortedKeywords = Object.keys(freqMap).map(key => {
+                return { name: key, count: freqMap[key] };
+            }).sort((a, b) => b.count - a.count).slice(0, 5);
+
             if (sortedKeywords.length === 0) {
-                keywordList.innerHTML = '<li class="keyword-item" style="color: var(--text-muted); justify-content: center;">لا توجد كلمات كافية للتحليل حالياً.</li>';
+                keywordList.innerHTML = '<li class="keyword-item" style="color: #6c757d; justify-content: center;">لا توجد كلمات كافية للتحليل حالياً.</li>';
                 return;
             }
+
             keywordList.innerHTML = sortedKeywords.map(k => `
                 <li class="keyword-item"><span class="keyword-name">${k.name}</span><span class="keyword-count">تكررت ${k.count} مرات</span></li>
             `).join('');
         });
+
         const container = document.getElementById('sliderContainer');
         const slidesCount = document.querySelectorAll('.slide').length;
         let currentSlide = 0;
-        setInterval(() => { currentSlide = (currentSlide + 1) % slidesCount; container.style.transform = `translateX(${currentSlide * 100}%)`; }, 5000);
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slidesCount;
+            container.style.transform = `translateX(${currentSlide * 100}%)`;
+        }, 5000);
     </script>
-
-<div style="margin:20px 0;padding:15px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;text-align:center;">
-    <a href="/tool/seo-analyzer" style="display:inline-block;padding:12px 24px;background:#ea580c;color:white;text-decoration:none;border-radius:8px;font-weight:bold;">
-        📖 اقرأ شرح الأداة وطريقة استخدامها
-    </a>
-</div>
-
 </body>
 </html>

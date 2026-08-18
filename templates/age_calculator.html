@@ -3,72 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- ملفات الأرشفة والسيو (SEO Meta Tags) مجهزة لأدسنس وجوجل -->
     <title>أداة حساب العمر بالتفصيل أونلاين مجانًا - SmartToolsPro</title>
-    <meta name="description" content="أفضل أداة مجانية لحساب عمرك الزمني بدقة بالسنوات، الأشهر، والأيام بشكل فوري. اكتشف تفاصيل ميلادك لتهيئة معايير السيو والقبول في أدسنس.">
+    <meta name="description" content="أفضل أداة مجانية لحساب عمرك الزمني بدقة فائقة بالسنوات، الأشهر، والأيام بشكل فوري. اكتشف تفاصيل ميلادك لتهيئة معايير السيو والقبول في أدسنس.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="http://127.0.0">
-    
     <style>
-        :root { 
-            --bg: #0f172a; 
-            --surface: #1e293b; 
-            --primary: #38bdf8; 
-            --text: #f8fafc; 
-            --text-muted: #94a3b8; 
-            --border: #334155; 
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
-        body { background: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; display: flex; flex-direction: column; gap: 20px; }
-        .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
-        
-        .back-btn { display: inline-block; align-self: flex-start; color: var(--primary); text-decoration: none; font-weight: bold; background: var(--surface); padding: 8px 15px; border-radius: 6px; border: 1px solid var(--border); transition: 0.2s; }
-        .back-btn:hover { background: var(--primary); color: #000; }
-        
-        .tool-box { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
-        h1 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-right: 4px solid var(--primary); padding-right: 8px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, sans-serif; }
+        body { background-color: #fdfdfd; color: #222; padding: 15px; line-height: 1.9; display: flex; flex-direction: column; gap: 20px; }
+        .container { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
+
+        .back-btn { display: inline-block; align-self: flex-start; color: #0d6efd; text-decoration: none; font-weight: bold; background: #f1f3f5; padding: 8px 15px; border-radius: 6px; border: 1px solid #e9ecef; transition: 0.3s; font-size: 14px; }
+        .back-btn:hover { background: #0d6efd; color: #fff; }
+
+        .tool-box { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { color: #111; margin-bottom: 15px; font-size: 22px; font-weight: bold; border-right: 4px solid #0d6efd; padding-right: 10px; text-align: center; }
         
         .input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
-        label { font-size: 0.9rem; color: var(--text-muted); }
-        input[type="date"] { width: 100%; background: #0f172a; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 1rem; outline: none; transition: 0.2s; }
-        input[type="date"]:focus { border-color: var(--primary); }
-        
-        .action-btn { background: var(--primary); color: #000; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 0.95rem; width: 100%; margin-bottom: 15px; }
-        .action-btn:hover { background: #7dd3fc; }
+        label { font-size: 14px; color: #555; font-weight: bold; }
+        input[type="date"] { width: 100%; background: #fff; color: #333; border: 1px solid #ced4da; border-radius: 8px; padding: 12px; font-size: 15px; outline: none; transition: border-color 0.3s; }
+        input[type="date"]:focus { border-color: #0d6efd; box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15); }
 
-        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .stat-card { background: #151f32; padding: 12px; border-radius: 8px; text-align: center; border: 1px solid var(--border); }
-        .stat-card span { display: block; font-size: 1.5rem; font-weight: bold; color: var(--primary); }
-        .stat-card p { font-size: 0.8rem; color: var(--text-muted); }
-        
-        .seo-article { background: var(--surface); padding: 25px; border-radius: 12px; border: 1px solid var(--border); text-align: justify; }
-        .seo-article h2 { color: var(--primary); font-size: 1.15rem; margin: 20px 0 10px 0; border-right: 3px solid var(--primary); padding-right: 8px; }
-        .seo-article p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; line-height: 1.6; }
+        .action-btn { background: #0d6efd; color: #fff; border: none; padding: 12px 24px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: background 0.3s; font-size: 15px; width: 100%; margin-bottom: 15px; }
+        .action-btn:hover { background: #0b5ed7; }
 
-        .slider-section { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; }
-        .slider-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 15px; }
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 15px; }
+        .stat-card { background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #e9ecef; }
+        .stat-card span { display: block; font-size: 22px; font-weight: bold; color: #0d6efd; margin-bottom: 5px; }
+        .stat-card p { font-size: 13px; color: #6c757d; font-weight: bold; }
+
+        .seo-article { background: #fff; padding: 30px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: justify; }
+        .seo-article h2 { color: #0d6efd; font-size: 18px; margin: 25px 0 12px 0; border-right: 4px solid #0d6efd; padding-right: 10px; font-weight: bold; }
+        .seo-article h2:first-of-type { margin-top: 0; }
+        .seo-article p, .seo-article li { color: #444; font-size: 15px; margin-bottom: 12px; line-height: 1.9; }
+        .seo-article ul { padding-right: 20px; }
+
+        .slider-section { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; position: relative; }
+        .slider-title { font-size: 18px; color: #111; margin-bottom: 15px; font-weight: bold; border-right: 4px solid #0d6efd; padding-right: 10px; }
         .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
-        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; box-sizing: border-box; }
-        .slider-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 5px; }
-        .slider-card h3 { font-size: 0.9rem; color: var(--text); }
-        .slider-card p { font-size: 0.75rem; color: var(--text-muted); }
+        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; box-sizing: border-box; }
+        .slider-card { background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; text-decoration: none; color: #333; display: flex; flex-direction: column; gap: 5px; transition: all 0.3s; }
+        .slider-card:hover { border-color: #0d6efd; box-shadow: 0 2px 8px rgba(13,110,253,0.1); }
+        .slider-card h3 { font-size: 15px; color: #0d6efd; font-weight: bold; }
+        .slider-card p { font-size: 13px; color: #6c757d; }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2246897924204842" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
         <a href="/" class="back-btn">⬅️ العودة للرئيسية</a>
-        
+
         <!-- منطقة الأداة -->
         <main class="tool-box">
             <h1>حساب العمر بالتفصيل 📅</h1>
             <div class="input-group">
-                <label for="birthdate">اختر تاريخ ميلادك:</label>
+                <label for="birthdate">اختر تاريخ ميلادك بدقة:</label>
                 <input type="date" id="birthdate">
             </div>
             <button class="action-btn" onclick="calculateAge()">احسب العمر الآن ✨</button>
-            
+
             <div class="stats">
                 <div class="stat-card"><span id="yearsBox">0</span><p>السنوات</p></div>
                 <div class="stat-card"><span id="monthsBox">0</span><p>الأشهر</p></div>
@@ -76,7 +68,7 @@
             </div>
         </main>
 
-        <!-- السلايدر المقترح بالمنتصف بين الأداة والمقال -->
+        <!-- السلايدر المقترح بالمنتصف -->
         <section class="slider-section">
             <h2 class="slider-title">أدوات مقترحة قد تهمك 🚀</h2>
             <div style="overflow: hidden; width: 100%;">
@@ -93,25 +85,33 @@
             </div>
         </section>
 
-        <!-- مقال الشرح الكامل والمقسم بمقطعين متوافق مع السيو وأدسنس -->
+        <!-- مقال الشرح الموسع والمفصل للغاية لتلبية معايير أدسنس -->
         <article class="seo-article">
             <h2>المقطع الأول: ما هي أداة حساب العمر بالتفصيل وما أهميتها الرقمية؟</h2>
-            <p>تعد أداة حساب العمر بالتفصيل واحدة من أكثر الأدوات الخدمية طلباً وبحثاً عبر الإنترنت؛ حيث تتيح للمستخدمين معرفة عمرهم الزمني بدقة فائقة بالسنوات والأشهر والأيام دون الحاجة لإجراء حسابات رياضية معقدة. تعتمد أداتنا على خوارزميات برمجية دقيقة تطابق التواريخ وتراعي الفروق بين السنوات الكبيسة والبسيطة، لتمنح الزائر تجربة مستخدم سريعة وآمنة تماماً تحافظ على خصوصية بياناته الشخصية محلياً داخل المتصفح.</p>
+            <p>تعد أداة حساب العمر بالتفصيل واحدة من أكثر الأدوات الخدمية طلباً وبحثاً عبر شبكة الإنترنت؛ حيث تتيح للمستخدمين معرفة عمرهم الزمني بدقة فائقة بالسنوات والأشهر والأيام دون الحاجة لإجراء عمليات حسابية معقدة أو حساب الأيام الفردية والسنوات الكبيسة يدوياً. تعتمد أداتنا على خوارزميات برمجية ذكية تطابق التواريخ الميلادية وتراعي الفروق الزمنية بين الشهور والأعوام، لتمنح الزائر تجربة مستخدم فورية، سريعة، وآمنة تماماً تحافظ على خصوصية بياناته وتتم المعالجة بالكامل محلياً داخل المتصفح.</p>
 
             <h2>المقطع الثاني: دور الأدوات الخدمية التفاعلية في تحسين السيو والقبول بأدسنس</h2>
-            <p>دمج أدوات حسابية تفاعلية مثل حاسبة العمر يمثل ركيزة أساسية لخفض معدل الارتداد (Bounce Rate) في موقعك؛ حيث يقضي الزائر وقتاً أطول في استخدام الأداة واستكشاف النتائج. محركات البحث مثل جوجل تعتبر هذا التفاعل دليلاً على جودة المحتوى وفائدته للجمهور، مما يعزز أرشفة الصفحات وتصدرها، ويجعل المنصة متوافقة كلياً مع معايير القبول الصارمة لبرنامج جوجل أدسنس للمواقع ذات القيمة العالية.</p>
+            <p>دمج أدوات حسابية تفاعلية ومباشرة مثل حاسبة العمر يمثل ركيزة استراتيجية أساسية لخفض معدل الارتداد (Bounce Rate) ورفع مدة بقاء المستخدم في الموقع؛ حيث يقضي الزائر وقتاً أطول في اختبار التواريخ واستكشاف النتائج الرقمية بدقة. محركات البحث مثل جوجل تعتبر هذا التفاعل العالي دليلاً قاطعاً على جودة المنصة وتقديمها قيمة حقيقية للجمهور، وهو ما يعزز أرشفة الصفحات وتصدرها في نتائج البحث، ويجعل الموقع متوافقاً تماماً مع الاشتراطات والمعايير الصارمة لبرنامج جوجل أدسنس للمواقع ذات المحتوى الخدمي المفيد.</p>
+
+            <h2>المقطع الثالث: كيف تضمن هذه الأدوات تجربة مستخدم مثالية وخالية من التعقيد؟</h2>
+            <p>تم تصميم هذه الأداة خصيصاً لتلبي احتياجات مختلف الفئات بفضل واجهتها البسيطة الخالية من الإعلانات المزعجة أو النوافذ المنبثقة المعقدة. سواء كنت ترغب في معرفة عمرك الدقيق لغرض رسمي، أو حساب فوارق التواريخ بدقة، فإن SmartToolsPro توفر لك الحلول البرمجية الجاهزة للعمل الفوري دون تثبيت أي برامج خارجية.</p>
+
+            <h2>مميزات استخدام حاسبة العمر من SmartToolsPro</h2>
+            <ul>
+                <li><strong>دقة متناهية:</strong> حساب الفروق الزمنية مع مراعاة الأيام الفردية والشهور المتغيرة بدقة تامة.</li>
+                <li><strong>السرعة والسهولة:</strong> نتائج فورية بمجرد اختيار تاريخ الميلاد والضغط على زر الحساب.</li>
+                <li><strong>الأمان والخصوصية:</strong> لا يتم إرسال أو تخزين تواريخ ميلادك على أي خوادم خارجية.</li>
+                <li><strong>التوافق الكامل:</strong> تعمل بكفاءة تامة على الهواتف الذكية والأجهزة اللوحية وأجهزة الكمبيوتر.</li>
+            </ul>
         </article>
     </div>
 
     <script>
-        // سكريبت حساب العمر الفوري الدقيق
         function calculateAge() {
             const birthdateInput = document.getElementById('birthdate').value;
             if (!birthdateInput) return;
-
             const birthDate = new Date(birthdateInput);
             const today = new Date();
-
             let years = today.getFullYear() - birthDate.getFullYear();
             let months = today.getMonth() - birthDate.getMonth();
             let days = today.getDate() - birthDate.getDate();
@@ -132,7 +132,6 @@
             document.getElementById('daysBox').textContent = days >= 0 ? days : 0;
         }
 
-        // سكريبت تدوير السلايدر تلقائيًا كل 5 ثوانٍ
         const container = document.getElementById('sliderContainer');
         const slidesCount = document.querySelectorAll('.slide').length;
         let currentSlide = 0;
@@ -141,12 +140,5 @@
             container.style.transform = `translateX(${currentSlide * 100}%)`;
         }, 5000);
     </script>
-
-<div style="margin:20px 0;padding:15px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;text-align:center;">
-    <a href="/tool/age-calculator" style="display:inline-block;padding:12px 24px;background:#ea580c;color:white;text-decoration:none;border-radius:8px;font-weight:bold;">
-        📖 اقرأ شرح الأداة وطريقة استخدامها
-    </a>
-</div>
-
 </body>
 </html>

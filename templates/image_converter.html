@@ -8,53 +8,61 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="http://127.0.0">
     <style>
-        :root { --bg: #0f172a; --surface: #1e293b; --primary: #38bdf8; --text: #f8fafc; --text-muted: #94a3b8; --border: #334155; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
-        body { background: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; display: flex; flex-direction: column; gap: 20px; }
-        .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
-        .back-btn { display: inline-block; align-self: flex-start; color: var(--primary); text-decoration: none; font-weight: bold; background: var(--surface); padding: 8px 15px; border-radius: 6px; border: 1px solid var(--border); transition: 0.2s; }
-        .back-btn:hover { background: var(--primary); color: #000; }
-        .tool-box { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); text-align: center; }
-        h1 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-right: 4px solid var(--primary); padding-right: 8px; text-align: right; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, sans-serif; }
+        body { background-color: #fdfdfd; color: #222; padding: 15px; line-height: 1.9; display: flex; flex-direction: column; gap: 20px; }
+        .container { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
+
+        .back-btn { display: inline-block; align-self: flex-start; color: #0d6efd; text-decoration: none; font-weight: bold; background: #f1f3f5; padding: 8px 15px; border-radius: 6px; border: 1px solid #e9ecef; transition: 0.3s; font-size: 14px; }
+        .back-btn:hover { background: #0d6efd; color: #fff; }
+
+        .tool-box { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
+        h1 { color: #111; margin-bottom: 15px; font-size: 22px; font-weight: bold; border-right: 4px solid #0d6efd; padding-right: 10px; text-align: right; }
         
-        .upload-zone { border: 2px dashed var(--border); padding: 20px; border-radius: 8px; cursor: pointer; margin-bottom: 15px; background: #0f172a; transition: 0.2s; }
-        .upload-zone:hover { border-color: var(--primary); }
+        .upload-zone { border: 2px dashed #ced4da; padding: 25px; border-radius: 8px; cursor: pointer; margin-bottom: 15px; background: #f8f9fa; transition: all 0.3s; }
+        .upload-zone:hover { border-color: #0d6efd; background: #f1f3f5; }
         input[type="file"] { display: none; }
-        
+
         .controls { display: flex; gap: 15px; margin-bottom: 15px; align-items: center; justify-content: center; flex-wrap: wrap; }
-        .control-item { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-muted); }
-        select { background: #0f172a; color: var(--text); border: 1px solid var(--border); padding: 8px; border-radius: 6px; outline: none; }
-        
-        .action-btn { background: var(--primary); color: #000; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 1rem; width: 100%; display: none; text-decoration: none; }
-        .action-btn:hover { background: #7dd3fc; }
-        
-        .seo-article { background: var(--surface); padding: 25px; border-radius: 12px; border: 1px solid var(--border); text-align: justify; }
-        .seo-article h2 { color: var(--primary); font-size: 1.15rem; margin: 20px 0 10px 0; border-right: 3px solid var(--primary); padding-right: 8px; }
-        .seo-article p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; line-height: 1.6; }
-        .slider-section { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; }
-        .slider-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 15px; }
+        .control-item { display: flex; align-items: center; gap: 8px; font-size: 15px; color: #555; font-weight: bold; }
+        select { background: #fff; color: #333; border: 1px solid #ced4da; padding: 10px 15px; border-radius: 6px; outline: none; font-size: 14px; cursor: pointer; }
+        select:focus { border-color: #0d6efd; }
+
+        .action-btn { background: #0d6efd; color: #fff; border: none; padding: 12px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: background 0.3s; font-size: 15px; width: 100%; display: none; text-decoration: none; text-align: center; }
+        .action-btn:hover { background: #0b5ed7; }
+
+        .seo-article { background: #fff; padding: 30px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: justify; }
+        .seo-article h2 { color: #0d6efd; font-size: 18px; margin: 25px 0 12px 0; border-right: 4px solid #0d6efd; padding-right: 10px; font-weight: bold; }
+        .seo-article h2:first-of-type { margin-top: 0; }
+        .seo-article p, .seo-article li { color: #444; font-size: 15px; margin-bottom: 12px; line-height: 1.9; }
+        .seo-article ul { padding-right: 20px; }
+
+        .slider-section { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; position: relative; }
+        .slider-title { font-size: 18px; color: #111; margin-bottom: 15px; font-weight: bold; border-right: 4px solid #0d6efd; padding-right: 10px; text-align: right; }
         .slider-wrapper { overflow: hidden; width: 100%; position: relative; }
         .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
-        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; box-sizing: border-box; }
-        .slider-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 5px; text-align: right; }
-        .slider-card h3 { font-size: 0.9rem; color: var(--text); }
-        .slider-card p { font-size: 0.75rem; color: var(--text-muted); }
+        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; box-sizing: border-box; }
+        .slider-card { background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; text-decoration: none; color: #333; display: flex; flex-direction: column; gap: 5px; text-align: right; transition: all 0.3s; }
+        .slider-card:hover { border-color: #0d6efd; box-shadow: 0 2px 8px rgba(13,110,253,0.1); }
+        .slider-card h3 { font-size: 15px; color: #0d6efd; font-weight: bold; }
+        .slider-card p { font-size: 13px; color: #6c757d; }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2246897924204842" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
         <a href="/" class="back-btn">⬅️ العودة للرئيسية</a>
+
+        <!-- منطقة الأداة -->
         <main class="tool-box">
             <h1>تحويل صيغ الصور 🖼️</h1>
             <div class="upload-zone" onclick="document.getElementById('fileInput').click()">
-                <p id="uploadText" style="color: var(--text-muted); font-size: 0.95rem;">اضغط هنا لاختيار صورة من جهازك 📷</p>
+                <p id="uploadText" style="color: #6c757d; font-size: 15px; font-weight: bold;">اضغط هنا لاختيار صورة من جهازك 📷</p>
                 <input type="file" id="fileInput" accept="image/*" onchange="handleImage(event)">
             </div>
-            
+
             <div class="controls">
                 <div class="control-item">
-                    <label>التحويل إلى صيغة:</label>
+                    <label for="formatSelect">التحويل إلى صيغة:</label>
                     <select id="formatSelect">
                         <option value="image/jpeg">JPG / JPEG</option>
                         <option value="image/png">PNG</option>
@@ -62,10 +70,11 @@
                     </select>
                 </div>
             </div>
-            
+
             <button class="action-btn" id="convertBtn" onclick="convertImage()">✨ تحويل وتحميل الصورة الآن</button>
         </main>
 
+        <!-- السلايدر المقترح بالمنتصف -->
         <section class="slider-section">
             <h2 class="slider-title">أدوات مقترحة قد تهمك 🚀</h2>
             <div class="slider-wrapper">
@@ -82,11 +91,24 @@
             </div>
         </section>
 
+        <!-- مقال الشرح الموسع والمفصل للغاية لتلبية معايير أدسنس -->
         <article class="seo-article">
-            <h2>المقطع الأول: ما هي أداة تحويل صيغ الصور والهدف منها؟</h2>
-            <p>تمنحك أداة تحويل صيغ الصور القدرة على تغيير امتداد ملفاتك الرسومية فوريًا ومحليًا بالكامل داخل جهازك دون رفعها إلى أي سيرفرات. تساهم هذه الخطوة في الحفاظ على أمان صورك وخصوصيتها مئة بالمئة مع توفير سرعة معالجة فائقة.</p>
+            <h2>المقطع الأول: ما هي أداة تحويل صيغ الصور وكيف تخدم أصحاب المواقع؟</h2>
+            <p>تمنحك أداة تحويل صيغ الصور القدرة على تغيير امتداد ملفاتك الرسومية فوريًا ومحليًا بالكامل داخل جهازك دون رفعها إلى أي سيرفرات خارجية. تساهم هذه الخطوة في الحفاظ على أمان صورك وخصوصيتها مئة بالمئة مع توفير سرعة معالجة فائقة تلبي احتياجات المصممين وصناع المحتوى.</p>
+
             <h2>المقطع الثاني: أهمية صيغ الصور الحديثة مثل WEBP في تحسين السيو وجوجل أدسنس</h2>
-            <p>تعد تهيئة أحجام وصيغ الصور ركيزة أساسية لتسريع أداء المواقع الإلكترونية وفقًا لمعايير جوجل لسرعة المستخدم (Core Web Vitals). استخدام صيغة WEBP الحديثة يقلل من حجم الصور بنسبة تصل إلى 30% دون المساس بالجودة، وهو ما ترحب به شروط القبول الصارمة في مراجعة أدسنس.</p>
+            <p>تعد تهيئة أحجام وصيغ الصور ركيزة أساسية لتسريع أداء المواقع الإلكترونية وفقًا لمعايير جوجل لسرعة المستخدم (Core Web Vitals). استخدام صيغة WEBP الحديثة يقلل من حجم الصور بنسبة كبيرة دون المساس بالجودة المرئية، وهو ما ترحب به شروط القبول الصارمة في مراجعة أدسنس للمواقع الخدمية.</p>
+
+            <h2>المقطع الثالث: كيف تستخدم أداة تحويل الصيغ بخطوات بسيطة؟</h2>
+            <p>كل ما عليك فعله هو اختيار الصورة المراد تحويلها من جهازك، وتحديد الصيغة المطلوبة (مثل JPG أو PNG أو WEBP) من القائمة المنسدلة، ثم النقر على زر التحويل لتنزيل الصورة بالامتداد الجديد فوراً وبدقة عالية.</p>
+
+            <h2>مميزات أداة تحويل صيغ الصور من SmartToolsPro</h2>
+            <ul>
+                <li><strong>دعم كامل لأشهر الصيغ:</strong> إمكانية التصدير إلى JPG و PNG و WEBP بكل سهولة.</li>
+                <li><strong>المعالجة المحلية الآمنة:</strong> تتم عملية التحويل بالكامل في متصفحك لضمان الحفاظ على خصوصية صورك.</li>
+                <li><strong>تحسين سرعة المواقع:</strong> تجهيز صور خفيفة الوزن لتتوافق مع معايير السيو (SEO).</li>
+                <li><strong>مجانية بالكامل:</strong> استخدام بلا حدود ومتاح لكافة المستخدمين دون رسوم.</li>
+            </ul>
         </article>
     </div>
 
@@ -111,26 +133,25 @@
         function convertImage() {
             if (!loadedImage) return;
             var format = document.getElementById('formatSelect').value;
-            
+
             var canvas = document.createElement('canvas');
             canvas.width = loadedImage.width;
             canvas.height = loadedImage.height;
             var ctx = canvas.getContext('2d');
-            
-            // في حالة التحويل لـ JPG نقوم بوضع خلفية بيضاء لمنع الشفافية السوداء
+
             if(format === "image/jpeg") {
                 ctx.fillStyle = "#ffffff";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
             }
-            
+
             ctx.drawImage(loadedImage, 0, 0);
-            
+
             var link = document.createElement('a');
             link.href = canvas.toDataURL(format, 0.9);
-            
+
             var ext = format.split('/')[1];
             if(ext === "jpeg") ext = "jpg";
-            
+
             link.download = 'smarttools-converted.' + ext;
             link.click();
         }
@@ -143,12 +164,5 @@
             container.style.transform = "translateX(" + (currentSlide * 100) + "%)";
         }, 5000);
     </script>
-
-<div style="margin:20px 0;padding:15px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;text-align:center;">
-    <a href="/tool/image-converter" style="display:inline-block;padding:12px 24px;background:#ea580c;color:white;text-decoration:none;border-radius:8px;font-weight:bold;">
-        📖 اقرأ شرح الأداة وطريقة استخدامها
-    </a>
-</div>
-
 </body>
 </html>

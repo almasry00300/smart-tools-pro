@@ -8,53 +8,60 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="http://127.0.0">
     <style>
-        :root { --bg: #0f172a; --surface: #1e293b; --primary: #38bdf8; --text: #f8fafc; --text-muted: #94a3b8; --border: #334155; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
-        body { background: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; display: flex; flex-direction: column; gap: 20px; }
-        .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
-        .back-btn { display: inline-block; align-self: flex-start; color: var(--primary); text-decoration: none; font-weight: bold; background: var(--surface); padding: 8px 15px; border-radius: 6px; border: 1px solid var(--border); transition: 0.2s; }
-        .back-btn:hover { background: var(--primary); color: #000; }
-        .tool-box { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); text-align: center; }
-        h1 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-right: 4px solid var(--primary); padding-right: 8px; text-align: right; }
-        
-        .upload-zone { border: 2px dashed var(--border); padding: 20px; border-radius: 8px; cursor: pointer; margin-bottom: 15px; background: #0f172a; transition: 0.2s; }
-        .upload-zone:hover { border-color: var(--primary); }
-        input[type="file"] { display: none; }
-        
-        .image-preview-container { display: none; margin: 15px 0; position: relative; }
-        #canvasPreview { max-width: 100%; max-height: 400px; border-radius: 8px; cursor: crosshair; background: #000; border: 1px solid var(--border); }
-        
-        .color-info { display: none; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 15px; }
-        .color-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 5px; }
-        .color-box-preview { width: 40px; height: 40px; border-radius: 6px; border: 1px solid #fff; }
-        .color-text { font-weight: bold; font-family: monospace; font-size: 1.1rem; color: var(--primary); cursor: pointer; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, sans-serif; }
+        body { background-color: #fdfdfd; color: #222; padding: 15px; line-height: 1.9; display: flex; flex-direction: column; gap: 20px; }
+        .container { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
 
-        .seo-article { background: var(--surface); padding: 25px; border-radius: 12px; border: 1px solid var(--border); text-align: justify; }
-        .seo-article h2 { color: var(--primary); font-size: 1.15rem; margin: 20px 0 10px 0; border-right: 3px solid var(--primary); padding-right: 8px; }
-        .seo-article p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; line-height: 1.6; }
-        .slider-section { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; }
-        .slider-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 15px; }
+        .back-btn { display: inline-block; align-self: flex-start; color: #0d6efd; text-decoration: none; font-weight: bold; background: #f1f3f5; padding: 8px 15px; border-radius: 6px; border: 1px solid #e9ecef; transition: 0.3s; font-size: 14px; }
+        .back-btn:hover { background: #0d6efd; color: #fff; }
+
+        .tool-box { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
+        h1 { color: #111; margin-bottom: 15px; font-size: 22px; font-weight: bold; border-right: 4px solid #0d6efd; padding-right: 10px; text-align: right; }
+        
+        .upload-zone { border: 2px dashed #ced4da; padding: 25px; border-radius: 8px; cursor: pointer; margin-bottom: 15px; background: #f8f9fa; transition: all 0.3s; }
+        .upload-zone:hover { border-color: #0d6efd; background: #f1f3f5; }
+        input[type="file"] { display: none; }
+
+        .image-preview-container { display: none; margin: 15px 0; position: relative; text-align: center; }
+        #canvasPreview { max-width: 100%; max-height: 400px; border-radius: 8px; cursor: crosshair; background: #000; border: 1px solid #ced4da; display: inline-block; }
+
+        .color-info { display: none; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 15px; }
+        .color-card { background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .color-box-preview { width: 45px; height: 45px; border-radius: 6px; border: 1px solid #ccc; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .color-text { font-weight: bold; font-family: monospace; font-size: 16px; color: #0d6efd; cursor: pointer; background: #fff; padding: 4px 10px; border: 1px solid #ced4da; border-radius: 4px; }
+
+        .seo-article { background: #fff; padding: 30px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: justify; }
+        .seo-article h2 { color: #0d6efd; font-size: 18px; margin: 25px 0 12px 0; border-right: 4px solid #0d6efd; padding-right: 10px; font-weight: bold; }
+        .seo-article h2:first-of-type { margin-top: 0; }
+        .seo-article p, .seo-article li { color: #444; font-size: 15px; margin-bottom: 12px; line-height: 1.9; }
+        .seo-article ul { padding-right: 20px; }
+
+        .slider-section { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; position: relative; }
+        .slider-title { font-size: 18px; color: #111; margin-bottom: 15px; font-weight: bold; border-right: 4px solid #0d6efd; padding-right: 10px; text-align: right; }
         .slider-wrapper { overflow: hidden; width: 100%; position: relative; }
         .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
-        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; box-sizing: border-box; }
-        .slider-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 5px; text-align: right; }
-        .slider-card h3 { font-size: 0.9rem; color: var(--text); }
-        .slider-card p { font-size: 0.75rem; color: var(--text-muted); }
+        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; box-sizing: border-box; }
+        .slider-card { background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; text-decoration: none; color: #333; display: flex; flex-direction: column; gap: 5px; text-align: right; transition: all 0.3s; }
+        .slider-card:hover { border-color: #0d6efd; box-shadow: 0 2px 8px rgba(13,110,253,0.1); }
+        .slider-card h3 { font-size: 15px; color: #0d6efd; font-weight: bold; }
+        .slider-card p { font-size: 13px; color: #6c757d; }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2246897924204842" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
         <a href="/" class="back-btn">⬅️ العودة للرئيسية</a>
+
+        <!-- منطقة الأداة -->
         <main class="tool-box">
             <h1>استخراج الألوان من الصور 🎨</h1>
             <div class="upload-zone" onclick="document.getElementById('fileInput').click()">
-                <p id="uploadText" style="color: var(--text-muted); font-size: 0.95rem;">اضغط هنا لاختيار صورة من جهازك 📷</p>
+                <p id="uploadText" style="color: #6c757d; font-size: 15px; font-weight: bold;">اضغط هنا لاختيار صورة من جهازك 📷</p>
                 <input type="file" id="fileInput" accept="image/*" onchange="loadImage(event)">
             </div>
-            
+
             <div class="image-preview-container" id="previewContainer">
-                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">اضغط أو المس أي مكان داخل الصورة لسحب اللون فوريًا 👇</p>
+                <p style="font-size: 13px; color: #6c757d; margin-bottom: 8px; font-weight: bold;">اضغط أو المس أي مكان داخل الصورة لسحب اللون فوريًا 👇</p>
                 <canvas id="canvasPreview"></canvas>
             </div>
 
@@ -62,16 +69,17 @@
                 <div class="color-card">
                     <div class="color-box-preview" id="colorHexBox"></div>
                     <span class="color-text" id="colorHexText" onclick="copyText(this)">#000000</span>
-                    <p style="font-size: 0.75rem; color: var(--text-muted);">كود HEX (اضغط للنسخ)</p>
+                    <p style="font-size: 12px; color: #6c757d;">كود HEX (اضغط للنسخ)</p>
                 </div>
                 <div class="color-card">
                     <div class="color-box-preview" id="colorRgbBox"></div>
                     <span class="color-text" id="colorRgbText" onclick="copyText(this)">rgb(0,0,0)</span>
-                    <p style="font-size: 0.75rem; color: var(--text-muted);">كود RGB (اضغط للنسخ)</p>
+                    <p style="font-size: 12px; color: #6c757d;">كود RGB (اضغط للنسخ)</p>
                 </div>
             </div>
         </main>
 
+        <!-- السلايدر المقترح بالمنتصف -->
         <section class="slider-section">
             <h2 class="slider-title">أدوات مقترحة قد تهمك 🚀</h2>
             <div class="slider-wrapper">
@@ -88,11 +96,24 @@
             </div>
         </section>
 
+        <!-- مقال الشرح الموسع والمفصل للغاية لتلبية معايير أدسنس -->
         <article class="seo-article">
-            <h2>المقطع الأول: ما هي أداة استخراج الألوان من الصور وكيف تعمل؟</h2>
-            <p>تتيح أداة استخراج الألوان للمصممين ومطوري الويب الحصول على أكواد الألوان الدقيقة HEX و RGB من أي صورة محلياً باللمس. يتم تنفيذ المعالجة داخل المتصفح بالكامل لحماية خصوصية ملفاتك.</p>
-            <h2>المقطع الثاني: أهمية أدوات التصميم التفاعلية في تحسين السيو وجوجل أدسنس</h2>
-            <p>دمج الأدوات الرسومية التفاعلية يطيل بقاء الزائر ويخفض معدل الارتداد (Bounce Rate) بشكل ملحوظ، مما يعزز فهارس موقعك ومطابقتها لمعايير القبول في مراجعة أدسنس للمواقع الخدمية المتميزة.</p>
+            <h2>المقطع الأول: ما هي أداة استخراج الألوان من الصور وكيف توفر الوقت للمصممين؟</h2>
+            <p>تتيح أداة استخراج الألوان للمصممين ومطوري الويب الحصول على أكواد الألوان الدقيقة HEX و RGB من أي صورة محلياً باللمس أو النقر. يتم تنفيذ المعالجة داخل المتصفح بالكامل وبشكل فوري لحماية خصوصية ملفاتك وتوفير أدوات مرئية دقيقة دون الحاجة لتثبيت برامج تصميم معقدة.</p>
+
+            <h2>المقطع الثاني: دور الأدوات الرسومية التفاعلية في تحسين السيو والقبول في جوجل أدسنس</h2>
+            <p>دمج الأدوات الرسومية والتصميمية التفاعلية يطيل بقاء الزائر داخل الموقع ويخفض معدل الارتداد (Bounce Rate) بشكل ملحوظ، مما يرسل إشارات إيجابية لمحركات البحث. علاوة على ذلك، تعزز هذه الأدوات الخدمية المتميزة من حظوظ المنصة في تجاوز مراجعات جوجل أدسنس بنجاح تام.</p>
+
+            <h2>المقطع الثالث: كيف تستخدم أداة استخراج الألوان بكفاءة عالية؟</h2>
+            <p>كل ما تحتاجه هو رفع أي صورة مرغوبة من جهازك، ثم النقر بالماوس أو اللمس بإصبعك على أي نقطة داخل الصورة ليتم عرض الكود الخاص باللون بصيغتي HEX و RGB مع معاينة بصرية فورية وإمكانية النسخ بضغطة زر واحدة.</p>
+
+            <h2>مميزات أداة استخراج الألوان من SmartToolsPro</h2>
+            <ul>
+                <li><strong>دقة متناهية:</strong> سحب الألوان بدقة بكسل كاملة من الصور بمختلف الصيغ.</li>
+                <li><strong>دعم صيغ متعددة:</strong> إظهار كود اللون بصيغة HEX القياسية وصيغة RGB الرقمية.</li>
+                <li><strong>الخصوصية الكاملة:</strong> المعالجة تتم محلياً في متصفحك دون رفع الصور لسيرفرات خارجية.</li>
+                <li><strong>مجانية بالكامل:</strong> استخدام بلا حدود ومتاح لكافة المطورين والمصممين أونلاين.</li>
+            </ul>
         </article>
     </div>
 
@@ -125,7 +146,7 @@
             var x = e.clientX - rect.left;
             var y = e.clientY - rect.top;
             var pixel = ctx.getImageData(x, y, 1, 1).data;
-            
+
             var hex = "#" + ("000000" + ((pixel[0] << 16) | (pixel[1] << 8) | pixel[2]).toString(16)).slice(-6);
             var rgb = "rgb(" + pixel[0] + "," + pixel[1] + "," + pixel[2] + ")";
 
@@ -150,12 +171,5 @@
             container.style.transform = "translateX(" + (currentSlide * 100) + "%)";
         }, 5000);
     </script>
-
-<div style="margin:20px 0;padding:15px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;text-align:center;">
-    <a href="/tool/color-extractor" style="display:inline-block;padding:12px 24px;background:#ea580c;color:white;text-decoration:none;border-radius:8px;font-weight:bold;">
-        📖 اقرأ شرح الأداة وطريقة استخدامها
-    </a>
-</div>
-
 </body>
 </html>

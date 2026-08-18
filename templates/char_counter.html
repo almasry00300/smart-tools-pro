@@ -3,56 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أداة عداد الحروف الدقيق - SmartToolsPro</title>
-    <meta name="description" content="أفضل أداة مجانية لحساب عدد الحروف بدقة مع الفراغات أو بدونها بشكل فوري.">
+    <title>أداة عداد الحروف والدلالات النصية الدقيقة - SmartToolsPro</title>
+    <meta name="description" content="أفضل أداة مجانية احترافية لحساب عدد الحروف بدقة مع الفراغات أو بدونها، وقياس الكلمات بشكل فوري لتحسين السيو والمقالات لأدسنس.">
     <meta name="robots" content="index, follow">
     <style>
-        :root { 
-            --bg: #0f172a; 
-            --surface: #1e293b; 
-            --primary: #38bdf8; 
-            --text: #f8fafc; 
-            --text-muted: #94a3b8; 
-            --border: #334155; 
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
-        body { background: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; display: flex; flex-direction: column; gap: 20px; }
-        .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
-        
-        .back-btn { display: inline-block; align-self: flex-start; color: var(--primary); text-decoration: none; font-weight: bold; background: var(--surface); padding: 8px 15px; border-radius: 6px; border: 1px solid var(--border); transition: 0.2s; }
-        .back-btn:hover { background: var(--primary); color: #000; }
-        
-        .tool-box { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
-        h1 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-right: 4px solid var(--primary); padding-right: 8px; }
-        textarea { width: 100%; height: 200px; background: #0f172a; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 1rem; resize: vertical; outline: none; margin-bottom: 15px; }
-        
-        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .stat-card { background: #151f32; padding: 12px; border-radius: 8px; text-align: center; border: 1px solid var(--border); }
-        .stat-card span { display: block; font-size: 1.5rem; font-weight: bold; color: var(--primary); }
-        .stat-card p { font-size: 0.8rem; color: var(--text-muted); }
-        
-        .seo-article { background: var(--surface); padding: 25px; border-radius: 12px; border: 1px solid var(--border); text-align: justify; }
-        .seo-article h2 { color: var(--primary); font-size: 1.15rem; margin: 20px 0 10px 0; border-right: 3px solid var(--primary); padding-right: 8px; }
-        .seo-article p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; line-height: 1.6; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, sans-serif; }
+        body { background-color: #fdfdfd; color: #222; padding: 15px; line-height: 1.9; display: flex; flex-direction: column; gap: 20px; }
+        .container { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
 
-        .slider-section { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; }
-        .slider-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 15px; }
+        .back-btn { display: inline-block; align-self: flex-start; color: #0d6efd; text-decoration: none; font-weight: bold; background: #f1f3f5; padding: 8px 15px; border-radius: 6px; border: 1px solid #e9ecef; transition: 0.3s; font-size: 14px; }
+        .back-btn:hover { background: #0d6efd; color: #fff; }
+
+        .tool-box { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { color: #111; margin-bottom: 15px; font-size: 22px; font-weight: bold; border-right: 4px solid #0d6efd; padding-right: 10px; text-align: center; }
+        
+        textarea { width: 100%; height: 180px; background: #fff; color: #333; border: 1px solid #ced4da; border-radius: 8px; padding: 15px; font-size: 15px; resize: vertical; outline: none; margin-bottom: 15px; transition: border-color 0.3s; }
+        textarea:focus { border-color: #0d6efd; box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15); }
+
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 15px; }
+        .stat-card { background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #e9ecef; }
+        .stat-card span { display: block; font-size: 22px; font-weight: bold; color: #0d6efd; margin-bottom: 5px; }
+        .stat-card p { font-size: 13px; color: #6c757d; font-weight: bold; }
+
+        .seo-article { background: #fff; padding: 30px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: justify; }
+        .seo-article h2 { color: #0d6efd; font-size: 18px; margin: 25px 0 12px 0; border-right: 4px solid #0d6efd; padding-right: 10px; font-weight: bold; }
+        .seo-article h2:first-of-type { margin-top: 0; }
+        .seo-article p, .seo-article li { color: #444; font-size: 15px; margin-bottom: 12px; line-height: 1.9; }
+        .seo-article ul { padding-right: 20px; }
+
+        .slider-section { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; position: relative; }
+        .slider-title { font-size: 18px; color: #111; margin-bottom: 15px; font-weight: bold; border-right: 4px solid #0d6efd; padding-right: 10px; }
         .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
-        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; box-sizing: border-box; }
-        .slider-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 5px; }
-        .slider-card h3 { font-size: 0.9rem; color: var(--text); }
-        .slider-card p { font-size: 0.75rem; color: var(--text-muted); }
+        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; box-sizing: border-box; }
+        .slider-card { background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; text-decoration: none; color: #333; display: flex; flex-direction: column; gap: 5px; transition: all 0.3s; }
+        .slider-card:hover { border-color: #0d6efd; box-shadow: 0 2px 8px rgba(13,110,253,0.1); }
+        .slider-card h3 { font-size: 15px; color: #0d6efd; font-weight: bold; }
+        .slider-card p { font-size: 13px; color: #6c757d; }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2246897924204842" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
         <a href="/" class="back-btn">⬅️ العودة للرئيسية</a>
-        
+
         <!-- منطقة الأداة -->
         <main class="tool-box">
             <h1>عداد الحروف الدقيق 🔢</h1>
-            <textarea id="textInput" placeholder="اكتب أو الصق نصك هنا..."></textarea>
+            <textarea id="textInput" placeholder="اكتب أو الصق نصك هنا للتحليل الفوري..."></textarea>
             <div class="stats">
                 <div class="stat-card"><span id="charWithSpaces">0</span><p>الحروف (مع الفراغات)</p></div>
                 <div class="stat-card"><span id="charNoSpaces">0</span><p>الحروف (بدون فراغات)</p></div>
@@ -67,25 +64,34 @@
                 <div class="slider-container" id="sliderContainer">
                     <div class="slide">
                         <a href="/word-counter" class="slider-card"><h3>عداد الكلمات المتقدم 📝</h3><p>احسب الكلمات والأسطر بدقة متناهية.</p></a>
-                        <a href="#" class="slider-card"><h3>إزالة الأسطر المكررة ✨</h3><p>تنظيف القوائم والبيانات من التكرار.</p></a>
+                        <a href="/remove-duplicate-lines" class="slider-card"><h3>إزالة الأسطر المكررة ✨</h3><p>تنظيف القوائم والبيانات من التكرار.</p></a>
                     </div>
                     <div class="slide">
                         <a href="#" class="slider-card"><h3>مخطط التريندات والسيو 📈</h3><p>تحليل الكلمات المفتاحية والكثافة النصية.</p></a>
-                        <a href="#" class="slider-card"><h3>حساب العمر بالتفصيل 📅</h3><p>حساب العمر بدقة بالسنوات والأيام.</p></a>
+                        <a href="#" class="slider-card">### حساب العمر بالتفصيل 📅<p>حساب العمر بدقة بالسنوات والأيام.</p></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- مقال الشرح الكامل والمقسم بمقطعين -->
+        <!-- مقال الشرح الموسع والمفصل للغاية لتلبية معايير أدسنس -->
         <article class="seo-article">
-            <!-- المقطع الأول -->
-            <h2>المقطع الأول: ما هي أداة عداد الحروف الدقيق وكيف تختلف عن عداد الكلمات؟</h2>
-            <p>تمنحك أداة عداد الحروف الدقيق تحليلاً ميكروسكوبياً للنصوص البرمجية والمقالات المكتوبة. على عكس عداد الكلمات التقليدي، تركز هذه الأداة على حساب الحروف الفردية والرموز وعلامات الترقيم، مما يمنحك القياس المثالي المطلوب عند الكتابة لمنصات تقيد المحتوى بحجم معين كمنصة إكس (تويتر سابقاً) أو عند كتابة العناوين الرئيسية للمواقع والـ Meta Descriptions التي يجب ألا تتخطى 160 حرفاً لتظهر كاملة في نتائج بحث جوجل.</p>
+            <h2>المقطع الأول: لماذا تُعد أداة عداد الحروف الدقيق ضرورية لكل كاتب ومنشئ محتوى؟</h2>
+            <p>تمنحك أداة عداد الحروف الدقيق تحليلاً ميكروسكوبياً وشاملاً للنصوص والمقالات والمستندات المكتوبة. على عكس أدوات عد الكلمات التقليدية، تركز هذه الأداة بشكل أساسي على قياس الحروف الفردية والرموز وعلامات الترقيم بدقة متناهية. هذا القياس الدقيق يمثل ركيزة أساسية لا غنى عنها للمحررين وصناع المحتوى الذين يتقيدون بحدود صارمة لعدد الحروف في منصات التواصل الاجتماعي، أو عند صياغة العناوين التعريفية (Meta Titles) والأوصاف الوصفية (Meta Descriptions) لمحركات البحث والتي تتطلب الالتزام بطول معين لضمان ظهورها كاملة للزوار.</p>
 
-            <!-- المقطع الثاني -->
-            <h2>المقطع الثاني: أهمية حساب الحروف بدون فراغات وتفاصيل الاستخدام</h2>
-            <p>في العديد من المعايير الأكاديمية والمهنية، يتم تقييم حجم الجهد المبذول بناءً على صافي عدد الأحرف المكتوبة دون احتساب مسافات الفراغ الفارغة (Spaces). تتيح لك أداتنا الحصرية الفصل الدقيق بين النص الخام والفراغات بنقرة واحدة وتحديث فوري مستمر لضمان أعلى مستويات الدقة الشفافة في تقاريرك، مما يسهل تهيئة المحتوى بالكامل لمحركات البحث.</p>
+            <h2>المقطع الثاني: الفارق الجوهري بين حساب الحروف مع الفراغات وبدونها في السيو</h2>
+            <p>في العديد من المنصات الأكاديمية والمهنية، يتم تقييم المحتوى وحجمه الفعلي بناءً على صافي عدد الأحرف المكتوبة مع استبعاد مسافات الفراغ الفارغة (Spaces). تتيح لك أداتنا الحصرية إظهار النتيجتين جنباً إلى جنب بشكل فوري؛ مما يمنحك رؤية واضحة ومباشرة عن حجم النص الخام. يساعدك هذا التنظيم في تحسين جودة المحتوى ومنع تجاوز الحدود القياسية المعتمدة في تقارير السيو الاحترافية.</p>
+
+            <h2>المقطع الثالث: كيف تساهم هذه الأداة في اجتياز مراجعة جوجل أدسنس بنجاح؟</h2>
+            <p>تضع منصة جوجل أدسنس معايير صارمة للغاية عند فحص المواقع الإلكترونية، وأبرزها توفير محتوى نصي ذي قيمة مضافة وقابل للاستخدام الحقيقي من قِبل الزائر. من خلال توفير هذه الأدوات الخدمية المساعدة وإحاطتها بشروحات ومقالات تفصيلية موسعة، يكتسب موقعك قيمة معتبرة تثبت لمحركات البحث ومراجعين أدسنس أن الموقع يقدم فائدة حقيقية ومتكاملة للزوار، مما يرفع بشكل ملحوظ من نسب قبول الموقع.</p>
+
+            <h2>مميزات استخدام منصة SmartToolsPro لأدوات الويب</h2>
+            <ul>
+                <li><strong>السرعة الفائقة والتحديث اللحظي:</strong> تتم عمليات المعالجة والحساب بسلاسة شديدة بمجرد البدء بالكتابة ودون الحاجة لإعادة تحميل الصفحة.</li>
+                <li><strong>الخصوصية التامة للبيانات:</strong> لا يتم حفظ أو تخزين أي نصوص تقم بإدخالها، حيث تتم العمليات برمجياً بالكامل داخل متصفحك الشخصي.</li>
+                <li><strong>التوافق الشامل:</strong> تصميم مرن ومتجاوب يعمل بكفاءة عالية على جميع أجهزة الموبايل، الأجهزة اللوحية، وأجهزة الكمبيوتر.</li>
+                <li><strong>مجانية بالكامل ودون قيود:</strong> كافة الخدمات والأدوات المتاحة مجانية تماماً ومتاحة للجميع على مدار الساعة دون اشتراكات.</li>
+            </ul>
         </article>
     </div>
 
@@ -106,12 +112,5 @@
             container.style.transform = `translateX(${currentSlide * 100}%)`;
         }, 5000);
     </script>
-
-<div style="margin:20px 0;padding:15px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;text-align:center;">
-    <a href="/tool/char-counter" style="display:inline-block;padding:12px 24px;background:#ea580c;color:white;text-decoration:none;border-radius:8px;font-weight:bold;">
-        📖 اقرأ شرح الأداة وطريقة استخدامها
-    </a>
-</div>
-
 </body>
 </html>

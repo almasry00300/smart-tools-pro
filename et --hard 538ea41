@@ -1,0 +1,54 @@
+[33m28c087e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m fix post page background white
+[33me86c47c[m update blog layout and ads
+[33m7760df8[m تفعيل قالب سياسة الخصوصية المقسم والمنظم للموبايل
+[33md54a787[m تسريع صفحة سياسة الخصوصية بنسبة 100% للموبايل
+[33mf074f4a[m تحديث صفحة سياسة الخصوصية
+[33ma240298[m نشر مقال جديد: الدليل الشامل لأداة إزالة الأسطر المكررة وتهيئة السيو
+[33m0073c59[m نشر مقال جديد: الدليل الشامل لأداة إزالة الأسطر المكررة وتهيئة السيو
+[33m74211b1[m تفعيل نظام المقاطع المقسمة والمظهر الداكن الاحترافي للمدونة
+[33m5cce394[m تحسين سرعة عرض النص من داخل القالب بأمان
+[33m13042ce[m حذف المكتبات الخارجية وتسريع صفحات التدوين للموبايل
+[33me042d02[m تسريع قسم التدوين وصفحات المقالات بنسبة 100%
+[33mbc17fc8[m تثبيت وتوجيه بطاقة ومسارات المدونة للموبايل
+[33m1d389ab[m تنظيم وعرض المقالات كبطاقات منسقة للموبايل
+[33m538ea41[m إعادة ضبط الواجهة لأصلها المستقر
+[33m3e8d90d[m إصلاح الواجهة المكسورة ونقل المدونة للقائمة الجانبية
+[33m4cefdb5[m إجبار السيرفر على خلق مسار المدونة الجديد
+[33m3999ea6[m تفعيل مسار وقالب المدونة أونلاين
+[33md089e1c[m نشر مقال جديد: الدليل الشامل لأدوات الويب الذكية: كيف تصنع محتوى ذي قيمة وتتصدر نتائج البحث في جوجل
+[33m86b0b01[m استعادة كود الموقع الأصلي والسليم بالكامل
+[33m3a8cc46[m إعادة تشغيل وتنشيط السيرفر
+[33m63c2b10[m تنظيف كامل للكود وإزالة روابط Supabase ولوحة التحكم القديمة
+[33m989bae5[m إعادة تشغيل البناء الإجباري للموقع
+[33md1bae66[m تحديث اسم الجدول تلقائياً
+[33mfc468eb[m Restore original 20 tools from Vercel source
+[33md1372fe[m Add AdSense auto ads to all pages
+[33m0a5731c[m Add global tool search
+[33ma983e32[m Link all tools to automatic SEO guides
+[33m7446782[m Add automatic SEO tool guides
+[33me5bfdac[m Fix Google verification and duplicate robots route
+[33m50d2d00[m Add files via upload
+[33m0dfc88b[m Fix duplicate robots route
+[33mf466e02[m Fix robots.txt and add sitemap.xml
+[33m649927b[m Add robots.txt
+[33ma2871c7[m Add legal pages and footer links
+[33m910ed0c[m Add AdSense verification
+[33m40f0168[m Add files via upload
+[33m21a7f2c[m Add files via upload
+[33m96af0d4[m Add files via upload
+[33mb49dd97[m Add files via upload
+[33m0e44cb1[m Add files via upload
+[33md905d61[m Add files via upload
+[33m6a1040c[m Delete templates/index.html
+[33m10a9280[m Add files via upload
+[33m68619ab[m Delete templates/index.html
+[33m7989d41[m Add files via upload
+[33m0a284ad[m Delete index.html
+[33mb2fd411[m Add files via upload
+[33m6d746b6[m Add files via upload
+[33m9bf356e[m Add files via upload
+[33m54d40c6[m Add files via upload
+[33m31cb55c[m Add files via upload
+[33mdd983de[m Add files via upload
+[33m0002c52[m Create test.txt
+[33mdaada9c[m Add files via upload

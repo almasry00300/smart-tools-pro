@@ -4,55 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أداة تحويل النص إلى كلام أونلاين مجانًا - SmartToolsPro</title>
-    <meta name="description" content="أفضل أداة مجانية لتحويل النصوص المكتوبة إلى كلام منطوق فوريًا بصوت نقي. أداة تفاعلية ممتازة لتهيئة المقالات لمحركات البحث والقبول في أدسنس.">
+    <meta name="description" content="أفضل أداة مجانية لتحويل النصوص المكتوبة إلى كلام منطوق فوريًا بصوت نقي وتنزيلها كملفات صوتية. أداة تفاعلية ممتازة لتهيئة المقالات لمحركات البحث والقبول في أدسنس.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="http://127.0.0">
     <style>
-        :root { --bg: #0f172a; --surface: #1e293b; --primary: #38bdf8; --text: #f8fafc; --text-muted: #94a3b8; --border: #334155; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
-        body { background: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; display: flex; flex-direction: column; gap: 20px; }
-        .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
-        .back-btn { display: inline-block; align-self: flex-start; color: var(--primary); text-decoration: none; font-weight: bold; background: var(--surface); padding: 8px 15px; border-radius: 6px; border: 1px solid var(--border); transition: 0.2s; }
-        .back-btn:hover { background: var(--primary); color: #000; }
-        .tool-box { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
-        h1 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-right: 4px solid var(--primary); padding-right: 8px; }
-        textarea { width: 100%; height: 180px; background: #0f172a; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 1rem; resize: vertical; outline: none; margin-bottom: 15px; }
-        textarea:focus { border-color: var(--primary); }
-        .controls { display: flex; gap: 15px; margin-bottom: 15px; align-items: center; flex-wrap: wrap; }
-        .control-item { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-muted); }
-        select { background: #0f172a; color: var(--text); border: 1px solid var(--border); padding: 8px; border-radius: 6px; outline: none; }
-        
-        /* ضبط أزرار التحكم جنباً إلى جنب */
-        .buttons-group { display: flex; gap: 12px; margin-bottom: 15px; }
-        .action-btn { border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 1rem; flex: 1; text-align: center; text-decoration: none; }
-        .listen-btn { background: var(--primary); color: #000; }
-        .listen-btn:hover { background: #7dd3fc; }
-        .download-btn { background: #10b981; color: #fff; }
-        .download-btn:hover { background: #059669; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, sans-serif; }
+        body { background-color: #fdfdfd; color: #222; padding: 15px; line-height: 1.9; display: flex; flex-direction: column; gap: 20px; }
+        .container { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
 
-        .seo-article { background: var(--surface); padding: 25px; border-radius: 12px; border: 1px solid var(--border); text-align: justify; }
-        .seo-article h2 { color: var(--primary); font-size: 1.15rem; margin: 20px 0 10px 0; border-right: 3px solid var(--primary); padding-right: 8px; }
-        .seo-article p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; line-height: 1.6; }
-        .slider-section { background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; }
-        .slider-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 15px; }
+        .back-btn { display: inline-block; align-self: flex-start; color: #0d6efd; text-decoration: none; font-weight: bold; background: #f1f3f5; padding: 8px 15px; border-radius: 6px; border: 1px solid #e9ecef; transition: 0.3s; font-size: 14px; }
+        .back-btn:hover { background: #0d6efd; color: #fff; }
+
+        .tool-box { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { color: #111; margin-bottom: 15px; font-size: 22px; font-weight: bold; border-right: 4px solid #0d6efd; padding-right: 10px; text-align: right; }
+        
+        textarea { width: 100%; height: 180px; background: #fff; color: #333; border: 1px solid #ced4da; border-radius: 8px; padding: 15px; font-size: 16px; resize: vertical; outline: none; margin-bottom: 15px; transition: border-color 0.3s; }
+        textarea:focus { border-color: #0d6efd; box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15); }
+
+        .controls { display: flex; gap: 15px; margin-bottom: 15px; align-items: center; flex-wrap: wrap; }
+        .control-item { display: flex; align-items: center; gap: 8px; font-size: 15px; color: #555; font-weight: bold; }
+        select { background: #fff; color: #333; border: 1px solid #ced4da; padding: 10px 15px; border-radius: 6px; outline: none; font-size: 14px; cursor: pointer; }
+        select:focus { border-color: #0d6efd; }
+
+        .buttons-group { display: flex; gap: 12px; margin-bottom: 15px; flex-wrap: wrap; }
+        .action-btn { border: none; padding: 12px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: background 0.3s; font-size: 15px; flex: 1; min-width: 200px; text-align: center; text-decoration: none; display: inline-flex; justify-content: center; align-items: center; gap: 8px; }
+        .listen-btn { background: #0d6efd; color: #fff; }
+        .listen-btn:hover { background: #0b5ed7; }
+        .download-btn { background: #198754; color: #fff; }
+        .download-btn:hover { background: #157347; }
+
+        .seo-article { background: #fff; padding: 30px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: justify; }
+        .seo-article h2 { color: #0d6efd; font-size: 18px; margin: 25px 0 12px 0; border-right: 4px solid #0d6efd; padding-right: 10px; font-weight: bold; }
+        .seo-article h2:first-of-type { margin-top: 0; }
+        .seo-article p, .seo-article li { color: #444; font-size: 15px; margin-bottom: 12px; line-height: 1.9; }
+        .seo-article ul { padding-right: 20px; }
+
+        .slider-section { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; position: relative; }
+        .slider-title { font-size: 18px; color: #111; margin-bottom: 15px; font-weight: bold; border-right: 4px solid #0d6efd; padding-right: 10px; text-align: right; }
         .slider-wrapper { overflow: hidden; width: 100%; position: relative; }
         .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
-        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; box-sizing: border-box; }
-        .slider-card { background: #151f32; padding: 12px; border-radius: 8px; border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 5px; text-align: right; }
-        .slider-card h3 { font-size: 0.9rem; color: var(--text); }
-        .slider-card p { font-size: 0.75rem; color: var(--text-muted); }
+        .slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; box-sizing: border-box; }
+        .slider-card { background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; text-decoration: none; color: #333; display: flex; flex-direction: column; gap: 5px; text-align: right; transition: all 0.3s; }
+        .slider-card:hover { border-color: #0d6efd; box-shadow: 0 2px 8px rgba(13,110,253,0.1); }
+        .slider-card h3 { font-size: 15px; color: #0d6efd; font-weight: bold; }
+        .slider-card p { font-size: 13px; color: #6c757d; }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2246897924204842" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
         <a href="/" class="back-btn">⬅️ العودة للرئيسية</a>
+
+        <!-- منطقة الأداة -->
         <main class="tool-box">
             <h1>تحويل النص إلى كلام 🗣️</h1>
             <textarea id="speechText" placeholder="اكتب أو الصق النص هنا ليتم نُطقه أو تحميله فورا..."></textarea>
+            
             <div class="controls">
                 <div class="control-item">
-                    <label>سرعة النطق:</label>
+                    <label for="speechRate">سرعة النطق:</label>
                     <select id="speechRate">
                         <option value="0.75">بطيء</option>
                         <option value="1" selected>طبيعي</option>
@@ -60,11 +70,14 @@
                     </select>
                 </div>
             </div>
+
             <div class="buttons-group">
                 <button class="action-btn listen-btn" onclick="speakText()">🗣️ ابدأ الاستماع الآن</button>
-                <button class="action-btn download-btn" onclick="downloadAudio()">📥 تحميل ملف MP3</button>
+                <button class="action-btn download-btn" onclick="downloadAudio()">📥 تحميل ملف الصوت</button>
             </div>
         </main>
+
+        <!-- السلايدر المقترح بالمنتصف -->
         <section class="slider-section">
             <h2 class="slider-title">أدوات مقترحة قد تهمك 🚀</h2>
             <div class="slider-wrapper">
@@ -80,13 +93,28 @@
                 </div>
             </div>
         </section>
+
+        <!-- مقال الشرح الموسع والمفصل للغاية لتلبية معايير أدسنس -->
         <article class="seo-article">
-            <h2>المقطع الأول: ما هي أداة تحويل النص إلى كلام والهدف منها؟</h2>
-            <p>تتيح أداة تحويل النص إلى كلام المتطورة للمبدعين والمستخدمين سماع النصوص المكتوبة فورًا وبأصوات طبيعية ونقية كليًا وتحميلها كملفات صوتية بضغط زر واحدة.</p>
-            <h2>المقطع الثاني: فوائد الأدوات الصوتية التفاعلية في معايير السيو وأدسينس</h2>
-            <p>تساهم خدمات النطق الصوتي التفاعلية في زيادة زمن الجلسة وبقاء الزائر داخل صفحات موقعك، وهو عامل حيوي لخفض معدل الارتداد (Bounce Rate).</p>
+            <h2>المقطع الأول: ما هي أداة تحويل النص إلى كلام والهدف من استضافتها؟</h2>
+            <p>تتيح أداة تحويل النص إلى كلام المتطورة للمبدعين، صناع المحتوى، والطلاب سماع النصوص المكتوبة فورًا وبأصوات طبيعية ونقية كليًا. تساهم هذه التقنية في تسهيل استهلاك المحتوى المكتوب للأشخاص الذين يفضلون الاستماع، أو لديهم صعوبات في القراءة، مما يوسع قاعدة جمهور موقعك.</p>
+
+            <h2>المقطع الثاني: فوائد الأدوات الصوتية التفاعلية في تحسين السيو والقبول في جوجل أدسنس</h2>
+            <p>تساهم خدمات النطق الصوتي التفاعلية في زيادة زمن الجلسة وبقاء الزائر داخل صفحات موقعك لفترات أطول، وهو عامل حيوي لخفض معدل الارتداد (Bounce Rate) وإرسال إشارات إيجابية لمحركات البحث. علاوة على ذلك، توفر هذه الأدوات قيمة مضافة فريدة ومبتكرة يترقبها مراجعو جوجل أدسنس للموافقة على المنصات الرقمية.</p>
+
+            <h2>المقطع الثالث: كيف تستفيد من ميزة التحكم في سرعة النطق والتحميل الصوتي؟</h2>
+            <p>تم تصميم الأداة لتمنحك مرونة كاملة في اختيار سرعة القراءة المناسبة (سريع، طبيعي، بطيء) لتلائم تفضيلاتك الشخصية، بالإضافة إلى توفير وسيلة مباشرة لتصدير النصوص وتحويلها إلى مواد صوتية تفاعلية בקלות تامة ومن خلال متصفحك مباشرة.</p>
+
+            <h2>مميزات أداة تحويل النص إلى كلام من SmartToolsPro</h2>
+            <ul>
+                <li><strong>استماع فوري:</strong> تحويل أي فقرة أو مقال مطول إلى كلام منطوق بضغطة زر واحدة.</li>
+                <li><strong>التحكم بالسرعة:</strong> إمكانية تسريع أو إبطاء وتيرة القراءة لتناسب احتياجاتك.</li>
+                <li><strong>إثراء تجربة المستخدم:</strong> تحويل المدونات العادية إلى منصات صوتية تفاعلية جذابة.</li>
+                <li><strong>مجانية وسهلة الاستخدام:</strong> متوافقة مع كافة الأجهزة والمتصفحات ودون الحاجة لبرامج معقدة.</li>
+            </ul>
         </article>
     </div>
+
     <script>
         function speakText() {
             var text = document.getElementById('speechText').value.trim();
@@ -94,15 +122,13 @@
             window.speechSynthesis.cancel();
             var utterance = new SpeechSynthesisUtterance(text);
             utterance.rate = parseFloat(document.getElementById('speechRate').value);
+            utterance.lang = 'ar-SA';
             window.speechSynthesis.speak(utterance);
         }
 
-        // دالة إرسال النص للسيرفر وتحميل ملف الـ MP3 الحقيقي
         function downloadAudio() {
             var text = document.getElementById('speechText').value.trim();
             if(text === "") { alert("يرجى إدخال نص أولاً للتحميل!"); return; }
-            
-            // التوجيه المباشر لمسار التحميل الخاص ببايثون
             window.location.href = "/download-speech?text=" + encodeURIComponent(text);
         }
 
@@ -114,12 +140,5 @@
             container.style.transform = "translateX(" + (currentSlide * 100) + "%)";
         }, 5000);
     </script>
-
-<div style="margin:20px 0;padding:15px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;text-align:center;">
-    <a href="/tool/text-to-speech" style="display:inline-block;padding:12px 24px;background:#ea580c;color:white;text-decoration:none;border-radius:8px;font-weight:bold;">
-        📖 اقرأ شرح الأداة وطريقة استخدامها
-    </a>
-</div>
-
 </body>
 </html>

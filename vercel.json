@@ -19,5 +19,11 @@
       "src": "/(.*)",
       "dest": "app.py"
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/ads.txt",
+      "destination": "/static/ads.txt"
+    }
   ]
 }

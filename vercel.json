@@ -1,11 +1,8 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "app.py"
+      "source": "/ads.txt",
+      "destination": "/static/ads.txt"
     }
   ]
 }

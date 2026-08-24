@@ -1,29 +1,11 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "app.py",
-      "use": "@vercel/python"
-    }
-  ],
   "routes": [
     {
-      "src": "/blog/post/(.*)",
-      "dest": "app.py"
-    },
-    {
-      "src": "/blog",
-      "dest": "app.py"
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
       "dest": "app.py"
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/ads.txt",
-      "destination": "/static/ads.txt"
     }
   ]
 }
